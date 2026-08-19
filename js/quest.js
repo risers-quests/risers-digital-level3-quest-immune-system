@@ -233,13 +233,20 @@
      text offsets within their containing block (auto-tagged data-hl-block),
      so they survive reload and reapply regardless of nested <strong>/<em>. */
   function getTextOffset(root, node, offset) {
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
-    var total = 0, n;
-    while ((n = walker.nextNode())) {
-      if (n === node) return total + offset;
-      total += n.textContent.length;
+    // A selection boundary isn't always a text node + char offset — dragging to
+    // exactly the start/end of a block (very common: selecting "the whole
+    // sentence") often resolves to the parent element + a child index instead.
+    // Building a Range from the true start of root to the boundary and reading
+    // its string length handles both cases correctly, using the same text
+    // serialization the browser itself uses for range.toString().
+    try {
+      var r = document.createRange();
+      r.setStart(root, 0);
+      r.setEnd(node, offset);
+      return r.toString().length;
+    } catch (e) {
+      return root.textContent.length;
     }
-    return total;
   }
 
   function wrapRange(root, start, end, markClass, hlId) {
@@ -352,22 +359,46 @@
     document.body.appendChild(popup);
     var pending = null;
 
+    // The one thing that actually decides "does the selection right now deserve
+    // a highlight popup". Called from mouseup/touchend for instant desktop/touch
+    // response, and from a debounced selectionchange listener as a fallback that
+    // catches everything else (native mobile selection-handle drags, which don't
+    // reliably fire mouseup/touchend at the right moment, and keyboard selection).
+    function trySelection() {
+      var sel = window.getSelection();
+      if (!sel || sel.isCollapsed || sel.rangeCount === 0) { hidePopup(); return; }
+      var range = sel.getRangeAt(0);
+      var text = range.toString().trim();
+      if (!text) { hidePopup(); return; }
+      var spans = findSpans(range);
+      if (!spans.length) { hidePopup(); return; }
+      pending = { spans: spans, text: text };
+      var rect = range.getBoundingClientRect();
+      if (!rect || (rect.width === 0 && rect.height === 0)) { hidePopup(); return; }
+      popup.style.left = (rect.left + rect.width / 2 + window.scrollX) + 'px';
+      popup.style.top = (rect.top + window.scrollY) + 'px';
+      popup.style.display = 'flex';
+    }
+
+    function hidePopup() {
+      popup.style.display = 'none';
+      pending = null;
+    }
+
     document.addEventListener('mouseup', function (e) {
       if (popup.contains(e.target)) return;
-      setTimeout(function () {
-        var sel = window.getSelection();
-        if (!sel || sel.isCollapsed || sel.rangeCount === 0) { popup.style.display = 'none'; return; }
-        var range = sel.getRangeAt(0);
-        var text = range.toString().trim();
-        if (!text) { popup.style.display = 'none'; return; }
-        var spans = findSpans(range);
-        if (!spans.length) { popup.style.display = 'none'; return; }
-        pending = { spans: spans, text: text };
-        var rect = range.getBoundingClientRect();
-        popup.style.left = (rect.left + rect.width / 2 + window.scrollX) + 'px';
-        popup.style.top = (rect.top + window.scrollY) + 'px';
-        popup.style.display = 'flex';
-      }, 0);
+      setTimeout(trySelection, 0);
+    });
+
+    document.addEventListener('touchend', function (e) {
+      if (popup.contains(e.target)) return;
+      setTimeout(trySelection, 0);
+    });
+
+    var selChangeTimer = null;
+    document.addEventListener('selectionchange', function () {
+      clearTimeout(selChangeTimer);
+      selChangeTimer = setTimeout(trySelection, 220);
     });
 
     popup.querySelector('button').addEventListener('click', function () {
@@ -381,12 +412,15 @@
       persist();
       renderCollectedList();
       window.getSelection().removeAllRanges();
-      popup.style.display = 'none';
-      pending = null;
+      hidePopup();
     });
 
     document.addEventListener('mousedown', function (e) {
-      if (!popup.contains(e.target)) popup.style.display = 'none';
+      if (!popup.contains(e.target)) hidePopup();
+    });
+
+    document.addEventListener('touchstart', function (e) {
+      if (!popup.contains(e.target)) hidePopup();
     });
 
     document.addEventListener('click', function (e) {
