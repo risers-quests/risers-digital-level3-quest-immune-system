@@ -360,3 +360,150 @@ mark.user-hl:hover { background: #fcd34d; }
 .notes-saved-msg { font-size: .76rem; color: var(--ink-soft); margin-top: 6px; min-height: 1.2em; }
 .notes-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.15); z-index: 290; display: none; }
 .notes-backdrop.show { display: block; }
+
+/* ============================================================
+   Section number badges — turns "1. The threat..." into a proper
+   field-manual look instead of a plain blog heading.
+   ============================================================ */
+h3 .sec-num {
+  display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-family: var(--font-head); font-size: .95rem; font-weight: 700;
+  margin-right: 10px; flex: none; vertical-align: middle; position: relative; top: -2px;
+}
+
+/* ============================================================
+   Cover watermark — a large faint decorative icon behind the hero
+   text so the cover doesn't read as plain text on white.
+   ============================================================ */
+.cover { position: relative; overflow: hidden; }
+.cover-watermark {
+  position: absolute; top: -40px; right: -40px; font-size: 220px; line-height: 1; opacity: .06;
+  pointer-events: none; user-select: none; transform: rotate(-8deg);
+}
+
+/* ============================================================
+   Labeled diagrams — an SVG with numbered circles baked in, plus
+   a legend list below matching numbers to what they point at.
+   ============================================================ */
+.diagram-card {
+  background: var(--paper); border: 1.5px solid var(--border); border-radius: 16px; padding: 22px;
+  margin: 22px 0; box-shadow: 0 6px 20px rgba(0,0,0,.05);
+}
+.diagram-card .diagram-title { font-family: var(--font-head); font-weight: 600; font-size: 1rem; margin-bottom: 4px; text-align: center; }
+.diagram-card .diagram-sub { text-align: center; color: var(--ink-soft); font-size: .85rem; margin-bottom: 14px; }
+.diagram-card .diagram-svg-wrap { display: flex; justify-content: center; margin-bottom: 16px; }
+.diagram-legend { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 18px; max-width: 560px; margin: 0 auto; }
+@media (max-width: 620px) { .diagram-legend { grid-template-columns: 1fr; } }
+.diagram-legend-item { display: flex; align-items: baseline; gap: 8px; font-size: .87rem; }
+.diagram-legend-item .dl-num {
+  display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-size: .72rem; font-weight: 700; flex: none;
+}
+.diagram-legend-item .dl-text strong { color: var(--ink); }
+
+/* ============================================================
+   Animated process scenes — small looping CSS/SVG animations that
+   show a mechanism in motion, with a caption underneath. Distinct
+   from a static diagram: these teach a PROCESS, not just a part.
+   ============================================================ */
+.process-scene {
+  border-radius: 18px; overflow: hidden; margin: 20px 0; padding: 26px 20px; text-align: center; color: #fff;
+  position: relative; min-height: 190px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+}
+.process-scene .ps-stage { width: 150px; height: 130px; position: relative; }
+.process-scene .ps-caption { font-weight: 700; font-size: 1rem; }
+.process-scene .ps-sub { font-size: .82rem; opacity: .9; max-width: 380px; }
+
+@keyframes psEngulf {
+  0%, 15% { transform: translateX(0) scale(1); opacity: 1; }
+  55% { transform: translateX(-2px) scale(.6); opacity: 1; }
+  70%, 100% { transform: translateX(-2px) scale(0); opacity: 0; }
+}
+@keyframes psBlobPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06) rotate(2deg); }
+}
+.ps-blob { animation: psBlobPulse 2.4s ease-in-out infinite; transform-origin: center; }
+.ps-target { animation: psEngulf 3s ease-in-out infinite; transform-origin: center; }
+
+@keyframes psSweep {
+  0% { transform: translateX(-10px); opacity: .4; }
+  50% { transform: translateX(6px); opacity: 1; }
+  100% { transform: translateX(30px); opacity: 0; }
+}
+.ps-cilium { animation: psSweep 1.6s ease-in-out infinite; }
+.ps-cilium:nth-child(2) { animation-delay: .2s; }
+.ps-cilium:nth-child(3) { animation-delay: .4s; }
+
+@keyframes psSnap {
+  0%, 30% { transform: translateY(-14px) rotate(0deg); }
+  45%, 65% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(0) rotate(-6deg); }
+  85% { transform: translateY(0) rotate(4deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+.ps-key { animation: psSnap 2.6s ease-in-out infinite; transform-origin: bottom center; }
+
+@keyframes psSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.ps-spin { animation: psSpin 6s linear infinite; transform-origin: center; }
+
+@keyframes psReplicate {
+  0% { transform: scale(0); opacity: 0; }
+  40% { transform: scale(1); opacity: 1; }
+  80% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+.ps-copy { animation: psReplicate 2s ease-out infinite; transform-origin: center; }
+.ps-copy:nth-child(2) { animation-delay: .5s; }
+.ps-copy:nth-child(3) { animation-delay: 1s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-blob, .ps-target, .ps-cilium, .ps-key, .ps-spin, .ps-copy { animation: none; }
+}
+
+/* ============================================================
+   3D model viewer — a rotating labeled cube preview for the Day 2
+   build, and its pause control.
+   ============================================================ */
+.model3d-wrap { text-align: center; margin: 22px 0; }
+.model3d { perspective: 900px; width: 210px; height: 210px; margin: 0 auto; }
+.model3d-stage { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: modelSpin 16s linear infinite; }
+.model3d-stage.paused { animation-play-state: paused; }
+.model3d-face {
+  position: absolute; inset: 0; width: 210px; height: 210px; box-sizing: border-box; display: flex;
+  align-items: center; justify-content: center; text-align: center; font-weight: 700; font-family: var(--font-head);
+  font-size: .82rem; line-height: 1.3; padding: 16px; border-radius: 18px; border: 3px solid rgba(255,255,255,.55); color: #fff;
+}
+.model3d-face .f-icon { display: block; font-size: 1.5rem; margin-bottom: 6px; }
+.model3d-face.f1 { transform: translateZ(105px); }
+.model3d-face.f2 { transform: rotateY(90deg) translateZ(105px); }
+.model3d-face.f3 { transform: rotateY(180deg) translateZ(105px); }
+.model3d-face.f4 { transform: rotateY(-90deg) translateZ(105px); }
+.model3d-face.f5 { transform: rotateX(90deg) translateZ(105px); }
+.model3d-face.f6 { transform: rotateX(-90deg) translateZ(105px); }
+@keyframes modelSpin { from { transform: rotateY(0deg) rotateX(-14deg); } to { transform: rotateY(360deg) rotateX(-14deg); } }
+@media (prefers-reduced-motion: reduce) { .model3d-stage { animation-play-state: paused; } }
+.model3d-hint { font-size: .84rem; color: var(--ink-soft); margin-top: 14px; }
+.model3d-pause { margin-top: 10px; }
+
+/* ============================================================
+   Build checklist + material-justification table
+   ============================================================ */
+.build-checklist { display: grid; gap: 10px; margin: 18px 0; }
+.build-check-item {
+  display: flex; align-items: flex-start; gap: 12px; background: var(--paper-soft); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 12px 16px; cursor: pointer; transition: border-color .15s, background .15s;
+}
+.build-check-item:hover { border-color: var(--accent); }
+.build-check-item.checked { border-color: #16a34a; background: #ecfdf5; }
+.build-check-item input[type=checkbox] { width: 19px; height: 19px; margin-top: 2px; accent-color: #16a34a; flex: none; }
+.build-check-item .step-num { font-weight: 800; color: var(--accent-dark); margin-right: 4px; }
+.build-check-item.checked .step-text { text-decoration: line-through; color: var(--ink-soft); }
+
+table.justify-table { margin: 16px 0; font-size: .9rem; }
+table.justify-table th, table.justify-table td { border: 1.5px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top; }
+table.justify-table th { background: var(--paper-soft); font-family: var(--font-head); font-size: .78rem; text-transform: uppercase; }
+table.justify-table input, table.justify-table textarea {
+  width: 100%; border: none; background: transparent; font-family: var(--font-body); font-size: .9rem; padding: 2px;
+}
+table.justify-table textarea { min-height: 44px; resize: vertical; }

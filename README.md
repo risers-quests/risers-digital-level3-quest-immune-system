@@ -11,11 +11,11 @@ lens and an output format.
 Prepared for **Shalom, Michael, and Karis**. Served from one domain/one
 repo — three folders, not three repositories:
 
-| Instance | Path | Lens | Day 2 decision activity | Day 3 output |
+| Instance | Path | Lens | Day 2 build | Day 3 output |
 |---|---|---|---|---|
-| Shalom | `/shalom/` | 🚨 Outbreak Response Commander | Allocate 12 resource tokens across 6 settlements with different real R0/transmissibility profiles; unresourced zones roll a die to see if the outbreak spreads | Containment Briefing |
-| Michael | `/michael/` | 💰 Vaccine Program Director | Run a 100-unit budget across 5 disease programs using the real herd-immunity threshold formula (1 − 1/R0); draw Budget Event cards for real mid-cycle shocks | Funding Pitch |
-| Karis | `/karis/` | 🩺 Field Triage Medic | Work a 10-patient shift with only 3 antibiotic tokens, deciding on each patient as their card is drawn face-down, one at a time | Shift Handover Report |
+| Shalom | `/shalom/` | 🚨 Outbreak Response Commander | Builds a labeled model of ONE real pathogen type (his choice — bacteria/virus/fungus/protoctist), justified by the outbreak he's commanding | Containment Briefing |
+| Michael | `/michael/` | 💰 Vaccine Program Director | Builds a labeled antibody-antigen "lock and key" model, proving specificity with a second, non-matching antigen | Funding Pitch |
+| Karis | `/karis/` | 🩺 Field Triage Medic | Builds a labeled phagocyte model caught mid-engulfment (detect/engulf/digest), not before or after | Shift Handover Report |
 
 `index.html` at the repo root is a name-check gate, not a page of links —
 see "Individual displays" below.
@@ -98,6 +98,59 @@ Implementation: `QuestUI.initHighlighter(pageKey)` and
 `QuestUI.initNotesDrawer(pageKey)` in `js/quest.js`, called once per kid
 page with that page's own key (`'shalom'` / `'michael'` / `'karis'`).
 
+## Day 2 is a build day (not a simulation)
+
+Each kid builds a real, physical, labeled 3D model of a different immune-system
+structure — see the table above. This replaced an earlier draft where Day 2
+was a token/dice/card decision-simulation; that version worked but didn't
+give the "pictorial, hands-on biology" the topic calls for. The build still
+satisfies the framework's Day 2 requirements and the Level 3 skill
+(Decision-Making Under Constraints) — the decision now lives in the
+**material-justification table** (`table.justify-table`): before touching
+any material, each kid records, per labeled part, *what it represents*,
+*which material they're using*, and *why that material fits* — a real
+constrained choice with reasoning attached, not a craft project with no
+stakes. Structure per kid, all under `#day2`:
+
+1. A rotating labeled 3D CSS preview of their specific build target
+   (`.model3d` cube, six faces, auto-rotating, pausable) — see below.
+2. "What your model has to prove" — the one non-negotiable detail (e.g.
+   Karis's phagocyte must show *mid*-engulfment, not before/after).
+3. "Plan before you build" — the material-justification table.
+4. "Build it" — a numbered, checkable build-step list (`.build-checklist`).
+5. "Results" — a short structured write-up of the finished model.
+6. The Day 2 self-check reflection (keyword-checked, see below).
+
+Materials are a **suggestive pool**, not a fixed kit — every kid's "Choose
+What You're Bringing" section lists household/craft items (a ball or
+balloon, pipe cleaners, clay, beads, cardboard) with common fallbacks noted
+inline, and nothing is pre-selected as mandatory beyond what's checked by
+default. They decide their own combination based on their own plan, exactly
+per the framework's "materials as a pool, never a checklist" rule.
+
+## Pictorial biology: diagrams and animations, not a wall of text
+
+Every kid's Day 1 reading now includes, at the point in the text where the
+concept is introduced:
+
+- **Labeled SVG diagrams** (`.diagram-card`) — numbered circles baked
+  directly into the SVG, with a legend below matching each number to a
+  real part: virus anatomy (capsid / genetic material / spike proteins),
+  a phagocyte mid-engulfment (membrane / engulfed pathogen / enzymes), and
+  an antibody-antigen pair (binding site / antibody / antigen).
+- **Looping CSS/SVG process animations** (`.process-scene`) that show a
+  *mechanism*, not just a part: cilia sweeping a trapped pathogen out,
+  a phagocyte pulsing as it engulfs a target, an antibody snapping onto
+  its matching antigen. All respect `prefers-reduced-motion`.
+- **Numbered section badges** (`.sec-num`) on each of the five core-content
+  headings, and a large faint **cover watermark** icon per lens, so the
+  page reads as a structured field manual rather than a plain blog post.
+
+These three diagrams/animations are the same underlying biology across all
+three kids (same process, per Approach A) — only the surrounding prose and
+which one gets extra emphasis differs, matching whichever structure that
+kid is building in Day 2.
+
 ## Why this structure (and not the earlier build)
 
 An earlier draft of this repo used a quiz/certificate/lock-progression
@@ -126,11 +179,9 @@ replaces that draft entirely.
   a printable "Materials I'm Bringing" slip, isolated on its own printed
   page via `@media print` (same mechanism as a certificate-print isolation
   pattern — nothing else on the page prints alongside it).
-- **Day 2** — a real, physical, non-symbolic decision activity with genuine
-  unpredictability (a die roll, a shuffled event deck, or face-down patient
-  cards) that the student doesn't fully control in advance. Structured like
-  a real report: a plan/prediction table filled in *before* acting, a
-  decision log filled in *during*, a results tally, and a self-check
+- **Day 2** — a real, physical, non-symbolic build (see "Day 2 is a build
+  day" above): a material-justification table filled in *before* building,
+  a numbered build-step checklist, a results write-up, and a self-check
   reflection prompt.
 - **Day 3** — a concrete presentation hook (not "begin your presentation"),
   a kid-facing "what to include" checklist, and a facilitator-only tip
@@ -157,8 +208,8 @@ karis/index.html     Field Triage Medic instance
 css/styles.css        Shared styling — one stylesheet, three lens palettes
                        (body.lens-shalom / .lens-michael / .lens-karis)
 js/quest.js           Materials-pool → printable-slip wiring, print trigger,
-                       random-event helpers (shuffle/pickRandom), the per-kid
-                       access gate, the highlighter, and the notes drawer.
+                       the per-kid access gate, the highlighter, the notes
+                       drawer, and the keyword-checked reflection engine.
 ```
 
 No build step — plain HTML/CSS/JS. Open `index.html` directly, serve the
