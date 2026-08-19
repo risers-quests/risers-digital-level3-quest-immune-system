@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeHub Risers | Immune System Defenders — Part 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+      <span class="brand-text">LifeHub Risers<small>Level 3 Quest · Immune System</small></span>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="part1.html" class="active">Part 1</a>
+      <a href="part2.html">Part 2</a>
+      <a href="build.html">Build a Model</a>
+      <span class="progress-pill" data-progress-pill>0 / 6 complete</span>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="day-hero">
+    <span class="tag">Part 1</span>
+    <h1>Missions 1–3: The Front Line</h1>
+    <p style="color:var(--ink-soft); max-width:640px;">Ana just sneezed, and she wants to know exactly what's going on inside her right now. Three missions, no clock running: first you'll meet the pathogens themselves, then tour the walls your body builds to keep them out, then watch Mac's phagocyte squad go to work on anything that gets past those walls. Go at your own pace — your progress saves itself, so stop and pick up again whenever you like. Ready, Riser?</p>
+    <div class="toc">
+      <a href="#s1" data-complete-key="imm-p1-s1">🦠 Mission 1: Meet the Enemy</a>
+      <a href="#s2" data-complete-key="imm-p1-s2" data-requires="imm-p1-s1">🛡️ Mission 2: The Body's Walls</a>
+      <a href="#s3" data-complete-key="imm-p1-s3" data-requires="imm-p1-s1,imm-p1-s2">🧫 Mission 3: Search and Destroy</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1: PATHOGENS -->
+  <section class="section" id="s1" data-requires="">
+    <div class="lock-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <p>Tell us who's playing above to begin!</p>
+      <span>👋 Waiting for your name</span>
+    </div>
+    <div class="section-head">
+      <div class="icon" style="background:linear-gradient(135deg, #ef4444, #b91c1c);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+      <div>
+        <h2>🦠 Mission 1: Meet the Enemy</h2>
+        <div class="sub">Ana just sneezed. Let's find out what a "germ" actually is, and how it travels from person to person.</div>
+      </div>
+      <span class="time-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> About 35 min</span>
+    </div>
+
+    <div id="story-s1"></div>
+
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/8FqlTslU22s" title="Viruses (Updated) — The Amoeba Sisters" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-caption"><strong>🎬 Watch: Viruses (Updated) — The Amoeba Sisters</strong>A quick, clear look at what a virus actually is and how it hijacks a host cell to make copies of itself.</div>
+    </div>
+
+    <div class="content-grid">
+      <div>
+        <h3>What is a pathogen?</h3>
+        <p>A <strong>pathogen</strong> is a microorganism that causes disease. Not every microorganism is a pathogen — most of the microbes around you (and even inside you) are harmless, or even helpful. But the ones that do cause illness fall into four main groups, and each one causes disease in a slightly different way.</p>
+      </div>
+      <div class="illus">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="70" cy="70" r="26" fill="#fecaca" stroke="#dc2626" stroke-width="3"/>
+          <circle cx="70" cy="70" r="8" fill="#dc2626"/>
+          <circle cx="180" cy="60" r="18" fill="none" stroke="#7e22ce" stroke-width="4"/>
+          <path d="M180 42 v-8M198 60 h8M180 78 v8M162 60 h-8" stroke="#7e22ce" stroke-width="3" stroke-linecap="round"/>
+          <path d="M60 150 q20 -30 40 0 q20 -30 40 0" fill="none" stroke="#16a34a" stroke-width="4"/>
+          <ellipse cx="190" cy="150" rx="20" ry="12" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h4>🦠 Bacteria</h4>
+        <p>Single living cells, far smaller than your own cells. Some make you ill by releasing toxins. Example: <em>Salmonella</em> (food poisoning).</p>
+      </div>
+      <div class="info-card">
+        <h4>🧬 Viruses</h4>
+        <p>Not even cells — tiny particles that can only reproduce by hijacking one of your own cells and forcing it to make copies. Example: influenza (the flu).</p>
+      </div>
+      <div class="info-card">
+        <h4>🍄 Fungi</h4>
+        <p>Simple organisms that can grow on or in the body, especially skin. Example: <em>Tinea</em>, which causes athlete's foot and ringworm.</p>
+      </div>
+      <div class="info-card">
+        <h4>🦟 Protoctists</h4>
+        <p>Single-celled organisms, sometimes spread by an insect. Example: <em>Plasmodium</em>, carried by mosquitoes, which causes malaria.</p>
+      </div>
+    </div>
+
+    <div class="callout warning">
+      <strong>Common mistake</strong>
+      Thinking "germ" always means bacteria. Bacteria, viruses, fungi, and protoctists are all completely different kinds of organisms — which is exactly why one single medicine can't treat all of them. Antibiotics, for instance, only work on bacteria (more on this in Mission 5).
+    </div>
+
+    <h3>How do pathogens spread?</h3>
+    <p>A pathogen needs a way to travel from one host to the next. This is called <strong>transmission</strong>, and it usually happens in one of four ways:</p>
+
+    <table class="op-table">
+      <thead><tr><th>Route</th><th>How it works</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Direct contact</td><td>Touching skin, blood, or other body fluids of an infected person</td><td>Skin infections, some STIs</td></tr>
+        <tr><td>Droplet infection</td><td>Tiny droplets released by a cough or sneeze, breathed in by someone nearby</td><td>Colds, flu</td></tr>
+        <tr><td>Contaminated food or water</td><td>Swallowing a pathogen that has gotten into food or drink</td><td>Cholera, food poisoning</td></tr>
+        <tr><td>A vector</td><td>An organism (often an insect) carries the pathogen from one host to another, without getting sick itself</td><td>Malaria, carried by mosquitoes</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout example">
+      <strong>Vectors aren't victims</strong>
+      A mosquito that carries malaria doesn't get malaria itself — it just picks up the <em>Plasmodium</em> pathogen from one person's blood and delivers it to the next person it bites. That's exactly what makes something a "vector": a carrier, not a victim.
+    </div>
+
+    <details class="think-box">
+      <summary>💭 Think about it: You have a cold and sneeze into your hand, then shake a friend's hand a minute later. How might the virus reach your friend?</summary>
+      <p class="answer">Droplets from your sneeze land on your hand. If your friend then touches your hand and later touches their own nose, mouth, or eyes, the virus can transfer to them too — so a sneeze that starts as "droplet infection" can finish as "direct contact." This is exactly why covering a sneeze with your elbow (not your hand) and washing your hands often both matter.</p>
+    </details>
+
+    <div class="glossary">
+      <div class="glossary-item"><div class="word">Pathogen</div><div class="def">A microorganism that causes disease.</div></div>
+      <div class="glossary-item"><div class="word">Bacteria</div><div class="def">Single-celled living organisms; some cause disease by releasing toxins.</div></div>
+      <div class="glossary-item"><div class="word">Virus</div><div class="def">A tiny particle that can only reproduce inside a host cell.</div></div>
+      <div class="glossary-item"><div class="word">Transmission</div><div class="def">The way a pathogen travels from one host to another.</div></div>
+      <div class="glossary-item"><div class="word">Vector</div><div class="def">An organism that carries a pathogen between hosts without getting the disease itself.</div></div>
+      <div class="glossary-item"><div class="word">Toxin</div><div class="def">A poisonous substance released by some pathogens.</div></div>
+    </div>
+
+    <div class="dodont">
+      <div class="do">
+        <h4>Do</h4>
+        <ul>
+          <li>Wash your hands, especially before eating</li>
+          <li>Cover coughs and sneezes with your elbow</li>
+          <li>Cook and store food properly</li>
+          <li>Use insect repellent in mosquito-prone areas</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Share drinking bottles or cutlery when someone is unwell</li>
+          <li>Assume every pathogen spreads the same way</li>
+          <li>Drink water you're not sure is clean</li>
+          <li>Touch your face right after touching shared surfaces</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="quiz-s1" class="quiz-wrap"></div>
+  </section>
+
+  <!-- SECTION 2: BARRIERS -->
+  <section class="section" id="s2" data-requires="imm-p1-s1">
+    <div class="lock-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <p>Finish Mission 1 first!</p>
+      <span>🔒 Locked for now</span>
+    </div>
+    <div class="section-head">
+      <div class="icon" style="background:linear-gradient(135deg, var(--blue), var(--blue-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3Z"/></svg></div>
+      <div>
+        <h2>🛡️ Mission 2: The Body's Walls</h2>
+        <div class="sub">Before Mac or Ana even get involved, most pathogens have already been stopped cold. Here's how.</div>
+      </div>
+      <span class="time-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> About 30 min</span>
+    </div>
+
+    <div id="story-s2"></div>
+
+    <div class="mini-scene" style="background:linear-gradient(135deg, var(--blue), var(--blue-dark));">
+      <div class="scene-stage">
+        <svg viewBox="0 0 130 130" style="position:absolute; inset:0;">
+          <g class="scene-shield">
+            <path d="M65 18 32 32v26c0 24 15 41 33 46 18-5 33-22 33-46V32L65 18Z" fill="rgba(255,255,255,.22)" stroke="#fff" stroke-width="4"/>
+            <path d="M50 64 61 75 82 50" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+      <div class="scene-caption">🛡️ Nothing gets past the walls</div>
+    </div>
+
+    <div class="content-grid">
+      <div>
+        <h3>Your first line of defense</h3>
+        <p>Long before a pathogen ever meets a white blood cell, it has to get past a set of barriers — physical walls and chemical traps working together. Scientists call this the <strong>first line of defense</strong>, and most of the time, it's enough on its own.</p>
+      </div>
+      <div class="illus">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="140" width="220" height="16" rx="8" fill="#fca5a5"/>
+          <rect x="20" y="150" width="220" height="30" rx="8" fill="#fde68a"/>
+          <path d="M40 140 q90 -60 180 0" fill="none" stroke="#2563eb" stroke-width="6"/>
+          <circle cx="60" cy="60" r="6" fill="#ef4444"/>
+          <circle cx="120" cy="40" r="6" fill="#ef4444"/>
+          <circle cx="190" cy="70" r="6" fill="#ef4444"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h4>🧴 Skin</h4>
+        <p>Unbroken skin is a tough, physical wall most pathogens simply can't get through. Sweat is also slightly acidic, which makes it harder for bacteria to grow there.</p>
+      </div>
+      <div class="info-card">
+        <h4>💧 Mucus &amp; mucous membranes</h4>
+        <p>The lining of your nose, throat, and airways produces sticky mucus that traps pathogens and dust before they get any further in.</p>
+      </div>
+      <div class="info-card">
+        <h4>🌬️ Cilia</h4>
+        <p>Tiny hair-like structures lining your airways constantly sweep that trapped, germ-filled mucus upward, out of your lungs — a bit like a conveyor belt, sometimes nicknamed the "mucus escalator."</p>
+      </div>
+      <div class="info-card">
+        <h4>🧪 Stomach acid</h4>
+        <p>Your stomach produces hydrochloric acid strong enough to kill most pathogens that arrive in food or drink, before they can cause harm.</p>
+      </div>
+      <div class="info-card">
+        <h4>😢 Tears &amp; saliva</h4>
+        <p>Both contain an enzyme called <strong>lysozyme</strong>, which breaks down the cell walls of bacteria on contact.</p>
+      </div>
+      <div class="info-card">
+        <h4>🩹 Blood clotting</h4>
+        <p>A cut breaks the skin barrier — but platelets and a protein called fibrin quickly form a clot, sealing the wound and blocking the entry point.</p>
+      </div>
+    </div>
+
+    <div class="callout warning">
+      <strong>Common mistake</strong>
+      Thinking a barrier only has to be physical. Stomach acid and lysozyme never touch a pathogen with a "wall" at all — they destroy it chemically. Physical and chemical barriers work as a team.
+    </div>
+
+    <details class="think-box">
+      <summary>💭 Think about it: Why might smoking make someone more likely to catch chest infections?</summary>
+      <p class="answer">Smoke damages the cilia lining the airways, so they sweep mucus (and the pathogens trapped in it) out much less effectively. With that barrier weakened, pathogens are more likely to reach deeper into the lungs and cause an infection.</p>
+    </details>
+
+    <details class="think-box">
+      <summary>💭 Think about it: Why does a doctor tell you to keep a cut covered with a plaster while it heals?</summary>
+      <p class="answer">A scab is still forming a complete seal underneath. Covering the cut keeps dirt and pathogens away from the wound while the clot finishes sealing it, so nothing can sneak in through the gap before your skin barrier is fully rebuilt.</p>
+    </details>
+
+    <div class="glossary">
+      <div class="glossary-item"><div class="word">Barrier</div><div class="def">Something that physically or chemically stops a pathogen getting in.</div></div>
+      <div class="glossary-item"><div class="word">Mucous membrane</div><div class="def">A sticky lining, like inside the nose, that traps pathogens.</div></div>
+      <div class="glossary-item"><div class="word">Cilia</div><div class="def">Tiny hair-like structures that sweep mucus (and trapped germs) out of the airways.</div></div>
+      <div class="glossary-item"><div class="word">Lysozyme</div><div class="def">An enzyme in tears and saliva that destroys bacterial cell walls.</div></div>
+      <div class="glossary-item"><div class="word">Clot</div><div class="def">A seal formed by platelets and fibrin that closes a wound.</div></div>
+    </div>
+
+    <div id="quiz-s2" class="quiz-wrap"></div>
+  </section>
+
+  <!-- SECTION 3: PHAGOCYTES -->
+  <section class="section" id="s3" data-requires="imm-p1-s1,imm-p1-s2">
+    <div class="lock-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <p>Finish Mission 2 first!</p>
+      <span>🔒 Locked for now</span>
+    </div>
+    <div class="section-head">
+      <div class="icon" style="background:linear-gradient(135deg, var(--teal), #0f766e);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <div>
+        <h2>🧫 Mission 3: Search and Destroy</h2>
+        <div class="sub">A splinter breaks the skin, and a pathogen gets through. Time to meet Mac's squad.</div>
+      </div>
+      <span class="time-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> About 35 min</span>
+    </div>
+
+    <div id="story-s3"></div>
+
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/fSEFXl2XQpc" title="Immune System — The Amoeba Sisters" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-caption"><strong>🎬 Watch: Immune System — The Amoeba Sisters</strong>An overview of the body's lines of defense, including phagocytes on patrol — worth a rewatch again after Mission 4.</div>
+    </div>
+
+    <div class="content-grid">
+      <div>
+        <h3>White blood cells: your internal army</h3>
+        <p>If a pathogen gets past the skin and barriers, it meets your <strong>white blood cells</strong> — cells that travel around in your blood specifically to fight infection. There are two main kinds: <strong>phagocytes</strong>, which Mac belongs to, and <strong>lymphocytes</strong>, which is Ana's family (you'll meet them properly in Mission 4). This mission is all about Mac's job.</p>
+      </div>
+      <div class="illus">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="100" r="50" fill="#99f6e4" stroke="#0f766e" stroke-width="4"/>
+          <circle cx="180" cy="90" r="14" fill="#dc2626"/>
+          <path d="M120 100 q30 -6 46 -6" fill="none" stroke="#0f766e" stroke-width="3" stroke-dasharray="4 4"/>
+        </svg>
+      </div>
+    </div>
+
+    <h3>Phagocytosis, step by step</h3>
+    <p><strong>Phagocytes</strong> defend the body through a process called <strong>phagocytosis</strong> — engulfing and destroying pathogens. It happens in three stages:</p>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h4>1️⃣ Detect</h4>
+        <p>Damaged cells and pathogens release chemical signals. Phagocytes sense these and move straight toward the source.</p>
+      </div>
+      <div class="info-card">
+        <h4>2️⃣ Engulf</h4>
+        <p>The phagocyte flows around the pathogen and takes it completely inside itself, trapping it in an internal pocket.</p>
+      </div>
+      <div class="info-card">
+        <h4>3️⃣ Digest</h4>
+        <p>Powerful enzymes inside the phagocyte break the pathogen down completely, destroying it for good.</p>
+      </div>
+      <div class="info-card">
+        <h4>⚡ Non-specific</h4>
+        <p>Phagocytes attack any pathogen the exact same way — they don't need to recognize it first. That's what makes them so fast.</p>
+      </div>
+    </div>
+
+    <div class="callout example">
+      <strong>What is pus, really?</strong>
+      That thick, yellowish fluid around an infected wound isn't a sign something has gone extra wrong — it's mostly a mix of dead phagocytes, destroyed pathogens, and tissue fluid. In a strange way, pus is a battle already being won.
+    </div>
+
+    <div class="callout warning">
+      <strong>Common mistake</strong>
+      Thinking redness and swelling around a wound (inflammation) is only a bad sign. It's often the opposite — it means extra blood, carrying extra phagocytes, is being rushed straight to the site of infection.
+    </div>
+
+    <details class="think-box">
+      <summary>💭 Think about it: If phagocytes can attack almost any pathogen, why does the body still need a more specific kind of defense too?</summary>
+      <p class="answer">Phagocytes are fast but generic — they treat every pathogen the same way and don't "remember" it afterward. Some pathogens are also good at avoiding them. A second, more targeted defense — precise enough to recognize one exact pathogen and remember it for next time — catches what phagocytes alone might miss. That's exactly what Ana's lymphocytes do, coming up in Mission 4.</p>
+    </details>
+
+    <div class="glossary">
+      <div class="glossary-item"><div class="word">White blood cell</div><div class="def">A blood cell whose job is fighting infection.</div></div>
+      <div class="glossary-item"><div class="word">Phagocyte</div><div class="def">A white blood cell that engulfs and digests pathogens.</div></div>
+      <div class="glossary-item"><div class="word">Phagocytosis</div><div class="def">The process of a phagocyte engulfing and destroying a pathogen.</div></div>
+      <div class="glossary-item"><div class="word">Non-specific</div><div class="def">Responding to any pathogen in the same way, without needing to recognize it first.</div></div>
+      <div class="glossary-item"><div class="word">Inflammation</div><div class="def">Redness and swelling caused by extra blood flow to an infected or injured area.</div></div>
+    </div>
+
+    <div class="dodont">
+      <div class="do">
+        <h4>Do</h4>
+        <ul>
+          <li>Clean a cut so phagocytes aren't overwhelmed</li>
+          <li>Get enough sleep — it helps your immune cells work well</li>
+          <li>Eat a balanced diet to support your white blood cells</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Ignore a wound that stays red, hot, or swollen for days</li>
+          <li>Assume phagocytes alone can handle every serious infection</li>
+          <li>Pick at a scab before it's ready — you'll reopen the entry point</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="quiz-s3" class="quiz-wrap"></div>
+  </section>
+
+  <section class="bonus-card">
+    <div class="bonus-icon" aria-hidden="true">🎮</div>
+    <h3>Bonus Round: Conflict: Immunity</h3>
+    <p>Ready for one more challenge before you move on? Command your own army of white blood cells in Conflict: Immunity, a free browser game from BiomanBio, and put phagocytes to work for real.</p>
+    <a class="btn btn-primary" href="https://biomanbio.com/HTML5GamesandLabs/Physiologygames/conflictimmunityhtml5page.html" target="_blank" rel="noopener noreferrer">Play Conflict: Immunity ↗</a>
+  </section>
+</main>
+
+<footer class="site-footer">
+  LifeHub Risers · Immune System Defenders — Part 1 of 2. <a href="part2.html">Continue to Part 2 →</a>
+</footer>
+
+<script src="js/player.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/characters.js"></script>
+<script src="js/story.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const CHARS = {
+    a: { name: 'Ana', art: 'ana', color: 'var(--purple)' },
+    b: { name: 'Mac', art: 'mac', color: 'var(--teal)' }
+  };
+
+  mountStory('story-s1', {
+    title: "Mac &amp; Ana: The Sneeze",
+    chars: CHARS,
+    endLabel: "Show me the enemy! →",
+    panels: [
+      { who: 'a', emoji: '🤧', text: 'Achoo! Sorry — I think I\'m catching whatever\'s going around school.' },
+      { who: 'b', emoji: '🤔', text: 'You just met a pathogen — a microorganism that makes you sick. There are a few different kinds.' },
+      { who: 'a', emoji: '🙋', text: 'Wait, "kinds"? I thought a germ was just... a germ.' },
+      { who: 'b', emoji: '🦠', text: 'Nope! Bacteria, viruses, fungi, and protoctists are all completely different. They even spread in different ways.' },
+      { who: 'a', emoji: '😮', text: 'So that\'s how one person catches a cold and the whole classroom gets it by Friday?' },
+      { who: 'b', emoji: '💪', text: 'Exactly. Let\'s find out how pathogens travel — then you\'ll know exactly what you\'re dealing with.' }
+    ]
+  });
+
+  mountStory('story-s2', {
+    title: "Mac &amp; Ana: The Splinter",
+    chars: CHARS,
+    endLabel: "Show me the walls! →",
+    panels: [
+      { who: 'a', emoji: '😯', text: 'I just got a splinter in my finger. Are pathogens getting in right now?' },
+      { who: 'b', emoji: '😎', text: 'Relax — your body has walls up long before Ana and I even show up.' },
+      { who: 'a', emoji: '🙋', text: 'Walls? Like... actual walls?' },
+      { who: 'b', emoji: '🧴', text: 'Skin, mucus, stomach acid, even your tears — all doing their job right now without you thinking about it.' },
+      { who: 'a', emoji: '🩹', text: 'And that little scab forming over the splinter spot?' },
+      { who: 'b', emoji: '✅', text: 'That\'s a clot sealing the gap back up. Let\'s tour every one of these defenses.' }
+    ]
+  });
+
+  mountStory('story-s3', {
+    title: "Mac &amp; Ana: A Pathogen Gets Through",
+    chars: CHARS,
+    endLabel: "Show me the squad! →",
+    panels: [
+      { who: 'a', emoji: '🚨', text: 'A bacterium made it past the skin at that splinter site. Now what?' },
+      { who: 'b', emoji: '💪', text: 'Now it meets ME. Phagocytes like me patrol the blood looking for exactly this.' },
+      { who: 'a', emoji: '🙋', text: 'What do you actually do when you find one?' },
+      { who: 'b', emoji: '🎯', text: 'I move straight toward it, flow around it, and swallow it whole. Then I digest it completely.' },
+      { who: 'a', emoji: '😲', text: 'That\'s so fast! Do you check what kind of pathogen it is first?' },
+      { who: 'b', emoji: '⚡', text: 'Nope — I treat every pathogen the same way. That\'s what makes me quick. Let\'s see it step by step.' }
+    ]
+  });
+
+  mountQuiz('quiz-s1', [
+    { type: 'mcq', q: 'What is a pathogen?', choices: [
+        'Any living thing found in nature',
+        'A microorganism that causes disease',
+        'A type of white blood cell',
+        'A medicine that treats infections'
+      ], answer: 1, explain: 'A pathogen is specifically a microorganism that causes disease — most microorganisms are harmless.' },
+    { type: 'match', q: 'Match each pathogen type to a real example.', pairs: [
+        ['Bacteria', 'Salmonella (food poisoning)'],
+        ['Virus', 'Influenza (the flu)'],
+        ['Fungus', 'Tinea (athlete\'s foot)'],
+        ['Protoctist', 'Plasmodium (malaria)']
+      ] },
+    { type: 'tf', q: 'A virus is a type of single-celled living organism, just like bacteria.', answer: false, explain: 'A virus isn\'t even a cell — it\'s a tiny particle that can only reproduce by hijacking a host cell.' },
+    { type: 'fill', q: 'An organism, often an insect, that carries a pathogen from one host to another without getting sick itself is called a ___.', answer: ['vector'], explain: 'The mosquito that spreads malaria is a classic example of a vector.' },
+    { type: 'mcq', q: 'Which of these is an example of transmission by contaminated food or water?', choices: [
+        'Catching a cold from someone\'s cough',
+        'Catching cholera from unclean drinking water',
+        'Catching malaria from a mosquito bite',
+        'Catching a skin infection from direct contact'
+      ], answer: 1, explain: 'Cholera spreads mainly through water or food contaminated with the pathogen.' },
+    { type: 'tf', q: 'A mosquito that spreads malaria also gets sick with malaria itself.', answer: false, explain: 'A vector carries the pathogen without becoming ill from it — that\'s what makes it a vector rather than a victim.' },
+    { type: 'mcq', q: 'Why can\'t one single medicine treat colds, athlete\'s foot, AND food poisoning?', choices: [
+        'Because medicines only ever treat one illness at a time',
+        'Because those are caused by totally different types of pathogens — a virus, a fungus, and bacteria',
+        'Because those illnesses aren\'t caused by pathogens at all',
+        'Because doctors haven\'t invented that medicine yet'
+      ], answer: 1, explain: 'Different pathogen types need different treatments — this is exactly why identifying the pathogen type matters.' },
+    { type: 'fill', q: 'A poisonous substance released by some bacteria, which can make you feel ill, is called a ___.', answer: ['toxin'], explain: 'Some bacterial pathogens make you ill mainly through the toxins they release, not the bacteria itself.' }
+  ], { title: 'Mission 1 Checkpoint', sub: 'Answer every question. Get one wrong? Just try again and tell us your thinking!', storageKey: 'imm-p1-s1', nextId: 's2', nextLabel: 'Mission 2' });
+
+  mountQuiz('quiz-s2', [
+    { type: 'mcq', q: 'Which of these is a CHEMICAL barrier, rather than a physical one?', choices: [
+        'Unbroken skin',
+        'Stomach acid',
+        'A scab over a wound',
+        'Cilia sweeping mucus'
+      ], answer: 1, explain: 'Stomach acid destroys pathogens chemically, without forming a physical wall.' },
+    { type: 'fill', q: 'Tears and saliva both contain an enzyme called ___, which breaks down bacterial cell walls.', answer: ['lysozyme'], explain: 'Lysozyme attacks bacteria chemically, right where they might otherwise enter the body.' },
+    { type: 'match', q: 'Match each barrier to what it does.', pairs: [
+        ['Skin', 'A tough physical wall pathogens can\'t easily cross'],
+        ['Cilia', 'Sweep trapped, germ-filled mucus out of the airways'],
+        ['Stomach acid', 'Kills most pathogens swallowed with food or drink'],
+        ['Blood clotting', 'Seals a wound so pathogens can\'t enter through it']
+      ] },
+    { type: 'tf', q: 'Smoking can damage cilia, making chest infections more likely.', answer: true, explain: 'Damaged cilia can\'t sweep mucus (and trapped pathogens) out of the airways as effectively.' },
+    { type: 'mcq', q: 'What is the main job of mucus in the airways?', choices: [
+        'To digest food',
+        'To trap pathogens and dust before they get further in',
+        'To seal cuts in the skin',
+        'To kill bacteria with acid'
+      ], answer: 1, explain: 'Sticky mucus traps particles and pathogens, and cilia then sweep that mucus back out.' },
+    { type: 'fill', q: 'Platelets and a protein called fibrin work together to form a ___ that seals a wound.', answer: ['clot'], explain: 'A clot (which dries into a scab) blocks the gap left by a cut, closing off a pathogen\'s entry point.' },
+    { type: 'mcq', q: 'Why do doctors recommend keeping a fresh cut covered with a plaster?', choices: [
+        'It looks tidier',
+        'It protects the wound while the clot finishes sealing it',
+        'It speeds up digestion',
+        'It has no real medical benefit'
+      ], answer: 1, explain: 'A plaster keeps pathogens away from the wound while the body\'s own seal is still forming.' }
+  ], { title: 'Mission 2 Checkpoint', sub: 'Answer every question. Get one wrong? Just try again and tell us your thinking!', storageKey: 'imm-p1-s2', nextId: 's3', nextLabel: 'Mission 3' });
+
+  mountQuiz('quiz-s3', [
+    { type: 'mcq', q: 'What is phagocytosis?', choices: [
+        'A phagocyte producing antibodies',
+        'A phagocyte engulfing and destroying a pathogen',
+        'A pathogen destroying a phagocyte',
+        'The process of forming a blood clot'
+      ], answer: 1, explain: 'Phagocytosis is the process of a phagocyte surrounding, engulfing, and digesting a pathogen.' },
+    { type: 'match', q: 'Put the stages of phagocytosis in order by matching each stage to what happens.', pairs: [
+        ['Detect', 'Chemical signals attract the phagocyte to the pathogen'],
+        ['Engulf', 'The phagocyte surrounds and takes in the pathogen'],
+        ['Digest', 'Enzymes break the pathogen down completely']
+      ] },
+    { type: 'tf', q: 'Phagocytes need to recognize exactly which pathogen they\'re facing before they can attack it.', answer: false, explain: 'Phagocytes are non-specific — they attack any pathogen using the same process, without needing to identify it first.' },
+    { type: 'fill', q: 'Responding to any pathogen in the exact same way, without needing to recognize it first, is called being ___.', answer: ['non-specific', 'nonspecific'], explain: 'That non-specific response is what makes phagocytes fast, general-purpose defenders.' },
+    { type: 'mcq', q: 'What is pus mostly made of?', choices: [
+        'Only dirt from the wound',
+        'Dead phagocytes, destroyed pathogens, and tissue fluid',
+        'Pure bacteria that survived the attack',
+        'Blood clot material only'
+      ], answer: 1, explain: 'Pus is largely the aftermath of a phagocyte battle — a sign the immune system has been active at that spot.' },
+    { type: 'tf', q: 'Redness and swelling (inflammation) around a wound always means the infection is getting worse.', answer: false, explain: 'Inflammation often means extra blood — and extra phagocytes — are being rushed to the site to fight the infection.' },
+    { type: 'mcq', q: 'Phagocytes are part of which group of cells?', choices: [
+        'Red blood cells',
+        'White blood cells',
+        'Platelets',
+        'Skin cells'
+      ], answer: 1, explain: 'Phagocytes are one of the two main types of white blood cell, alongside lymphocytes.' }
+  ], { title: 'Mission 3 Checkpoint', sub: 'Answer every question. Get one wrong? Just try again and tell us your thinking!', storageKey: 'imm-p1-s3', nextHref: 'part2.html', nextLabel: 'Part 2' });
+</script>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeHub Risers | Immune System Defenders — Part 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+      <span class="brand-text">LifeHub Risers<small>Level 3 Quest · Immune System</small></span>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="part1.html">Part 1</a>
+      <a href="part2.html" class="active">Part 2</a>
+      <a href="build.html">Build a Model</a>
+      <span class="progress-pill" data-progress-pill>0 / 6 complete</span>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="day-hero">
+    <span class="tag">Part 2</span>
+    <h1>Missions 4–5 &amp; the Final Boss</h1>
+    <p style="color:var(--ink-soft); max-width:640px;">Mac's phagocytes are fast, but they're not precise. Now it's Ana's turn — she'll show you how lymphocytes build custom weapons for one exact pathogen, and how a vaccine can train your defenses before you ever get sick. Then the Final Boss Challenge — no shortcuts — stands between you and your certificate. Take breaks whenever you need; your progress is always saved.</p>
+    <div class="toc">
+      <a href="#s4" data-complete-key="imm-p2-s1" data-requires="imm-p1-s1,imm-p1-s2,imm-p1-s3">🎯 Mission 4: The Antibody Squad</a>
+      <a href="#s5" data-complete-key="imm-p2-s2" data-requires="imm-p1-s1,imm-p1-s2,imm-p1-s3,imm-p2-s1">💉 Mission 5: Vaccines &amp; Immunity</a>
+      <a href="#final" data-complete-key="imm-final" data-requires="imm-p1-s1,imm-p1-s2,imm-p1-s3,imm-p2-s1,imm-p2-s2">🏆 Final Boss</a>
+      <a href="#certificate" data-requires="imm-final">🎓 Your Reward</a>
+    </div>
+  </div>
+
+  <div class="day-lock-banner" data-day-lock="imm-p1-s1,imm-p1-s2,imm-p1-s3">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+    <div>
+      <strong>Part 2 is locked for now!</strong>
+      <p>Finish all three Part 1 checkpoints first. <a href="part1.html">Go back to Part 1 →</a></p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: LYMPHOCYTES & ANTIBODIES -->
+  <section class="section" id="s4" data-requires="imm-p1-s1,imm-p1-s2,imm-p1-s3">
+    <div class="lock-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <p>Finish Part 1 first!</p>
+      <span>🔒 Locked for now</span>
+    </div>
+    <div class="section-head">
+      <div class="icon" style="background:linear-gradient(135deg, var(--purple), #7e22ce);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+      <div>
+        <h2>🎯 Mission 4: The Antibody Squad</h2>
+        <div class="sub">Mac swallows anything. Ana builds a weapon for one exact enemy. Time to see how.</div>
+      </div>
+      <span class="time-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> About 35 min</span>
+    </div>
+
+    <div id="story-s4"></div>
+
+    <div class="mini-scene" style="background:linear-gradient(135deg, var(--purple), #7e22ce);">
+      <div class="scene-stage">
+        <svg viewBox="0 0 130 130" style="position:absolute; inset:0;">
+          <g class="scene-stamp">
+            <circle cx="65" cy="65" r="30" fill="rgba(255,255,255,.2)" stroke="#fff" stroke-width="4"/>
+            <path d="M50 60 v-14 M50 60 l-8 -8 M50 60 l8 -8" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+            <path d="M80 70 v-14 M80 70 l-8 -8 M80 70 l8 -8" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+      <div class="scene-caption">🔑 A perfect match, every time</div>
+    </div>
+
+    <div class="content-grid">
+      <div>
+        <h3>Antigens: a pathogen's ID tag</h3>
+        <p>Every pathogen carries molecules — usually proteins — on its surface called <strong>antigens</strong>. An antigen is what marks a cell or pathogen as "foreign," and each pathogen has its own unique set of them, a bit like a fingerprint.</p>
+      </div>
+      <div class="illus">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="100" r="45" fill="#ede9fe" stroke="#7e22ce" stroke-width="3"/>
+          <path d="M120 70 l14 -14 M134 56 l-6 -6 M134 56 l6 -6" stroke="#7e22ce" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M60 60 l-6 6 M180 90 h20 M186 84 l6 6 M186 96 l6 -6" stroke="#7e22ce" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M165 100 l6 6 M171 106 l6 -6 M171 106 l-6 -6" stroke="#a855f7" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <h3>Lymphocytes: precision defenders</h3>
+    <p><strong>Lymphocytes</strong> — Ana's cell type — are white blood cells that can recognize one specific antigen. When a lymphocyte finds a pathogen carrying the exact antigen it's built to detect, it multiplies rapidly and starts producing <strong>antibodies</strong>: Y-shaped proteins whose tips are the exact complementary shape to that one antigen, like a key cut for one specific lock.</p>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h4>🧩 Antigen</h4>
+        <p>A marker molecule on a pathogen's surface that identifies it as foreign.</p>
+      </div>
+      <div class="info-card">
+        <h4>🔑 Antibody</h4>
+        <p>A Y-shaped protein made by a lymphocyte, shaped to fit one specific antigen exactly.</p>
+      </div>
+      <div class="info-card">
+        <h4>🧲 Clumping &amp; labeling</h4>
+        <p>Antibodies bind to pathogens, clumping them together and marking them so phagocytes can find and destroy them faster.</p>
+      </div>
+      <div class="info-card">
+        <h4>🧠 Memory cells</h4>
+        <p>After the infection clears, some lymphocytes stick around as memory cells — ready to react instantly if that exact pathogen ever returns.</p>
+      </div>
+    </div>
+
+    <div class="callout example">
+      <strong>Lock and key</strong>
+      Picture a lymphocyte's antibody as a key cut for one exact lock. It fits the matching antigen perfectly — but it won't fit any other pathogen's antigen at all, no matter how similar. That's why this defense is called <strong>specific</strong>, unlike a phagocyte's non-specific, "attack anything" approach.
+    </div>
+
+    <div class="callout warning">
+      <strong>Common mistake</strong>
+      Thinking antibodies destroy pathogens by themselves. Mostly, they don't — they clump pathogens together and "tag" them, making it far easier for phagocytes to find and finish the job. Mac and Ana's teams work together.
+    </div>
+
+    <details class="think-box">
+      <summary>💭 Think about it: Why doesn't catching chickenpox as a child also protect you from catching a cold later?</summary>
+      <p class="answer">The antibodies your body made for chickenpox are shaped to match the chickenpox virus's specific antigens — and nothing else. A cold virus has completely different antigens, so those chickenpox antibodies simply won't fit. Each infection needs its own matching set of antibodies and memory cells.</p>
+    </details>
+
+    <details class="think-box">
+      <summary>💭 Think about it: Why does getting chickenpox usually only happen once in a lifetime?</summary>
+      <p class="answer">After your first infection, memory cells for that exact virus stay in your body. If the same virus ever shows up again, those memory cells recognize it instantly and trigger a much faster, stronger antibody response — usually clearing it before you even feel ill. That fast, lasting protection is called immunity.</p>
+    </details>
+
+    <div class="glossary">
+      <div class="glossary-item"><div class="word">Antigen</div><div class="def">A marker molecule on a pathogen's surface that identifies it as foreign.</div></div>
+      <div class="glossary-item"><div class="word">Lymphocyte</div><div class="def">A white blood cell that recognizes a specific antigen and produces antibodies.</div></div>
+      <div class="glossary-item"><div class="word">Antibody</div><div class="def">A Y-shaped protein shaped to fit one specific antigen exactly.</div></div>
+      <div class="glossary-item"><div class="word">Specific</div><div class="def">Targeting one exact pathogen, rather than any pathogen in general.</div></div>
+      <div class="glossary-item"><div class="word">Memory cell</div><div class="def">A lymphocyte that "remembers" a pathogen, allowing a faster response next time.</div></div>
+      <div class="glossary-item"><div class="word">Immunity</div><div class="def">Being protected against a specific pathogen, usually thanks to memory cells.</div></div>
+    </div>
+
+    <div id="quiz-s4" class="quiz-wrap"></div>
+  </section>
+
+  <!-- SECTION 5: VACCINES & IMMUNITY -->
+  <section class="section" id="s5" data-requires="imm-p1-s1,imm-p1-s2,imm-p1-s3,imm-p2-s1">
+    <div class="lock-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <p>Finish Mission 4 first!</p>
+      <span>🔒 Locked for now</span>
+    </div>
+    <div class="section-head">
+      <div class="icon" style="background:linear-gradient(135deg, var(--amber), #b45309);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5 1.5 1.5 4 0 5.5-1.5 1.5-4 1.5-5.5 0L4 11V4h7l8.5 8.5c1.5 1.5 1.5 4 0 5.5"/></svg></div>
+      <div>
+        <h2>💉 Mission 5: Vaccines &amp; Immunity</h2>
+        <div class="sub">What if your body could learn to fight a pathogen before it ever actually got sick?</div>
+      </div>
+      <span class="time-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> About 35 min</span>
+    </div>
+
+    <div id="story-s5"></div>
+
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/uVUf_pt7Sh0" title="Antibiotics, Antivirals, and Vaccines — The Amoeba Sisters" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-caption"><strong>🎬 Watch: Antibiotics, Antivirals, and Vaccines — The Amoeba Sisters</strong>Ties together this whole mission: how vaccines train your immune system, and why antibiotics only work on bacteria.</div>
+    </div>
+
+    <div class="content-grid">
+      <div>
+        <h3>Active vs. passive immunity</h3>
+        <p>There are two completely different ways to become immune to a disease. In <strong>active immunity</strong>, your own body makes the antibodies and memory cells — either by actually catching the disease ("natural"), or through a vaccine ("artificial"). It takes a little time to kick in, but it lasts a long time. In <strong>passive immunity</strong>, you receive ready-made antibodies from someone or something else — like a baby receiving antibodies from their mother, or an antibody injection. It works instantly, but without memory cells, it fades.</p>
+      </div>
+      <div class="illus">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="100" height="70" rx="12" fill="#fef3c7" stroke="#b45309" stroke-width="3"/>
+          <text x="70" y="60" font-size="13" text-anchor="middle" fill="#92400e" font-weight="bold">Active</text>
+          <rect x="140" y="20" width="100" height="70" rx="12" fill="#e0f2fe" stroke="#0369a1" stroke-width="3"/>
+          <text x="190" y="60" font-size="13" text-anchor="middle" fill="#0369a1" font-weight="bold">Passive</text>
+          <path d="M40 130 h180" stroke="#cbd5e1" stroke-width="4"/>
+        </svg>
+      </div>
+    </div>
+
+    <table class="op-table">
+      <thead><tr><th></th><th>Natural</th><th>Artificial</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Active</strong> (your body makes antibodies)</td><td>Catching the disease and recovering</td><td>Getting a vaccine</td></tr>
+        <tr><td><strong>Passive</strong> (ready-made antibodies)</td><td>A baby getting antibodies from its mother</td><td>An antibody injection</td></tr>
+      </tbody>
+    </table>
+
+    <h3>How a vaccine works</h3>
+    <p>A <strong>vaccine</strong> contains a safe version of a pathogen's antigens — this might be a dead pathogen, a weakened one, or just fragments of it. None of these can make you seriously ill, but your immune system still recognizes the antigens as foreign and responds exactly like it would to a real infection: lymphocytes multiply, antibodies are produced, and memory cells are made. If the real pathogen ever turns up later, those memory cells trigger a fast, powerful response — often clearing the infection before symptoms even start.</p>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h4>💉 What's really in a vaccine</h4>
+        <p>A dead pathogen, a weakened (attenuated) pathogen, or just antigen fragments — never enough to cause the real disease.</p>
+      </div>
+      <div class="info-card">
+        <h4>⚡ Second exposure = fast response</h4>
+        <p>Memory cells from the vaccine recognize the real pathogen instantly, producing antibodies far faster than a first-time infection would.</p>
+      </div>
+      <div class="info-card">
+        <h4>🌍 Herd immunity</h4>
+        <p>When enough people in a population are immune, a pathogen struggles to spread at all — which helps protect people who can't be vaccinated too.</p>
+      </div>
+      <div class="info-card">
+        <h4>📜 A bit of history</h4>
+        <p>In 1796, Edward Jenner noticed milkmaids who'd had cowpox rarely caught smallpox — leading to the world's first vaccine.</p>
+      </div>
+    </div>
+
+    <h3>Antibiotics: a different tool entirely</h3>
+    <p><strong>Antibiotics</strong> are medicines that kill bacteria or stop them multiplying. They work by targeting structures bacterial cells have — but human cells and viruses don't have those same structures, which is exactly why antibiotics can't touch a virus at all.</p>
+
+    <div class="callout warning">
+      <strong>Antibiotic resistance is a real danger</strong>
+      Using antibiotics when they aren't needed, or stopping a course early, lets the toughest surviving bacteria multiply. Over time, this can create bacteria that antibiotics no longer work against — called <strong>antibiotic resistance</strong>. Always finish a prescribed course exactly as directed, even once you feel better.
+    </div>
+
+    <details class="think-box">
+      <summary>💭 Think about it: A doctor tells a patient with a cold that antibiotics won't help. Why not?</summary>
+      <p class="answer">A cold is caused by a virus, and antibiotics only work against bacteria. Taking antibiotics for a viral infection wouldn't help the illness at all — it would just risk contributing to antibiotic resistance for no benefit.</p>
+    </details>
+
+    <details class="think-box">
+      <summary>💭 Think about it: Why does a vaccinated population help protect even the people in it who aren't vaccinated?</summary>
+      <p class="answer">If most people around an unvaccinated person are immune, the pathogen has far fewer people to spread to — so it's much less likely to ever reach that person at all. That protective effect is herd immunity.</p>
+    </details>
+
+    <div class="glossary">
+      <div class="glossary-item"><div class="word">Active immunity</div><div class="def">Immunity from your own body making antibodies, either naturally or from a vaccine.</div></div>
+      <div class="glossary-item"><div class="word">Passive immunity</div><div class="def">Immunity from receiving ready-made antibodies, which fades without memory cells.</div></div>
+      <div class="glossary-item"><div class="word">Vaccine</div><div class="def">A safe form of a pathogen's antigens, used to trigger immunity without causing disease.</div></div>
+      <div class="glossary-item"><div class="word">Herd immunity</div><div class="def">Protection for a whole population when enough people are immune.</div></div>
+      <div class="glossary-item"><div class="word">Antibiotic</div><div class="def">A medicine that kills or stops the growth of bacteria — not viruses.</div></div>
+      <div class="glossary-item"><div class="word">Antibiotic resistance</div><div class="def">When bacteria evolve to survive antibiotics that used to work against them.</div></div>
+    </div>
+
+    <div class="dodont">
+      <div class="do">
+        <h4>Do</h4>
+        <ul>
+          <li>Get vaccines on the schedule your doctor recommends</li>
+          <li>Finish a full course of antibiotics exactly as prescribed</li>
+          <li>Ask a doctor whether an illness is viral or bacterial</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Expect antibiotics to help with a cold or flu</li>
+          <li>Stop taking antibiotics early just because you feel better</li>
+          <li>Share leftover antibiotics with someone else</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="quiz-s5" class="quiz-wrap"></div>
+  </section>
+
+  <!-- SECTION 6: FINAL BOSS -->
+  <section class="section" id="final" data-requires="imm-p1-s1,imm-p1-s2,imm-p1-s3,imm-p2-s1,imm-p2-s2">
+    <div class="lock-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <p>Finish every mission first!</p>
+      <span>🔒 Locked for now</span>
+    </div>
+    <div class="section-head">
+      <div class="icon" style="background:linear-gradient(135deg, #f59e0b, #dc2626);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4a1 1 0 0 0-1 1 5 5 0 0 0 5 5M17 5h3a1 1 0 0 1 1 1 5 5 0 0 1-5 5"/></svg>
+      </div>
+      <div>
+        <h2>🏆 The Final Boss Challenge</h2>
+        <div class="sub">Every pathogen, every defense, all 5 missions — thrown at you at once. Score 80% or higher to win.</div>
+      </div>
+      <span class="time-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> About 20 min</span>
+    </div>
+
+    <div class="callout tip">
+      <strong>Before you begin</strong>
+      This one's different from the practice missions — no reflection box, no do-overs mid-question. Answer everything as best you can, then submit it all at once to see your score. Don't beat the boss on the first try? That's normal — regroup, review Parts 1 and 2, and charge back in as many times as you need.
+    </div>
+
+    <div id="final-assessment"></div>
+  </section>
+
+  <!-- SECTION 7: CERTIFICATE -->
+  <section class="section" id="certificate" data-requires="imm-final">
+    <div class="lock-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <p>Beat the Final Boss to unlock your reward!</p>
+      <span>🔒 Locked for now</span>
+    </div>
+    <div class="section-head">
+      <div class="icon" style="background:linear-gradient(135deg, #f59e0b, #7e22ce);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/><path d="M22 10v6"/></svg>
+      </div>
+      <div>
+        <h2>🎓 Claim Your Reward</h2>
+        <div class="sub">You beat the boss! Type your name below and print your certificate.</div>
+      </div>
+    </div>
+
+    <div class="cert-form">
+      <label for="cert-name-input">Type your name exactly how you'd like it on your certificate:</label>
+      <input id="cert-name-input" type="text" maxlength="60" placeholder="Your Name Here">
+    </div>
+
+    <div>
+      <div class="certificate">
+        <svg class="cert-seal" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><circle cx="12" cy="9" r="6" fill="#fde68a"/><path d="M9 14 7 21l5-3 5 3-2-7" fill="#fde68a"/></svg>
+        <div class="cert-kicker">Certificate of Achievement</div>
+        <h2>Immune System Defenders</h2>
+        <div class="cert-for">This certifies that</div>
+        <div class="cert-name" id="cert-name-display">Your Name Here</div>
+        <div class="cert-course">completed both parts of <strong>Immune System Defenders</strong>, beat the Final Boss Challenge, and earned the title of <strong>Certified Defender</strong>!</div>
+        <div class="cert-chars">
+          <div class="story-chip-avatar" style="border-color:var(--teal);">
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="58" fill="#e6fffb"/><path d="M60 14 C82 10 104 22 111 44 C118 64 112 84 96 98 C82 110 60 114 42 106 C22 98 8 80 9 58 C10 38 24 18 46 13 C50 12 56 13 60 14 Z" fill="#2dd4bf" stroke="#0f766e" stroke-width="4"/><ellipse cx="46" cy="60" rx="9" ry="11" fill="#fff"/><ellipse cx="76" cy="60" rx="9" ry="11" fill="#fff"/><circle cx="48" cy="62" r="4.2" fill="#083344"/><circle cx="78" cy="62" r="4.2" fill="#083344"/><path d="M48 82 Q61 92 74 82" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="story-chip-avatar" style="border-color:var(--purple);">
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="58" fill="#fdf2ff"/><circle cx="60" cy="64" r="44" fill="#e9d5ff" stroke="#a855f7" stroke-width="3"/><circle cx="60" cy="62" r="33" fill="#7e22ce"/><ellipse cx="48" cy="58" rx="8.6" ry="10.6" fill="#fff"/><ellipse cx="72" cy="58" rx="8.6" ry="10.6" fill="#fff"/><circle cx="50" cy="60" r="4" fill="#2e1065"/><circle cx="74" cy="60" r="4" fill="#2e1065"/><path d="M49 78 Q60 87 71 78" fill="none" stroke="#f5d0fe" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="cert-signature">— Mac &amp; Ana, LifeHub Risers</div>
+        <div class="cert-date" id="cert-date-display"></div>
+      </div>
+    </div>
+
+    <div class="cert-actions">
+      <button class="btn btn-primary" id="cert-print-btn" type="button">🖨️ Print / Save as PDF</button>
+    </div>
+  </section>
+
+  <section style="margin: 40px 0 0; text-align:center;">
+    <span class="badge">🎓 Beat the Final Boss Challenge to earn your certificate</span>
+  </section>
+
+  <section class="section bonus-card" data-requires="imm-final" style="margin-top:28px;">
+    <div class="lock-overlay">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <p>Earn your certificate to unlock this bonus round!</p>
+      <span>🔒 Locked for now</span>
+    </div>
+    <div class="bonus-icon">🎮</div>
+    <h3>Bonus Round: Push Through the Later Levels</h3>
+    <p>You earned your certificate — nice work! Head back into Conflict: Immunity and try to reach the later levels, where antibodies join your army and antibiotic resistance becomes part of the fight, exactly like you just learned about.</p>
+    <a class="btn btn-primary" href="https://biomanbio.com/HTML5GamesandLabs/Physiologygames/conflictimmunityhtml5page.html" target="_blank" rel="noopener noreferrer">Play Conflict: Immunity ↗</a>
+  </section>
+</main>
+
+<footer class="site-footer">
+  LifeHub Risers · Immune System Defenders — Part 2 of 2. <a href="index.html">Back to course home</a>
+</footer>
+
+<script src="js/player.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/assessment.js"></script>
+<script src="js/characters.js"></script>
+<script src="js/story.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const CHARS = {
+    a: { name: 'Ana', art: 'ana', color: 'var(--purple)' },
+    b: { name: 'Mac', art: 'mac', color: 'var(--teal)' }
+  };
+
+  mountStory('story-s4', {
+    title: "Mac &amp; Ana: The Same Cold, Twice",
+    chars: CHARS,
+    endLabel: "Show me how! →",
+    panels: [
+      { who: 'b', emoji: '🤔', text: 'I engulfed a pathogen at the splinter site earlier. Job done, right?' },
+      { who: 'a', emoji: '🙋', text: 'Mostly! But my team handles something you can\'t — precision.' },
+      { who: 'b', emoji: '❓', text: 'What do you mean, precision?' },
+      { who: 'a', emoji: '🔑', text: 'Every pathogen has an antigen, like an ID tag. I build an antibody shaped to match it exactly — like a key for one lock.' },
+      { who: 'b', emoji: '😲', text: 'And if that same pathogen shows up again?' },
+      { who: 'a', emoji: '🧠', text: 'My memory cells recognize it instantly and strike fast. Let\'s see exactly how that works.' }
+    ]
+  });
+
+  mountStory('story-s5', {
+    title: "Mac &amp; Ana: The Vaccination Appointment",
+    chars: CHARS,
+    endLabel: "Teach me vaccines! →",
+    panels: [
+      { who: 'a', emoji: '💉', text: 'Riser\'s getting a vaccine today. Should we be worried?' },
+      { who: 'b', emoji: '😌', text: 'Not at all — a vaccine just shows us a safe copy of a pathogen\'s antigens.' },
+      { who: 'a', emoji: '🙋', text: 'So I still get to build antibodies and memory cells against it?' },
+      { who: 'b', emoji: '✅', text: 'Exactly — without Riser ever getting seriously ill from the real thing.' },
+      { who: 'a', emoji: '⚡', text: 'And if the real pathogen ever shows up later, my memory cells are already waiting!' },
+      { who: 'b', emoji: '🛡️', text: 'That\'s the whole idea. Let\'s see exactly how a vaccine pulls that off.' }
+    ]
+  });
+
+  mountQuiz('quiz-s4', [
+    { type: 'mcq', q: 'What is an antigen?', choices: [
+        'A type of white blood cell',
+        'A marker molecule on a pathogen\'s surface that identifies it as foreign',
+        'A medicine that kills bacteria',
+        'A protein made only by lymphocytes'
+      ], answer: 1, explain: 'An antigen is the "ID tag" molecule on a pathogen that the immune system recognizes as foreign.' },
+    { type: 'fill', q: 'A Y-shaped protein, shaped to fit one specific antigen exactly, is called an ___.', answer: ['antibody'], explain: 'Antibodies are built to match one antigen precisely, like a key cut for one lock.' },
+    { type: 'match', q: 'Match each word to its meaning.', pairs: [
+        ['Antigen', 'A marker molecule that identifies a pathogen as foreign'],
+        ['Antibody', 'A protein shaped to match one specific antigen'],
+        ['Lymphocyte', 'A white blood cell that produces antibodies'],
+        ['Memory cell', 'A cell that "remembers" a pathogen for a faster response later']
+      ] },
+    { type: 'tf', q: 'Antibodies made to fight the chickenpox virus will also work against a completely different virus, like the flu.', answer: false, explain: 'Antibodies are specific — shaped for one exact antigen, and no other.' },
+    { type: 'mcq', q: 'Unlike a phagocyte\'s response, a lymphocyte\'s antibody response is described as:', choices: [
+        'Non-specific',
+        'Specific',
+        'Random',
+        'Immediate and permanent for every pathogen'
+      ], answer: 1, explain: 'Lymphocytes target one exact pathogen\'s antigen — that precision is what "specific" means here.' },
+    { type: 'mcq', q: 'What do antibodies mainly do to a pathogen?', choices: [
+        'Digest it completely by themselves',
+        'Clump pathogens together and label them so phagocytes can destroy them faster',
+        'Turn the pathogen into a harmless human cell',
+        'Nothing — they only prevent future infections'
+      ], answer: 1, explain: 'Antibodies mostly clump and tag pathogens, making the phagocyte\'s job much easier.' },
+    { type: 'tf', q: 'Getting chickenpox once usually protects you from getting it again, thanks to memory cells.', answer: true, explain: 'Memory cells allow a much faster, stronger antibody response the next time the same pathogen appears.' }
+  ], { title: 'Mission 4 Checkpoint', sub: 'Answer every question. Get one wrong? Just try again and tell us your thinking!', storageKey: 'imm-p2-s1', nextId: 's5', nextLabel: 'Mission 5' });
+
+  mountQuiz('quiz-s5', [
+    { type: 'mcq', q: 'What is the key difference between active and passive immunity?', choices: [
+        'Active immunity is always artificial, passive is always natural',
+        'In active immunity your own body makes antibodies; in passive immunity you receive ready-made ones',
+        'There is no real difference',
+        'Passive immunity lasts longer than active immunity'
+      ], answer: 1, explain: 'Active immunity involves your own body producing antibodies (and memory cells); passive immunity means receiving antibodies made elsewhere.' },
+    { type: 'match', q: 'Match each type of immunity to an example.', pairs: [
+        ['Natural active', 'Catching a disease and recovering from it'],
+        ['Artificial active', 'Getting a vaccine'],
+        ['Natural passive', 'A baby receiving antibodies from its mother'],
+        ['Artificial passive', 'Receiving an antibody injection']
+      ] },
+    { type: 'tf', q: 'A vaccine contains enough of the real pathogen to cause the full disease.', answer: false, explain: 'A vaccine uses a dead, weakened, or partial version of the pathogen — never enough to cause the real illness.' },
+    { type: 'fill', q: 'When enough people in a population are immune, a pathogen struggles to spread — this effect is called ___ immunity.', answer: ['herd'], explain: 'Herd immunity helps protect people who can\'t be vaccinated, by cutting off the pathogen\'s routes to spread.' },
+    { type: 'mcq', q: 'Why don\'t antibiotics work against viruses?', choices: [
+        'Because viruses are too small to be affected by medicine',
+        'Because antibiotics target structures that bacterial cells have but viruses don\'t',
+        'Because viruses are actually a type of bacteria',
+        'Antibiotics do work against viruses'
+      ], answer: 1, explain: 'Antibiotics are built to target bacterial cell structures — structures viruses simply don\'t have.' },
+    { type: 'tf', q: 'Stopping a course of antibiotics early, as soon as you feel better, is a safe habit.', answer: false, explain: 'Stopping early can leave the toughest bacteria alive to multiply, contributing to antibiotic resistance.' },
+    { type: 'mcq', q: 'Who is credited with creating the world\'s first vaccine, after noticing milkmaids with cowpox rarely caught smallpox?', choices: [
+        'Louis Pasteur',
+        'Edward Jenner',
+        'Alexander Fleming',
+        'Marie Curie'
+      ], answer: 1, explain: 'Edward Jenner\'s 1796 observation led directly to the first smallpox vaccine.' },
+    { type: 'fill', q: 'Bacteria that have evolved to survive medicines that used to kill them are described as showing antibiotic ___.', answer: ['resistance'], explain: 'Overusing or misusing antibiotics is the main driver of antibiotic resistance.' }
+  ], { title: 'Mission 5 Checkpoint', sub: 'Answer every question. Get one wrong? Just try again and tell us your thinking!', storageKey: 'imm-p2-s2' });
+
+  mountAssessment('final-assessment', [
+    { type: 'mcq', q: 'Which of these is NOT one of the four main types of pathogen?', choices: ['Bacteria', 'Viruses', 'Antibodies', 'Fungi'], answer: 2, explain: 'Antibodies are made by your own immune system to fight pathogens — they are not a type of pathogen.' },
+    { type: 'mcq', q: 'A mosquito bites one person, then bites another, spreading Plasmodium between them. The mosquito is acting as a:', choices: ['Pathogen', 'Vector', 'Toxin', 'Antibody'], answer: 1, explain: 'A vector carries a pathogen between hosts without becoming ill itself — exactly what the mosquito is doing.' },
+    { type: 'fill', q: 'The way a pathogen spreads from one host to another is called ___.', answer: ['transmission'], explain: 'Transmission routes include direct contact, droplet infection, contaminated food/water, and vectors.' },
+    { type: 'tf', q: 'Unbroken skin is considered a physical barrier against pathogens.', answer: true, explain: 'Skin is one of the body\'s main physical, first-line defenses.' },
+    { type: 'mcq', q: 'Cilia in the airways help defend the body by:', choices: ['Producing stomach acid', 'Sweeping germ-trapping mucus out of the lungs', 'Making antibodies', 'Clotting blood after a cut'], answer: 1, explain: 'Cilia constantly sweep mucus — and the pathogens trapped in it — out of the airways.' },
+    { type: 'fill', q: 'Tears and saliva contain an enzyme called ___ that destroys bacterial cell walls.', answer: ['lysozyme'], explain: 'Lysozyme is a chemical barrier found in tears and saliva.' },
+    { type: 'mcq', q: 'What is phagocytosis?', choices: ['A phagocyte engulfing and digesting a pathogen', 'A lymphocyte producing an antibody', 'A vaccine training the immune system', 'Blood clotting over a wound'], answer: 0, explain: 'Phagocytosis is a phagocyte\'s process of engulfing and destroying a pathogen.' },
+    { type: 'tf', q: 'Phagocytes need to identify exactly which pathogen they are facing before attacking it.', answer: false, explain: 'Phagocytes are non-specific — they attack any pathogen using the same process.' },
+    { type: 'mcq', q: 'Pus at an infected wound is mostly made up of:', choices: ['Only bacteria', 'Dead phagocytes, destroyed pathogens, and tissue fluid', 'Antibodies only', 'Skin cells'], answer: 1, explain: 'Pus is largely the visible aftermath of phagocytes fighting an infection.' },
+    { type: 'fill', q: 'A marker molecule on a pathogen\'s surface, which the immune system recognizes as foreign, is called an ___.', answer: ['antigen'], explain: 'Antigens are what lymphocytes and antibodies actually recognize and target.' },
+    { type: 'mcq', q: 'Antibodies are best described as:', choices: ['Non-specific, attacking any pathogen the same way', 'Y-shaped proteins shaped to match one specific antigen', 'A type of pathogen', 'A physical barrier like skin'], answer: 1, explain: 'Antibodies are precisely shaped for one specific antigen, like a key for one lock.' },
+    { type: 'tf', q: 'After an infection clears, some lymphocytes remain in the body as memory cells.', answer: true, explain: 'Memory cells allow a much faster response if the same pathogen returns.' },
+    { type: 'mcq', q: 'Which best describes ACTIVE immunity?', choices: ['Receiving ready-made antibodies from someone else', 'Your own body producing antibodies, either from infection or a vaccine', 'Wearing protective clothing', 'Taking antibiotics'], answer: 1, explain: 'Active immunity always involves your own immune system producing the antibodies (and memory cells).' },
+    { type: 'mcq', q: 'A baby receiving antibodies from its mother\'s breast milk is an example of:', choices: ['Natural active immunity', 'Artificial active immunity', 'Natural passive immunity', 'Artificial passive immunity'], answer: 2, explain: 'The baby receives ready-made antibodies (passive) from another organism, naturally.' },
+    { type: 'fill', q: 'A vaccine contains a safe form of a pathogen\'s ___, enough to trigger immunity without causing the disease.', answer: ['antigens', 'antigen'], explain: 'A vaccine safely exposes the immune system to antigens, not the full, dangerous pathogen.' },
+    { type: 'tf', q: 'Vaccines work by causing a full, dangerous infection so the body has to fight it off completely.', answer: false, explain: 'Vaccines use a dead, weakened, or partial pathogen — never enough to cause the real disease.' },
+    { type: 'mcq', q: 'Why can\'t antibiotics treat a viral infection like the common cold?', choices: ['Antibiotics only target structures bacterial cells have, which viruses don\'t', 'Viruses are immune to all medicines', 'Colds aren\'t caused by pathogens', 'Antibiotics are too weak to work on any infection'], answer: 0, explain: 'Antibiotics are built to attack bacterial structures — viruses don\'t have those structures at all.' },
+    { type: 'mcq', q: 'What is the main danger of stopping an antibiotic course early?', choices: ['It wastes medicine', 'It can leave the toughest bacteria alive, contributing to antibiotic resistance', 'It has no real effect either way', 'It always cures the infection faster'], answer: 1, explain: 'Surviving bacteria can multiply and pass on resistance, making future infections harder to treat.' },
+    { type: 'fill', q: 'When enough of a population is immune to a disease, protecting even those who aren\'t vaccinated, this is called ___ immunity.', answer: ['herd'], explain: 'Herd immunity reduces how easily a pathogen can spread through a whole community.' },
+    { type: 'match', q: 'Final round! Match each word from the whole quest to its meaning.', pairs: [
+        ['Pathogen', 'A microorganism that causes disease'],
+        ['Phagocyte', 'A white blood cell that engulfs and digests pathogens'],
+        ['Antibody', 'A protein shaped to match one specific antigen'],
+        ['Herd immunity', 'Population-wide protection when enough people are immune']
+      ] }
+  ], { title: 'The Final Boss Challenge', sub: '20 questions covering everything from every mission, written fresh — not copies of the checkpoint questions. You need 80% or higher to pass — that\'s the same as 8 out of every 10, so 16 out of these 20.', passPct: 0.8, storageKey: 'imm-final' });
+
+  const certInput = document.getElementById('cert-name-input');
+  const certDisplay = document.getElementById('cert-name-display');
+  const certDate = document.getElementById('cert-date-display');
+  const savedName = (Player.pGet('imm-cert-name')) || Player.getPlayer() || '';
+  if (savedName) { certInput.value = savedName; certDisplay.textContent = savedName; }
+  certInput.addEventListener('input', function () {
+    certDisplay.textContent = certInput.value.trim() || 'Your Name Here';
+    Player.pSet('imm-cert-name', certInput.value);
+  });
+  certDate.textContent = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('cert-print-btn').addEventListener('click', function () { window.print(); });
+
+  window.addEventListener('beforeprint', function () {
+    var certEl = document.querySelector('.certificate');
+    if (!certEl) return;
+    var wrap = document.createElement('div');
+    wrap.id = 'print-only-cert';
+    wrap.appendChild(certEl.cloneNode(true));
+    document.body.appendChild(wrap);
+    document.body.classList.add('printing-cert');
+  });
+  window.addEventListener('afterprint', function () {
+    document.body.classList.remove('printing-cert');
+    var wrap = document.getElementById('print-only-cert');
+    if (wrap) wrap.remove();
+  });
+</script>
+</body>
+</html>
