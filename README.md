@@ -1,153 +1,86 @@
-# LifeHub Risers — Immune System Defenders
+# Immune System — Level 3 Quest
 
-A self-paced, pictorial, interactive digital quest built for LifeHub Risers,
-covering the immune system at IGCSE (Cambridge Biology 0610, "Diseases and
-Immunity") depth, adapted for a Grade 7 reader:
+Three variations of one Level 3 "Quests"-format quest (per the Term 2 Quests
+Design & Framework Guidelines), all covering the full immune system topic —
+pathogens & transmission, physical/chemical barriers, phagocytes,
+lymphocytes & antibodies, vaccines/immunity and antibiotics — but each
+framed through a different real-world decision-making role, per **Approach
+A** ("same process, different lens/framing/output"). No two share both a
+lens and an output format.
 
-**Part 1 — Missions 1–3**
-1. 🦠 Meet the Enemy (pathogens: bacteria, viruses, fungi, protoctists, and
-   how they're transmitted)
-2. 🛡️ The Body's Walls (physical and chemical barriers: skin, mucus, cilia,
-   stomach acid, lysozyme, blood clotting)
-3. 🧫 Search and Destroy (phagocytes and phagocytosis — the non-specific
-   defense)
+Prepared for **Shalom, Michael, and Karis**. Served from one domain/one
+repo — three folders, not three repositories:
 
-**Part 2 — Missions 4–5 & the Final Boss**
-4. 🎯 The Antibody Squad (antigens, lymphocytes, antibodies, memory cells —
-   the specific defense)
-5. 💉 Vaccines & Immunity (active/passive immunity, how vaccines work, herd
-   immunity, antibiotics vs. antibiotic resistance)
-6. 🏆 The Final Boss Challenge — a rigorous 20-question assessment, written
-   fresh (not copies of the mission checkpoint questions), spanning both
-   parts
-7. 🎓 Claim Your Reward — a printable certificate, unlocked by beating the
-   Final Boss
+| Instance | Path | Lens | Day 2 decision activity | Day 3 output |
+|---|---|---|---|---|
+| Shalom | `/shalom/` | 🚨 Outbreak Response Commander | Allocate 12 resource tokens across 6 settlements with different real R0/transmissibility profiles; unresourced zones roll a die to see if the outbreak spreads | Containment Briefing |
+| Michael | `/michael/` | 💰 Vaccine Program Director | Run a 100-unit budget across 5 disease programs using the real herd-immunity threshold formula (1 − 1/R0); draw Budget Event cards for real mid-cycle shocks | Funding Pitch |
+| Karis | `/karis/` | 🩺 Field Triage Medic | Work a 10-patient shift with only 3 antibiotic tokens, deciding on each patient as their card is drawn face-down, one at a time | Shift Handover Report |
 
-**Plus, not locked to any mission:**
-- 🧪 **Build a 3D Model** (`build.html`) — choose a virus, a phagocyte mid-
-  engulfment, or an antibody/antigen "lock and key" pair. Spin an on-screen,
-  auto-rotating CSS 3D preview labeling every part, then build the real
-  thing with ordinary craft materials, with step-by-step instructions and a
-  self-check rubric.
+`index.html` at the repo root is the hub page linking all three.
 
-It's deliberately not chaptered by calendar day — "Part 1" and "Part 2" are
-just two pages for load-time reasons, not a schedule. There's no time-boxed
-"today you must finish X" framing anywhere; progress saves itself, so it's
-fine to stop mid-mission and resume days later.
+## Why this structure (and not the earlier build)
 
-Each of the first 5 missions opens with a short interactive story starring
-two recurring characters, **Mac** (a macrophage — a phagocyte) and **Ana**
-(a lymphocyte), drawn as cartoon cell mascots (see `js/characters.js`), has
-either a real embedded video or a looping CSS/SVG animated mini-scene, a
-glossary of new words, one or two "Think about it" scenarios, and ends with
-a mixed practice quiz. A bonus game card appears at the end of each part,
-linking to **Conflict: Immunity**, a free HTML5 browser game from BiomanBio
-where you command an army of white blood cells against real pathogens.
+An earlier draft of this repo used a quiz/certificate/lock-progression
+website format borrowed from a different LifeHub Risers course. That
+format doesn't fit this program's actual **Term 2 Quests Design &
+Framework Guidelines** (Level 3 = "Quests" format, not "Discovery"), which
+explicitly rule out visible quiz/test/assessment language and require a
+scenario-driven, decision-under-constraints structure instead. This build
+replaces that draft entirely.
 
-## Video resources
+## What each instance follows, per the framework
 
-Three missions embed a real YouTube video from The Amoeba Sisters, a
-well-known biology education channel, via privacy-enhanced
-`youtube-nocookie.com` embeds:
-- Mission 1 (pathogens): "Viruses (Updated)"
-- Mission 3 (phagocytes): "Immune System"
-- Mission 5 (vaccines): "Antibiotics, Antivirals, and Vaccines"
+- **Cover** — format pill, lens-specific subtitle, kid's name, a framing
+  paragraph establishing the identity and the week's real stakes.
+- **Day 1 reading** — opens with a proper intro (not a cold list), covers
+  the full topic to IGCSE-textbook depth, includes a mandatory **History**
+  section (real dates/names: Jenner 1796, Pasteur 1880s, Metchnikoff 1882 /
+  Nobel 1908, von Behring 1890 / Nobel 1901, Fleming 1928, WHO smallpox
+  eradication 1980, mRNA vaccines 2020) and a mandatory **Real-World
+  Application** section, with invisible-evaluation prompts (rotating
+  mechanisms — explain-the-error, compare-two-cases, evidence-sourcing,
+  teach-it-forward) embedded roughly once per sub-section. Nothing on the
+  page is labeled "quiz," "test," or "assessment."
+- **Materials** — presented as a pool to choose from (checkboxes), not a
+  fixed checklist, with common fallbacks noted inline. Selections live-update
+  a printable "Materials I'm Bringing" slip, isolated on its own printed
+  page via `@media print` (same mechanism as a certificate-print isolation
+  pattern — nothing else on the page prints alongside it).
+- **Day 2** — a real, physical, non-symbolic decision activity with genuine
+  unpredictability (a die roll, a shuffled event deck, or face-down patient
+  cards) that the student doesn't fully control in advance. Structured like
+  a real report: a plan/prediction table filled in *before* acting, a
+  decision log filled in *during*, a results tally, and a self-check
+  reflection prompt.
+- **Day 3** — a concrete presentation hook (not "begin your presentation"),
+  a kid-facing "what to include" checklist, and a facilitator-only tip
+  (visually marked `FACILITATOR ONLY`) that reframes an imperfect outcome as
+  the most interesting part of the presentation, not something to hide.
 
-To swap in a different video, replace the `src` on the relevant
-`.video-card .video-embed iframe` with `https://www.youtube-nocookie.com/embed/VIDEO_ID`.
+## Real data used (not fabricated)
 
-## How the practice quizzes work (Missions 1–5)
-
-Every question must be finished before the next mission unlocks:
-
-- Answer correctly on the first try → done immediately.
-- Answer wrong → pick again if you like, then explain your thinking in a
-  short open-text box. That box isn't graded right or wrong — it just needs
-  to have something written in it. Once it's filled in, the question is
-  marked done.
-
-A mission stays visibly locked (blurred, non-interactive, with a padlock
-message) until every question in the previous one is finished, and unlocks
-automatically the moment the last one is done. Progress is saved in the
-browser (`localStorage`), so it survives closing the tab and coming back
-later — see "Continuing across devices" below for the one case that doesn't
-cover.
-
-## How the Final Boss Challenge works
-
-This one is graded for real, no reflection shortcut, and its 20 questions
-are written from scratch — not reused from the mission checkpoints —
-leaning on scenarios and application rather than recall. All 20 are
-answered, then submitted together with one "Submit Final Assessment"
-button. The pass bar is 80% (16 out of 20). Passing unlocks the certificate
-section immediately below; falling short shows the score and a "Try Again"
-button that resets the whole assessment for another attempt. See
-`js/assessment.js`.
-
-## The certificate
-
-Locked until the Final Boss Challenge is passed. Type a name and it fills
-into a styled certificate live, saved in `localStorage` so it's remembered
-on refresh, with today's date filled in automatically. The "Print / Save as
-PDF" button calls `window.print()`.
-
-## Build a 3D Model (`build.html`)
-
-Not gated by the mission-locking system — it's meant to be usable any time,
-though the page nudges readers toward the mission that gives each project
-context. Three tabs (Virus / Phagocyte in Action / Antibody & Antigen) each
-switch:
-- the shared auto-rotating CSS 3D cube preview (`.model3d`), whose six
-  faces label the real parts of that structure (pure CSS 3D transforms —
-  no JS libraries, no external assets)
-- a materials list and five numbered build steps for a physical model made
-  from ordinary craft supplies
-- its own progress checklist, persisted per player via `Player.pSet` —
-  informational only, nothing else on the site is gated by it
-
-A shared self-check rubric below the three projects applies to whichever
-one was built.
-
-## Sharing one computer between kids (no login)
-
-The very first thing anyone sees on any page is a "👋 Who's on this quest?"
-name prompt (see `js/player.js` and `buildPlayerGate` in `js/app.js`).
-Typing a name namespaces every progress key under it, so a second kid can
-type their own name and get a completely clean slate on the same computer.
-The "👤 Name ▾" badge in the header lets anyone switch out.
-
-This is deliberately not a real login: there's no password and nothing
-stops someone from typing any name, including someone else's.
-
-## Continuing across devices (no login)
-
-Progress lives in `localStorage`, tied to one browser on one device. The
-"🔄 Restore Session" button in the header packs the current player's name
-and progress into a short code you can copy on one device and paste into
-the same panel on another to restore both instantly.
-
-## Running the quest
-
-No build step is required — it's plain HTML/CSS/JS.
-
-- Open `index.html` directly in a browser, or
-- Serve the folder locally, e.g. `python3 -m http.server`, then visit
-  `http://localhost:8000`, or
-- Enable GitHub Pages on this repository (Settings → Pages → deploy from
-  the default branch) to host it online.
+R0 and herd immunity threshold figures (flu ~0.9–2.1 / ~45–52%; COVID-19
+original strain ~2–3 / ~50–67%; polio ~3–4 / ~75–80%; measles ~12–18 /
+~93–95%) are drawn from published epidemiological reviews and WHO/CDC-cited
+figures, used identically across all three instances. Michael's per-dose
+costs are explicitly labeled as illustrative simulation units, not claimed
+real-world prices — the epidemiological core (R0, threshold, and the
+1 − 1/R0 formula) is real.
 
 ## Structure
 
 ```
-index.html          Course home page
-part1.html           Part 1 content + stories + quizzes (missions 1–3)
-part2.html           Part 2 content + stories + quizzes + Final Boss + certificate (missions 4–5, 6, 7)
-build.html           Build-a-3D-model project page (not mission-locked)
-css/styles.css        Shared styling
-js/quiz.js            Practice quiz engine (mcq / true-false / fill-in / match + reflection)
-js/assessment.js      Final Boss engine (graded, pass/fail, retry)
-js/characters.js      Mac & Ana cartoon cell mascot art
-js/story.js           Interactive story/comic-strip component
-js/player.js          Per-name progress namespacing (shared-computer support)
-js/app.js             Mission locking, progress tracking, and the cross-device sync widget
+index.html          Hub page linking all three instances
+shalom/index.html    Outbreak Response Commander instance
+michael/index.html   Vaccine Program Director instance
+karis/index.html     Field Triage Medic instance
+css/styles.css        Shared styling — one stylesheet, three lens palettes
+                       (body.lens-shalom / .lens-michael / .lens-karis)
+js/quest.js           Materials-pool → printable-slip wiring + print trigger
+                       + small random-event helpers (shuffle/pickRandom).
+                       No progress-locking, no scoring, no localStorage state.
 ```
+
+No build step — plain HTML/CSS/JS. Open `index.html` directly, serve the
+folder locally (`python3 -m http.server`), or enable GitHub Pages.

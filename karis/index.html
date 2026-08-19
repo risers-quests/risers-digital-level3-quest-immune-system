@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immune System — Field Triage Medic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="lens-karis">
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">🧬 Immune System Quest<small>Field Triage Medic</small></a>
+    <nav class="day-nav">
+      <a href="#day1">Day 1</a>
+      <a href="#day2">Day 2</a>
+      <a href="#day3">Day 3</a>
+      <button class="print-btn" id="print-slip-btn" type="button">🖨️ Print my bringing slip</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="format-pill">Quest</div><br>
+    <span class="lens-pill">🩺 Field Triage Medic</span>
+    <h1>Immune System: The Triage Shift</h1>
+    <p class="subtitle">Ten patients. Three antibiotic doses. You don't get to see the next card until you've decided on this one.</p>
+    <div class="kid-name">Prepared for: Karis</div>
+    <div class="framing">
+      <p style="margin:0;">You are the <strong>Field Triage Medic</strong> at a small clinic during a busy outbreak week. Patients keep arriving, and your antibiotic supply is small enough that giving one to the wrong patient means a genuinely sick patient later goes without. Every card you draw is a real decision, made only with the information on that card, in the moment — exactly like a real medic works a real shift. This week, that medic is you.</p>
+    </div>
+  </section>
+
+  <!-- DAY 1 -->
+  <section class="day-block" id="day1">
+    <span class="day-kicker">Day 1 · Clinical Briefing</span>
+    <h2>What You're Actually Diagnosing</h2>
+    <p class="day-sub">You can't triage a patient correctly if you don't understand what's making them sick. This briefing covers the full picture: the four kinds of pathogen, how the body already fights them, and why an antibiotic is the right call for some patients and useless for others.</p>
+
+    <h3>Why triage decisions start in the body</h3>
+    <p>Every decision you make on shift is really just supporting a system that's already running: the patient's own immune system. Long before any medicine is given, the body is already fighting using layers of defense that build on each other. A medic who understands exactly what those layers are doing — and exactly where a medicine like an antibiotic fits in — makes far better calls than one just guessing from symptoms alone.</p>
+
+    <h3>1. The four kinds of patient you'll see</h3>
+    <p>A <strong>pathogen</strong> is a microorganism that causes disease, and it always falls into one of four groups. Telling them apart correctly is the single most important skill on your shift, because your treatment options are completely different for each.</p>
+
+    <div class="card-grid">
+      <div class="info-card"><h4>🦠 Bacteria</h4><p>Single-celled living organisms. Some release toxins. Example: infected wounds, <em>Salmonella</em> food poisoning. <strong>Antibiotics work here.</strong></p></div>
+      <div class="info-card"><h4>🧬 Viruses</h4><p>Not even cells — hijack a host cell to reproduce. Example: colds, flu. <strong>Antibiotics do nothing here.</strong></p></div>
+      <div class="info-card"><h4>🍄 Fungi</h4><p>Simple organisms growing on or in the body. Example: ringworm, athlete's foot. <strong>Needs an antifungal, not an antibiotic.</strong></p></div>
+      <div class="info-card"><h4>🦟 Protoctists</h4><p>Single-celled, often vector-spread. Example: malaria, via mosquito. <strong>Needs an antimalarial, not an antibiotic.</strong></p></div>
+    </div>
+
+    <p>Pathogens reach a patient by <strong>direct contact</strong>, <strong>droplet infection</strong>, <strong>contaminated food or water</strong>, or a <strong>vector</strong> — an organism, often an insect, that carries a pathogen between hosts without getting sick itself. A patient's history of exposure is often your first clue to which of the four you're dealing with.</p>
+
+    <div class="callout">
+      <span class="callout-label">📊 Chart Error — catch the mistake</span>
+      <p style="margin:0;">A colleague's patient chart reads: <em>"Patient has a viral cold. Prescribed a full course of antibiotics to be safe."</em> Something on this chart is a real clinical error. Correct it exactly as you would if you were signing off on this chart yourself.</p>
+      <textarea placeholder="Type your correction here…"></textarea>
+    </div>
+
+    <h3>2. Line one: barriers (working before the patient even walks in)</h3>
+    <p>Before any white blood cell or medicine gets involved, the body's own barriers are already at work: <strong>skin</strong> as a physical wall, <strong>mucus and cilia</strong> trapping and sweeping pathogens out of the airways, <strong>stomach acid</strong> destroying most swallowed pathogens, <strong>lysozyme</strong> in tears and saliva breaking down bacterial cell walls, and <strong>blood clotting</strong> sealing a wound before pathogens can enter through it. A broken barrier — a cut, a burn — is exactly why a wound infection needs different handling than an infection that started elsewhere.</p>
+
+    <div class="callout subtle">
+      <span class="callout-label">🔍 Compare Two Cases</span>
+      <p style="margin:0 0 8px;"><strong>Patient A:</strong> a deep cut on the hand, now hot, red, and swollen with pus, three days after the injury.<br><strong>Patient B:</strong> a sore throat and fever that started the same day as a cough, with two family members sick too.</p>
+      <p style="margin:0;">Which barrier failed first in each case, and what does the timing/pattern tell you about which pathogen type you're more likely dealing with?</p>
+      <textarea placeholder="Explain the difference…"></textarea>
+    </div>
+
+    <h3>3. Line two: phagocytes (the body's own first responders)</h3>
+    <p><strong>White blood cells</strong> are the body's infection-fighters, and <strong>phagocytes</strong> respond first. Phagocytosis happens in three stages: <strong>detect</strong>, <strong>engulf</strong>, <strong>digest</strong>. Phagocytes are <strong>non-specific</strong> — fast, but generic. That thick, yellowish pus you'll see on patient charts is mostly dead phagocytes and destroyed pathogens: visible proof the body is already fighting, with or without your help.</p>
+
+    <div class="callout">
+      <span class="callout-label">🧾 Evidence Log</span>
+      <p style="margin:0;">A patient's wound is "healing on its own" according to the chart. What specific visible sign would confirm phagocytes are actually doing that work at the site? Name it, and explain what it tells a medic reading the chart.</p>
+      <textarea placeholder="Name the evidence and what it proves…"></textarea>
+    </div>
+
+    <h3>4. Line three: lymphocytes and antibodies (why one infection rarely repeats)</h3>
+    <p>Every pathogen carries <strong>antigens</strong> — surface markers that identify it as foreign. <strong>Lymphocytes</strong> recognize one specific antigen and produce <strong>antibodies</strong>: Y-shaped proteins shaped to match that antigen exactly. This response is <strong>specific</strong>, unlike a phagocyte's general attack. Afterward, some lymphocytes remain as <strong>memory cells</strong>, ready to react instantly if that exact pathogen returns — which is why a patient rarely catches the same viral illness (like chickenpox) twice.</p>
+
+    <div class="callout subtle">
+      <span class="callout-label">🎓 Patient Explainer</span>
+      <p style="margin:0;">A worried parent asks why their child "still got sick" even after recovering from a similar-sounding illness last year. Write the two or three sentences you'd actually say to them at the bedside — simple, accurate, and reassuring.</p>
+      <textarea placeholder="Explain it simply…"></textarea>
+    </div>
+
+    <h3>5. Why the antibiotic decision is the one that actually matters</h3>
+    <p>There are two routes to immunity. <strong>Active immunity</strong> is the body producing its own antibodies, naturally or from a vaccine. <strong>Passive immunity</strong> is receiving ready-made antibodies from elsewhere — fast, but temporary. Neither one is what you're deciding on shift; you're deciding whether to spend a scarce <strong>antibiotic</strong> dose.</p>
+    <p><strong>Antibiotics kill or stop bacteria — and only bacteria.</strong> They do nothing to a virus, a fungus, or a protoctist, because antibiotics target structures that only bacterial cells have. Giving one to the wrong patient doesn't just fail to help them — it wastes a dose a genuinely bacterial patient down the line will need, and contributes to <strong>antibiotic resistance</strong>: bacteria evolving to survive antibiotics that used to work, one of the most serious problems in real medicine today.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Presentation</th><th>Most likely pathogen type</th><th>Right call</th></tr></thead>
+      <tbody>
+        <tr><td>Hot, red, swollen, pus-filled</td><td>Bacterial</td><td class="num">Antibiotic likely appropriate</td></tr>
+        <tr><td>Runny nose, cough, whole household sick</td><td>Viral</td><td class="num">Supportive care — no antibiotic</td></tr>
+        <tr><td>Itchy, ring-shaped, spreading rash</td><td>Fungal</td><td class="num">Antifungal — no antibiotic</td></tr>
+        <tr><td>Fever cycles, recent travel/mosquito exposure</td><td>Protoctist (e.g. malaria)</td><td class="num">Antimalarial — no antibiotic</td></tr>
+      </tbody>
+    </table>
+
+    <h3>History: how we learned to tell these apart</h3>
+    <div class="timeline">
+      <div class="timeline-item"><div class="t-year">1796</div><div class="t-body"><strong>Edward Jenner</strong> creates the world's first vaccine after noticing milkmaids with cowpox rarely caught smallpox.</div></div>
+      <div class="timeline-item"><div class="t-year">1876–1884</div><div class="t-body"><strong>Robert Koch</strong> establishes that specific bacteria cause specific diseases, giving medicine a real way to diagnose infections by cause, not just symptom.</div></div>
+      <div class="timeline-item"><div class="t-year">1882</div><div class="t-body"><strong>Élie Metchnikoff</strong> discovers phagocytosis, later sharing the 1908 Nobel Prize in Physiology or Medicine.</div></div>
+      <div class="timeline-item"><div class="t-year">1890–1901</div><div class="t-body"><strong>Emil von Behring</strong> develops diphtheria antitoxin and receives the first-ever Nobel Prize in Physiology or Medicine in 1901.</div></div>
+      <div class="timeline-item"><div class="t-year">1928</div><div class="t-body"><strong>Alexander Fleming</strong> discovers penicillin — the first antibiotic, and the moment "bacterial vs. viral" became a real treatment decision, not just a diagnosis.</div></div>
+      <div class="timeline-item"><div class="t-year">1980</div><div class="t-body">The <strong>WHO</strong> declares smallpox eradicated worldwide, through vaccination alone.</div></div>
+      <div class="timeline-item"><div class="t-year">2020s</div><div class="t-body">The <strong>WHO's AWaRe framework</strong> becomes a standard clinical tool worldwide, classifying antibiotics to help medics make exactly the kind of call you're about to make.</div></div>
+    </div>
+
+    <h3>Real-world application: this is a real job</h3>
+    <p>Every hospital and clinic follows <strong>antibiotic stewardship</strong> guidelines (like the WHO's AWaRe classification) specifically to stop antibiotics being given when they won't help. Real triage systems — used in emergency rooms worldwide — sort patients by urgency and treatability using exactly this kind of rapid, information-limited decision-making. Rapid diagnostic tests (checking for bacterial vs. viral markers in minutes) are a real, growing tool designed to make the call you're about to make more accurate under real time pressure.</p>
+
+    <div class="glossary">
+      <div class="glossary-item"><div class="word">Pathogen</div><div class="def">A microorganism that causes disease.</div></div>
+      <div class="glossary-item"><div class="word">Antibiotic</div><div class="def">A medicine that kills or stops bacteria only — never viruses.</div></div>
+      <div class="glossary-item"><div class="word">Antibiotic resistance</div><div class="def">Bacteria evolving to survive antibiotics that used to work.</div></div>
+      <div class="glossary-item"><div class="word">Phagocytosis</div><div class="def">A phagocyte engulfing and destroying a pathogen.</div></div>
+      <div class="glossary-item"><div class="word">Antibody</div><div class="def">A protein shaped to match one specific antigen.</div></div>
+      <div class="glossary-item"><div class="word">Memory cell</div><div class="def">A lymphocyte that "remembers" a pathogen for a faster response later.</div></div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="day-block">
+    <span class="day-kicker">Before Day 2 · Medic Kit</span>
+    <h2>Choose What You're Bringing</h2>
+    <p class="day-sub">Pick whatever you'll actually use to run the shift. Build the kit that fits how you plan to run it.</p>
+
+    <div class="pool-grid">
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">Index cards or paper cut into cards</span><span class="pool-sub">For the 10 patient case cards — sticky notes work too.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">A marker or pen</span><span class="pool-sub">For writing up each patient case.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">3 small "antibiotic tokens"</span><span class="pool-sub">Buttons, coins, or bottle caps — something visually distinct from other items on hand.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">A large sheet of paper or cardboard</span><span class="pool-sub">Marked into three zones — this becomes your Triage Board.</span></span></label>
+      <label class="pool-item"><input type="checkbox"><span><span class="pool-name">Scissors</span><span class="pool-sub">Only needed if you're cutting your own cards.</span></span></label>
+      <label class="pool-item"><input type="checkbox"><span><span class="pool-name">A timer or phone clock</span><span class="pool-sub">Optional — for extra pressure, give yourself 30 seconds per card.</span></span></label>
+    </div>
+
+    <div class="slip-preview">
+      <h4>📋 What you're bringing to Day 2:</h4>
+      <ul id="slip-list-preview"></ul>
+      <div class="slip-empty" id="slip-empty">Nothing selected yet.</div>
+    </div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section class="day-block" id="day2">
+    <span class="day-kicker">Day 2 · The Triage Shift</span>
+    <h2>Run the Shift</h2>
+    <p class="day-sub">10 patients. Only 3 antibiotic tokens. Draw cards one at a time, face-down order — you don't get to plan the whole shift in advance, just like a real one.</p>
+
+    <h3>Write your 10 patient cards</h3>
+    <p>Copy these onto your own cards, shuffle them, and set them face-down. Don't read ahead.</p>
+    <div class="printable-sheet">
+      <div class="card-grid-print">
+        <div class="cut-card"><span class="cc-tag">Card 1</span><div class="cc-title">Sofia, 10</div>Hot, red, swollen cut on her knee, three days old, with pus. No other symptoms.</div>
+        <div class="cut-card"><span class="cc-tag">Card 2</span><div class="cc-title">Advait, 9</div>Runny nose, sneezing, mild fever for 2 days. Whole family has the same thing.</div>
+        <div class="cut-card"><span class="cc-tag">Card 3</span><div class="cc-title">Priya, 11</div>Itchy, ring-shaped rash on her arm, spreading slowly over a week.</div>
+        <div class="cut-card"><span class="cc-tag">Card 4</span><div class="cc-title">Rahul, 8</div>Sudden high fever, stiff neck, severe headache, very drowsy. Started this morning.</div>
+        <div class="cut-card"><span class="cc-tag">Card 5</span><div class="cc-title">Zara, 12</div>Sore throat, fever, swollen glands, thick white patches visible at the back of the throat. No cough.</div>
+        <div class="cut-card"><span class="cc-tag">Card 6</span><div class="cc-title">Dev, 7</div>Cough, congestion, fever for 3 days, started right after his older sibling had the same symptoms.</div>
+        <div class="cut-card"><span class="cc-tag">Card 7</span><div class="cc-title">Meera, 9</div>Deep splinter wound on the foot, now hot and swollen with a spreading red streak up the leg.</div>
+        <div class="cut-card"><span class="cc-tag">Card 8</span><div class="cc-title">Arjun, 10</div>Fever that comes and goes every two days, chills, recently visited an area with lots of mosquitoes.</div>
+        <div class="cut-card"><span class="cc-tag">Card 9</span><div class="cc-title">Tanvi, 11</div>Ear pain, fever, pus draining from the ear, started 4 days ago and getting worse.</div>
+        <div class="cut-card"><span class="cc-tag">Card 10</span><div class="cc-title">Yusuf, 8</div>Mild fever, tiredness, no other symptoms, feeling better than yesterday already.</div>
+      </div>
+    </div>
+    <p style="font-size:.85rem; color:var(--ink-soft);">Cards 1, 5, 7, and 9 describe bacterial-pattern infections — but you only have <strong>3 antibiotic tokens</strong> for potentially 4 bacterial cases. That's the real decision.</p>
+
+    <h3>Work the shift</h3>
+    <button class="btn btn-primary" type="button" id="draw-card-btn">🃏 Draw the next patient</button>
+    <div class="event-panel" style="margin-top:14px;">
+      <div class="event-result" id="card-result">Draw your first patient to begin.</div>
+    </div>
+
+    <h3>Decision log</h3>
+    <p>For each card, record your call before drawing the next one.</p>
+    <table class="log-table">
+      <thead><tr><th>Patient</th><th>Pathogen type</th><th>Board zone</th><th>Antibiotic spent? (Y/N)</th><th>One-line reasoning</th></tr></thead>
+      <tbody>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+      </tbody>
+    </table>
+
+    <h3>End-of-shift tally</h3>
+    <div class="tally-row">
+      <div class="tally-tile"><div class="tally-num" contenteditable="true">–</div><div class="tally-label">Pathogen types correctly identified</div></div>
+      <div class="tally-tile"><div class="tally-num" contenteditable="true">–</div><div class="tally-label">Antibiotics used on bacterial cases</div></div>
+      <div class="tally-tile"><div class="tally-num" contenteditable="true">–</div><div class="tally-label">Bacterial cases untreated (scarcity)</div></div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">🪞 Shift Debrief — self-check</span>
+      <p style="margin:0;">If you'd had one more antibiotic token, which patient would you give it to, and why? What would you actually tell a patient who didn't get one? Be honest about a call you're not fully sure about.</p>
+      <textarea placeholder="Write your honest debrief…"></textarea>
+    </div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section class="day-block" id="day3">
+    <span class="day-kicker">Day 3 · Handing Off the Shift</span>
+    <h2>Present Your Triage Shift</h2>
+
+    <div class="hook-box">
+      <div class="hook-label">Your opening move</div>
+      <p style="margin:0;">Hold up the one patient card you're still unsure about, and ask the room: <em>"What would you have done with this one?"</em> Let a few people answer before you reveal your own call.</p>
+    </div>
+
+    <h3>What to include</h3>
+    <ul class="checklist-plain">
+      <li>How many of each pathogen type you saw across the 10 patients</li>
+      <li>Which 3 (of the 4) bacterial cases got the antibiotic, and exactly why those three</li>
+      <li>What you'd actually tell the patient who didn't receive one</li>
+      <li>One card that changed your thinking partway through the shift</li>
+    </ul>
+
+    <div class="facilitator-tip">
+      <span class="fac-label">Facilitator only</span>
+      <p>Steer the room toward the patients who DIDN'T get an antibiotic, not away from them. Real triage medics are judged by how clearly they can explain a hard "no," not by pretending resources were unlimited. A kid who can defend leaving a genuinely bacterial case untreated — with real reasoning about which case was more urgent — is demonstrating the target skill (decision-making under real constraints) more fully than one who got lucky with the draw order.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  Immune System Quest · Field Triage Medic — Karis's instance. <a href="../index.html">All three instances →</a>
+</footer>
+
+<!-- Isolated printable materials slip -->
+<div id="print-slip-page">
+  <div class="print-slip-sheet">
+    <h3>📋 Materials I'm Bringing — Day 2</h3>
+    <div class="slip-kid">Field Triage Medic · Karis</div>
+    <ul id="slip-list-print"></ul>
+  </div>
+</div>
+
+<script src="../js/quest.js"></script>
+<script>
+  var patients = [
+    'Sofia, 10 — hot, red, swollen cut, pus, 3 days old.',
+    'Advait, 9 — runny nose, sneezing, mild fever, whole family sick too.',
+    'Priya, 11 — itchy, ring-shaped spreading rash.',
+    'Rahul, 8 — sudden high fever, stiff neck, severe headache, drowsy.',
+    'Zara, 12 — sore throat, fever, white patches at back of throat, no cough.',
+    'Dev, 7 — cough, congestion, fever, started after sibling\'s same symptoms.',
+    'Meera, 9 — deep wound, hot and swollen, red streak up the leg.',
+    'Arjun, 10 — fever comes and goes every 2 days, chills, mosquito exposure.',
+    'Tanvi, 11 — ear pain, fever, pus draining from ear, 4 days and worsening.',
+    'Yusuf, 8 — mild fever, tired, already feeling a bit better.'
+  ];
+  var deck = QuestUI.shuffle(patients);
+  var drawn = 0;
+  document.getElementById('draw-card-btn').addEventListener('click', function () {
+    var resultEl = document.getElementById('card-result');
+    if (drawn >= deck.length) {
+      resultEl.textContent = '✅ Shift complete — all 10 patients seen.';
+      return;
+    }
+    resultEl.textContent = '🃏 Patient ' + (drawn + 1) + ' of 10 — ' + deck[drawn];
+    drawn++;
+  });
+
+  window.addEventListener('beforeprint', function () { document.body.classList.add('printing-slip'); });
+  window.addEventListener('afterprint', function () { document.body.classList.remove('printing-slip'); });
+</script>
+</body>
+</html>

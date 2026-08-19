@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immune System — Outbreak Response Command</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="lens-shalom">
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">🧬 Immune System Quest<small>Outbreak Response Command</small></a>
+    <nav class="day-nav">
+      <a href="#day1">Day 1</a>
+      <a href="#day2">Day 2</a>
+      <a href="#day3">Day 3</a>
+      <button class="print-btn" id="print-slip-btn" type="button">🖨️ Print my bringing slip</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="format-pill">Quest</div><br>
+    <span class="lens-pill">🚨 Outbreak Response Commander</span>
+    <h1>Immune System: The Containment Cycle</h1>
+    <p class="subtitle">Six settlements. A fixed set of resources. A disease that doesn't wait for you to finish reading before it starts spreading.</p>
+    <div class="kid-name">Prepared for: Shalom</div>
+    <div class="framing">
+      <p style="margin:0;">You are the <strong>Outbreak Response Commander</strong> for a regional health authority. A new outbreak has reached your region, and six settlements are exposed. Before this cycle ends, you'll decide exactly where your limited resources go — full vaccination coverage for a settlement, a temporary quarantine order, or a cheaper hygiene campaign — knowing you cannot fully protect all six. Every settlement you under-resource is a real gamble: it might hold, or it might become the next source of spread. Real commanders make exactly this call, with exactly this kind of imperfect information. This week, so do you.</p>
+    </div>
+  </section>
+
+  <!-- DAY 1 -->
+  <section class="day-block" id="day1">
+    <span class="day-kicker">Day 1 · Briefing</span>
+    <h2>Know Your Enemy Before You Deploy</h2>
+    <p class="day-sub">You can't allocate resources well if you don't understand what you're actually defending against. This briefing covers the full picture: what you're up against, how the body already fights it, and how real health authorities make the same kind of call you're about to make.</p>
+
+    <h3>Why command decisions start in the body</h3>
+    <p>Every containment decision you'll ever make is really just backing up a system that's already running: the human immune system. Long before any health authority steps in, every person's body is already fighting pathogens on its own, using layers of defense that build on each other. Understanding exactly how those layers work — where they're strong, and where they need backup — is the entire foundation of good outbreak command. A commander who doesn't understand the body's own defenses is making decisions blind.</p>
+
+    <h3>1. The threat: what you're actually defending against</h3>
+    <p>A <strong>pathogen</strong> is a microorganism that causes disease. Not all microorganisms are pathogens — but the ones that are fall into four groups, and each one behaves differently enough that your response has to account for the difference.</p>
+
+    <div class="card-grid">
+      <div class="info-card"><h4>🦠 Bacteria</h4><p>Single-celled living organisms. Some cause illness by releasing toxins. Example: <em>Salmonella</em> (food poisoning), <em>Mycobacterium tuberculosis</em> (TB).</p></div>
+      <div class="info-card"><h4>🧬 Viruses</h4><p>Not even cells — tiny particles that hijack a host cell to reproduce. Example: influenza, measles.</p></div>
+      <div class="info-card"><h4>🍄 Fungi</h4><p>Simple organisms that grow on or in the body. Example: <em>Tinea</em> (ringworm, athlete's foot).</p></div>
+      <div class="info-card"><h4>🦟 Protoctists</h4><p>Single-celled organisms, often vector-spread. Example: <em>Plasmodium</em> (malaria), carried by mosquitoes.</p></div>
+    </div>
+
+    <p>Transmission matters just as much as pathogen type. A pathogen can spread by <strong>direct contact</strong> (touching skin or body fluids), <strong>droplet infection</strong> (a cough or sneeze), <strong>contaminated food or water</strong>, or a <strong>vector</strong> — an organism, often an insect, that carries the pathogen between hosts without getting sick itself. Your containment plan for a droplet-spread disease looks nothing like your plan for a vector-spread one.</p>
+
+    <div class="callout">
+      <span class="callout-label">📋 Situation Report — something doesn't add up</span>
+      <p style="margin:0;">A junior officer's briefing note says: <em>"The outbreak is a virus, so we've ordered antibiotics for every exposed settlement — that should clear it up fast."</em> Something in that plan is wrong. What is it, and what should the officer have ordered instead? Write your correction below as if you're sending it back to them.</p>
+      <textarea placeholder="Type your correction here…"></textarea>
+    </div>
+
+    <h3>2. Line one: barriers (the defense that's already deployed)</h3>
+    <p>Before a single white blood cell gets involved, the body has physical and chemical barriers doing constant, unpaid work: <strong>skin</strong> as a physical wall, <strong>mucus and cilia</strong> trapping and sweeping pathogens out of the airways, <strong>stomach acid</strong> destroying most swallowed pathogens, <strong>lysozyme</strong> in tears and saliva breaking down bacterial cell walls, and <strong>blood clotting</strong> sealing a wound before pathogens can use it as an entry point.</p>
+
+    <div class="callout subtle">
+      <span class="callout-label">🔍 Compare Two Cases</span>
+      <p style="margin:0 0 8px;"><strong>Case A:</strong> A settlement's water supply becomes contaminated after flooding damages the filtration system.<br><strong>Case B:</strong> A settlement reports a rise in chest infections after a wildfire fills the air with smoke for a week.</p>
+      <p style="margin:0;">Which body barrier is most directly compromised in each case — and why would a health authority respond differently to the two?</p>
+      <textarea placeholder="Explain the difference…"></textarea>
+    </div>
+
+    <h3>3. Line two: phagocytes (the fast, general-purpose response)</h3>
+    <p><strong>White blood cells</strong> are the body's dedicated infection-fighters, and <strong>phagocytes</strong> are the first kind to respond. Phagocytosis happens in three stages: the phagocyte <strong>detects</strong> chemical signals from damaged tissue or pathogens, <strong>engulfs</strong> the pathogen completely, then <strong>digests</strong> it with enzymes. Phagocytes are <strong>non-specific</strong> — they attack any pathogen the same way, which makes them fast but generic. That thick, yellowish pus around an infected wound is mostly dead phagocytes and destroyed pathogens — visible evidence a battle already happened.</p>
+
+    <div class="callout">
+      <span class="callout-label">🧾 Evidence Log</span>
+      <p style="margin:0;">A field report says a settlement's minor wound infections are "healing well on their own, no cause for concern." What specific physical sign, mentioned in this section, would you look for to confirm phagocytes are actually doing their job at the wound site? Name it and explain what it tells you.</p>
+      <textarea placeholder="Name the evidence and what it proves…"></textarea>
+    </div>
+
+    <h3>4. Line three: lymphocytes and antibodies (the precision strike)</h3>
+    <p>Every pathogen carries <strong>antigens</strong> — marker molecules on its surface that identify it as foreign. <strong>Lymphocytes</strong> are white blood cells that recognize one specific antigen; once triggered, they multiply and produce <strong>antibodies</strong> — Y-shaped proteins shaped to match that one antigen exactly, like a key cut for one lock. Antibodies clump pathogens together and mark them for phagocytes to finish off. This response is <strong>specific</strong>, unlike a phagocyte's non-specific attack. After the infection clears, some lymphocytes remain as <strong>memory cells</strong>, ready to trigger a much faster response if that exact pathogen ever returns — the biological basis of immunity.</p>
+
+    <div class="callout subtle">
+      <span class="callout-label">🎓 Field Training Note</span>
+      <p style="margin:0;">A new recruit on your team doesn't understand why getting chickenpox once usually means you won't get it again. Write the two or three sentences you'd use to explain memory cells to them — simply enough that they could repeat it back correctly to someone else.</p>
+      <textarea placeholder="Explain it simply…"></textarea>
+    </div>
+
+    <h3>5. Vaccines, immunity, and the numbers behind command decisions</h3>
+    <p>There are two routes to immunity. <strong>Active immunity</strong> is your own body producing antibodies and memory cells — either by catching the disease ("natural") or through a vaccine ("artificial"). <strong>Passive immunity</strong> is receiving ready-made antibodies from elsewhere (a mother's antibodies crossing to a baby, or an antibody injection) — fast, but temporary, since no memory cells are made. A <strong>vaccine</strong> exposes the immune system to a safe version of a pathogen's antigens, triggering real antibody and memory-cell production without causing the disease itself.</p>
+
+    <p>Here's the number that actually drives outbreak command: every disease has a <strong>basic reproduction number (R0)</strong> — roughly, how many new people one infected person is likely to infect in a population with no immunity. The more contagious a disease, the higher its R0, and the higher the percentage of a population that needs to be immune before the outbreak can't sustain itself — its <strong>herd immunity threshold</strong>. This is exactly the number you'll be using in Day 2.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Disease type</th><th>R0 (typical range)</th><th>Herd immunity threshold</th></tr></thead>
+      <tbody>
+        <tr><td>Seasonal flu-like</td><td class="num">0.9 – 2.1</td><td class="num">~45 – 52%</td></tr>
+        <tr><td>COVID-19-like (original strain)</td><td class="num">2 – 3</td><td class="num">~50 – 67%</td></tr>
+        <tr><td>Polio-like</td><td class="num">3 – 4</td><td class="num">~75 – 80%</td></tr>
+        <tr><td>Measles-like</td><td class="num">12 – 18</td><td class="num">~93 – 95%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.85rem; color:var(--ink-soft);">Real-world figures, cited from published epidemiological reviews. The higher a pathogen's R0, the more of a population needs to be immune before its spread naturally stalls out — which is exactly why a "cheap" intervention that works for a low-R0 disease can completely fail against a high-R0 one.</p>
+
+    <p><strong>Antibiotics</strong> kill or stop bacteria — they do nothing to viruses, since antibiotics target structures bacterial cells have that viruses simply don't. Using antibiotics when they're not needed, or stopping a course early, lets the toughest bacteria survive and multiply — <strong>antibiotic resistance</strong>, one of the biggest constraints real health authorities plan around today.</p>
+
+    <h3>History: how we got the tools you're about to use</h3>
+    <div class="timeline">
+      <div class="timeline-item"><div class="t-year">1796</div><div class="t-body"><strong>Edward Jenner</strong> notices milkmaids who'd had cowpox rarely caught smallpox, and creates the world's first vaccine.</div></div>
+      <div class="timeline-item"><div class="t-year">1879–1885</div><div class="t-body"><strong>Louis Pasteur</strong> establishes germ theory and develops the first lab-made weakened-pathogen vaccines, including one for rabies.</div></div>
+      <div class="timeline-item"><div class="t-year">1882</div><div class="t-body"><strong>Élie Metchnikoff</strong> discovers phagocytosis, later sharing the 1908 Nobel Prize in Physiology or Medicine for the work.</div></div>
+      <div class="timeline-item"><div class="t-year">1890–1901</div><div class="t-body"><strong>Emil von Behring</strong> develops diphtheria antitoxin — the first practical use of passive immunity — and receives the first-ever Nobel Prize in Physiology or Medicine in 1901.</div></div>
+      <div class="timeline-item"><div class="t-year">1928</div><div class="t-body"><strong>Alexander Fleming</strong> discovers penicillin, the first antibiotic, from an accidentally contaminated petri dish.</div></div>
+      <div class="timeline-item"><div class="t-year">1980</div><div class="t-body">The <strong>World Health Organization</strong> officially declares smallpox eradicated — still the only human disease ever eliminated worldwide through vaccination.</div></div>
+      <div class="timeline-item"><div class="t-year">2020</div><div class="t-body"><strong>mRNA vaccine technology</strong> is deployed at unprecedented speed during the COVID-19 pandemic, reshaping how fast a new vaccine program can be launched.</div></div>
+    </div>
+
+    <h3>Real-world application: this is a real job</h3>
+    <p>Outbreak command isn't hypothetical. The <strong>World Health Organization</strong> and national health authorities use R0 and herd immunity thresholds exactly like the table above to decide where to deploy limited vaccine supply first during a real outbreak. National <strong>immunization programs</strong> (like India's Universal Immunization Programme) run on fixed annual budgets and coverage targets, not unlimited resources. Hospitals follow <strong>antibiotic stewardship</strong> guidelines (like the WHO's AWaRe classification) specifically to avoid the resistance problem you read about above. International travelers are sometimes required to show a <strong>yellow fever vaccination certificate</strong> before entering certain countries — a real, everyday example of herd-immunity thinking applied at a border.</p>
+
+    <div class="glossary">
+      <div class="glossary-item"><div class="word">Pathogen</div><div class="def">A microorganism that causes disease.</div></div>
+      <div class="glossary-item"><div class="word">Herd immunity threshold</div><div class="def">The % of a population that must be immune to stall an outbreak.</div></div>
+      <div class="glossary-item"><div class="word">R0 (basic reproduction number)</div><div class="def">The average number of new infections one case causes in a population with no immunity.</div></div>
+      <div class="glossary-item"><div class="word">Phagocytosis</div><div class="def">A phagocyte engulfing and destroying a pathogen.</div></div>
+      <div class="glossary-item"><div class="word">Antibody</div><div class="def">A protein shaped to match one specific antigen.</div></div>
+      <div class="glossary-item"><div class="word">Antibiotic resistance</div><div class="def">Bacteria evolving to survive antibiotics that used to work.</div></div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="day-block">
+    <span class="day-kicker">Before Day 2 · Command Kit</span>
+    <h2>Choose What You're Bringing</h2>
+    <p class="day-sub">Pick whatever you'll actually use to run the containment cycle. This is your call, not a fixed checklist — build the kit that fits how you plan to run it.</p>
+
+    <div class="pool-grid">
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">Large sheet of paper or cardboard</span><span class="pool-sub">The back of a cereal box works fine — this becomes your Region Map.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">A marker or pen</span><span class="pool-sub">For drawing zones and marking outcomes.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">12 small tokens</span><span class="pool-sub">Dried beans, buttons, bottle caps, or coins — or torn paper squares if nothing else is on hand.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">A six-sided die</span><span class="pool-sub">Or a free dice-roller app / the digital roller built into this page.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">Index cards or paper cut into quarters</span><span class="pool-sub">For the disease-profile cards. Sticky notes work too.</span></span></label>
+      <label class="pool-item"><input type="checkbox"><span><span class="pool-name">Scissors</span><span class="pool-sub">Only needed if you're cutting your own cards.</span></span></label>
+      <label class="pool-item"><input type="checkbox"><span><span class="pool-name">Sticky notes, two colors</span><span class="pool-sub">Optional — handy for marking "protected" vs. "at risk" zones at a glance.</span></span></label>
+      <label class="pool-item"><input type="checkbox"><span><span class="pool-name">A calculator</span><span class="pool-sub">Optional — the herd-immunity math is simple enough to do by hand too.</span></span></label>
+    </div>
+
+    <div class="slip-preview">
+      <h4>📋 What you're bringing to Day 2:</h4>
+      <ul id="slip-list-preview"></ul>
+      <div class="slip-empty" id="slip-empty">Nothing selected yet.</div>
+    </div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section class="day-block" id="day2">
+    <span class="day-kicker">Day 2 · The Containment Cycle</span>
+    <h2>Run the Response</h2>
+    <p class="day-sub">Six settlements. Twelve resource tokens. You cannot fully protect all six — decide where your resources actually go, then find out what the dice decide for the rest.</p>
+
+    <h3>Set up the board</h3>
+    <ol>
+      <li>Draw and label six zones on your Region Map (name them anything — towns, numbers, whatever helps you picture it).</li>
+      <li>Cut four disease-profile cards, one for each row of the table below. For each of the six zones, roll a die: 1–2 = Flu-like, 3–4 = COVID-like, 5 = Polio-like, 6 = Measles-like. Write the result on each zone.</li>
+      <li>You have <strong>12 resource tokens</strong> total, in three kinds — decide the mix yourself: a <strong>Vaccination token</strong> (fully protects one zone — it can no longer catch or spread the outbreak), a <strong>Quarantine token</strong> (blocks spread from one zone for one round only), or a <strong>Hygiene token</strong> (lowers a zone's effective spread chance by one tier, but doesn't stop it completely).</li>
+    </ol>
+
+    <h3>Plan before you deploy</h3>
+    <p>Fill this in before placing a single token. This is the real decision — everything after this is just finding out how it played out.</p>
+    <table class="plan-table">
+      <thead><tr><th>Zone</th><th>Disease rolled</th><th>Herd immunity threshold</th><th>Resource(s) assigned</th><th>Why this zone gets this much (or this little)</th></tr></thead>
+      <tbody>
+        <tr><td><input placeholder="Zone 1"></td><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+        <tr><td><input placeholder="Zone 2"></td><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+        <tr><td><input placeholder="Zone 3"></td><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+        <tr><td><input placeholder="Zone 4"></td><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+        <tr><td><input placeholder="Zone 5"></td><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+        <tr><td><input placeholder="Zone 6"></td><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Run the cycle</h3>
+    <p>For any zone that is NOT fully vaccinated, roll the die once per round for up to 3 rounds. On a roll equal to or above the table's threshold-tier (use the number guide on your disease card), the outbreak spreads from that zone to one undefended neighbor. A quarantine token cancels exactly one spread roll, then is used up. Use the digital roller below if you don't have a die handy, or to double-check a physical roll.</p>
+
+    <div class="event-panel">
+      <div class="event-result" id="die-result">🎲 Ready when you are</div>
+      <button class="btn btn-primary" type="button" id="roll-die-btn">Roll the spread die</button>
+    </div>
+
+    <h3>Decision log</h3>
+    <p>Record what actually happened, round by round.</p>
+    <table class="log-table">
+      <thead><tr><th>Round</th><th>Zone rolled</th><th>Result</th><th>Spread? (Y/N)</th><th>What you did about it</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td>2</td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td>3</td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Results</h3>
+    <div class="tally-row">
+      <div class="tally-tile"><div class="tally-num" id="tally-contained">–</div><div class="tally-label">Zones contained</div></div>
+      <div class="tally-tile"><div class="tally-num" id="tally-lost">–</div><div class="tally-label">Zones lost to spread</div></div>
+      <div class="tally-tile"><div class="tally-num" id="tally-tokens">–</div><div class="tally-label">Tokens used</div></div>
+    </div>
+    <p style="font-size:.9rem;">Fill in your own tallies above by editing the numbers (click each tile's number).</p>
+
+    <div class="callout">
+      <span class="callout-label">🪞 Command Debrief — self-check</span>
+      <p style="margin:0;">Which zone's outcome genuinely surprised you? Looking back at your plan table, what would you allocate differently next cycle, and why? Be honest about a decision that didn't work out — that's the part a real debrief actually cares about.</p>
+      <textarea placeholder="Write your honest debrief…"></textarea>
+    </div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section class="day-block" id="day3">
+    <span class="day-kicker">Day 3 · Briefing the Room</span>
+    <h2>Present Your Containment Cycle</h2>
+
+    <div class="hook-box">
+      <div class="hook-label">Your opening move</div>
+      <p style="margin:0;">Hold up your Region Map so the room can see which zones turned out protected and which didn't. Open with exactly this: <em>"This cycle, I had 12 resources and 6 zones at risk. Here's where they went — and here's what I couldn't cover."</em></p>
+    </div>
+
+    <h3>What to include</h3>
+    <ul class="checklist-plain">
+      <li>Which zones you fully protected, and the disease data that justified spending a full vaccination token there</li>
+      <li>At least one zone you deliberately under-resourced — and the reasoning, not just the outcome</li>
+      <li>What the dice revealed that your original plan didn't predict</li>
+      <li>One thing you'd allocate differently if you ran this cycle again</li>
+    </ul>
+
+    <div class="facilitator-tip">
+      <span class="fac-label">Facilitator only</span>
+      <p>If a zone was lost to spread, steer the room's attention there first, not away from it. Real outbreak commanders almost never contain every zone with a fixed budget — the interesting, defensible part of this briefing is explaining WHY a trade-off led to that loss, not pretending a perfect plan would have prevented it. A kid who can defend an imperfect result is demonstrating more of the target skill (decision-making under real constraints) than one who got lucky with the dice.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  Immune System Quest · Outbreak Response Command — Shalom's instance. <a href="../index.html">All three instances →</a>
+</footer>
+
+<!-- Isolated printable materials slip -->
+<div id="print-slip-page">
+  <div class="print-slip-sheet">
+    <h3>📋 Materials I'm Bringing — Day 2</h3>
+    <div class="slip-kid">Outbreak Response Command · Shalom</div>
+    <ul id="slip-list-print"></ul>
+  </div>
+</div>
+
+<script src="../js/quest.js"></script>
+<script>
+  document.getElementById('roll-die-btn').addEventListener('click', function () {
+    var n = Math.floor(Math.random() * 6) + 1;
+    var disease = n <= 2 ? 'Flu-like (spreads on 5–6)' : n <= 4 ? 'COVID-like (spreads on 4–6)' : n === 5 ? 'Polio-like (spreads on 3–6)' : 'Measles-like (spreads on 2–6)';
+    document.getElementById('die-result').textContent = '🎲 You rolled a ' + n + ' — ' + disease;
+  });
+  document.querySelectorAll('.tally-tile .tally-num').forEach(function (n) {
+    n.setAttribute('contenteditable', 'true');
+  });
+
+  window.addEventListener('beforeprint', function () { document.body.classList.add('printing-slip'); });
+  window.addEventListener('afterprint', function () { document.body.classList.remove('printing-slip'); });
+</script>
+</body>
+</html>
