@@ -17,7 +17,55 @@ repo — three folders, not three repositories:
 | Michael | `/michael/` | 💰 Vaccine Program Director | Run a 100-unit budget across 5 disease programs using the real herd-immunity threshold formula (1 − 1/R0); draw Budget Event cards for real mid-cycle shocks | Funding Pitch |
 | Karis | `/karis/` | 🩺 Field Triage Medic | Work a 10-patient shift with only 3 antibiotic tokens, deciding on each patient as their card is drawn face-down, one at a time | Shift Handover Report |
 
-`index.html` at the repo root is the hub page linking all three.
+`index.html` at the repo root is a name-check gate, not a page of links —
+see "Individual displays" below.
+
+## Individual displays (kids can't wander into a sibling's quest)
+
+Each instance is meant to be worked through on its own — no distractions
+from seeing what the other two are doing. This is enforced client-side
+(there's no backend, so it's a soft, distraction-reducing gate, not real
+access control — a determined kid could still view source):
+
+- **`index.html`** no longer links directly to `/shalom/`, `/michael/`,
+  `/karis/`. It's just a "Who's continuing their quest?" name box. Typing a
+  recognized name stores it (`localStorage`, key `imm-l3-kid`) and routes
+  straight to that kid's own page. Typing anything else shows an error, not
+  a hint about who the valid names are. A returning kid on the same device
+  sees "Welcome back, \<name\>" instead of retyping.
+- **Each kid page** (`shalom/`, `michael/`, `karis/index.html`) re-checks
+  that same stored name on load, before anything renders — a blocking
+  inline `<script>`/`<style>` in `<head>` hides `<main>` before first paint,
+  so there's no flash of another kid's content. If the stored name doesn't
+  match that page's own kid, a "This is \<X\>'s quest" screen stays up with
+  its own name box (scoped to only accept that one name) instead of the
+  reading. So visiting Karis's URL while checked in as Shalom — or with
+  nothing checked in yet — shows the block screen, not Karis's quest.
+- A **"🔁 Switch quest"** button in the header clears the stored name and
+  returns to the hub, for shared devices between sessions.
+
+## Highlighter + side notes
+
+Each kid page has a built-in highlighter and a notes panel, both scoped and
+saved per kid/page (`localStorage`, keys `imm-l3-hl::<kid>` and
+`imm-l3-notes::<kid>`) so they persist across a reload but never mix
+between kids:
+
+- **Highlighter** — select any text in the reading (or anywhere else in
+  `<main>`) and a small "🖍 Highlight" button appears next to the selection;
+  clicking it wraps the exact selected text in a `<mark>`, even across
+  nested `<strong>`/`<em>` tags. Click an existing highlight to remove it.
+  Highlights are stored as plain-text offsets within their paragraph/list
+  item (auto-tagged at load time), so they reapply correctly on reload
+  regardless of how the selection crossed inline formatting.
+- **Side notes** — a "📝 My Notes" button in the header opens a slide-in
+  drawer with two parts: a running list of every highlighted snippet (with
+  its own remove button, synced with the on-page highlight), and a free
+  textarea for typed notes, auto-saved on every keystroke.
+
+Implementation: `QuestUI.initHighlighter(pageKey)` and
+`QuestUI.initNotesDrawer(pageKey)` in `js/quest.js`, called once per kid
+page with that page's own key (`'shalom'` / `'michael'` / `'karis'`).
 
 ## Why this structure (and not the earlier build)
 
@@ -71,15 +119,15 @@ real-world prices — the epidemiological core (R0, threshold, and the
 ## Structure
 
 ```
-index.html          Hub page linking all three instances
+index.html          Name-check gate — routes each kid to their own instance
 shalom/index.html    Outbreak Response Commander instance
 michael/index.html   Vaccine Program Director instance
 karis/index.html     Field Triage Medic instance
 css/styles.css        Shared styling — one stylesheet, three lens palettes
                        (body.lens-shalom / .lens-michael / .lens-karis)
-js/quest.js           Materials-pool → printable-slip wiring + print trigger
-                       + small random-event helpers (shuffle/pickRandom).
-                       No progress-locking, no scoring, no localStorage state.
+js/quest.js           Materials-pool → printable-slip wiring, print trigger,
+                       random-event helpers (shuffle/pickRandom), the per-kid
+                       access gate, the highlighter, and the notes drawer.
 ```
 
 No build step — plain HTML/CSS/JS. Open `index.html` directly, serve the

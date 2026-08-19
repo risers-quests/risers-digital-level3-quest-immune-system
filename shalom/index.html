@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Immune System — Outbreak Response Command</title>
+<script>
+  (function () {
+    try {
+      var kid = localStorage.getItem('imm-l3-kid');
+      if (!kid || kid.toLowerCase() !== 'shalom') document.documentElement.classList.add('gate-locked');
+    } catch (e) { document.documentElement.classList.add('gate-locked'); }
+  })();
+</script>
+<style>html.gate-locked main { display: none !important; }</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -18,10 +27,29 @@
       <a href="#day1">Day 1</a>
       <a href="#day2">Day 2</a>
       <a href="#day3">Day 3</a>
+      <button class="notes-toggle-btn" id="notes-toggle-btn" type="button">📝 My Notes</button>
       <button class="print-btn" id="print-slip-btn" type="button">🖨️ Print my bringing slip</button>
+      <button class="switch-quest-btn" id="switch-quest-btn" type="button">🔁 Switch quest</button>
     </nav>
   </div>
 </header>
+
+<div id="quest-gate-block">
+  <div class="gate-block-wrap">
+    <div class="gate-icon">🔒</div>
+    <h2>This is Shalom's quest</h2>
+    <p>If that's you, confirm your name below to continue. If not, ask your facilitator to point you to your own quest.</p>
+    <div class="name-gate-card">
+      <form id="gate-name-form">
+        <div class="name-gate-row">
+          <input type="text" id="gate-name-input" placeholder="Type your name…" maxlength="40">
+          <button class="btn btn-primary" type="submit">Continue</button>
+        </div>
+        <div class="name-gate-msg" id="gate-name-msg"></div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <main class="container">
 
@@ -258,8 +286,29 @@
   </div>
 </div>
 
+<!-- Side notes drawer -->
+<div class="notes-backdrop" id="notes-backdrop"></div>
+<div class="notes-drawer" id="notes-drawer">
+  <div class="notes-drawer-head">
+    <h4>📝 My Notes</h4>
+    <button class="notes-drawer-close" id="notes-drawer-close" type="button" aria-label="Close notes">&times;</button>
+  </div>
+  <div class="notes-drawer-body">
+    <div class="notes-section-label">Words &amp; phrases I highlighted</div>
+    <ul class="hl-collected-list" id="hl-collected-list"></ul>
+    <div class="hl-collected-empty" id="hl-collected-empty">Select any text on the page and click "🖍 Highlight" — it'll show up here.</div>
+    <div class="notes-section-label">My notes</div>
+    <textarea class="notes-textarea" id="notes-textarea" placeholder="Jot down anything — new words, questions, ideas for your briefing…"></textarea>
+    <div class="notes-saved-msg" id="notes-saved-msg"></div>
+  </div>
+</div>
+
 <script src="../js/quest.js"></script>
 <script>
+  QuestUI.initKidGate('Shalom');
+  QuestUI.initHighlighter('shalom');
+  QuestUI.initNotesDrawer('shalom');
+
   document.getElementById('roll-die-btn').addEventListener('click', function () {
     var n = Math.floor(Math.random() * 6) + 1;
     var disease = n <= 2 ? 'Flu-like (spreads on 5–6)' : n <= 4 ? 'COVID-like (spreads on 4–6)' : n === 5 ? 'Polio-like (spreads on 3–6)' : 'Measles-like (spreads on 2–6)';

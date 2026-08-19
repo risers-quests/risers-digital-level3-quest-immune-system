@@ -21,31 +21,36 @@
   <section class="hub-hero">
     <div class="format-pill">Quest Format</div>
     <h1>Immune System: The Decision Cycle</h1>
-    <p>Same full topic, same underlying facts, three completely different jobs to do with them. Each instance below covers the entire immune system — pathogens, barriers, phagocytes, antibodies, vaccines, antibiotics — but frames it through a different real-world role, with a different physical decision activity and a different way of presenting what happened.</p>
+    <p>Three Risers, three completely different real-world roles, one shared topic covered in full. Type your name below and you'll go straight to your own quest — not anyone else's.</p>
   </section>
 
-  <section class="kid-grid">
-    <a href="shalom/index.html" class="kid-card k-shalom">
-      <span class="kc-pill">🚨 Outbreak Response Commander</span>
-      <h3>Shalom</h3>
-      <p>Allocate 12 resource tokens across six settlements with different real transmissibility profiles, then roll the dice on the ones you couldn't fully protect.</p>
-    </a>
-    <a href="michael/index.html" class="kid-card k-michael">
-      <span class="kc-pill">💰 Vaccine Program Director</span>
-      <h3>Michael</h3>
-      <p>Run a 100-unit national vaccine budget across five competing disease programs using real herd-immunity math — and survive a few budget surprises along the way.</p>
-    </a>
-    <a href="karis/index.html" class="kid-card k-karis">
-      <span class="kc-pill">🩺 Field Triage Medic</span>
-      <h3>Karis</h3>
-      <p>Work a ten-patient shift with only three antibiotic doses, deciding on each patient as their card is drawn — no advance planning allowed.</p>
-    </a>
+  <section class="name-gate">
+    <div class="name-gate-card">
+      <div id="ask-block">
+        <h3>👋 Who's continuing their quest?</h3>
+        <p>Type your name exactly as your facilitator gave it to you.</p>
+        <form id="hub-name-form">
+          <div class="name-gate-row">
+            <input type="text" id="hub-name-input" placeholder="Type your name…" maxlength="40" autocomplete="off">
+            <button class="btn btn-primary" type="submit">Continue</button>
+          </div>
+        </form>
+        <div class="name-gate-msg" id="hub-name-msg"></div>
+      </div>
+      <div class="name-gate-welcome" id="welcome-block">
+        <div class="who" id="welcome-who"></div>
+        <div class="btn-row" style="justify-content:center;">
+          <a class="btn btn-primary" id="welcome-continue-btn" href="#">Continue to my quest →</a>
+        </div>
+        <button class="name-gate-switch" id="welcome-switch-btn" type="button">Not you? Enter a different name</button>
+      </div>
+    </div>
   </section>
 
   <section style="max-width:680px; margin: 0 auto 70px;">
     <div class="callout subtle">
-      <span class="callout-label">Why three variations</span>
-      <p style="margin:0;">Shalom, Michael, and Karis share this week's topic, so each gets a genuinely different experience rather than the same content with a different name on it — same process (how pathogens spread, and the layers of defense that fight them), different lens, different build, different final presentation. No two share both a lens and an output format.</p>
+      <span class="callout-label">Why this works this way</span>
+      <p style="margin:0;">Each Riser's quest covers the full immune-system topic in equal depth, just through a different real-world decision-making role, with its own build and its own final presentation — no two share both a role and an output format. Each quest is meant to be worked through on its own, so this page only takes you to yours.</p>
     </div>
   </section>
 </main>
@@ -54,5 +59,55 @@
   Immune System Quest · Level 3 — three instances under one domain.
 </footer>
 
+<script src="js/quest.js"></script>
+<script>
+  var KID_KEY = QuestUI.KID_KEY;
+  var ROSTER = {
+    'shalom': { name: 'Shalom', path: 'shalom/index.html' },
+    'michael': { name: 'Michael', path: 'michael/index.html' },
+    'karis': { name: 'Karis', path: 'karis/index.html' }
+  };
+
+  var askBlock = document.getElementById('ask-block');
+  var welcomeBlock = document.getElementById('welcome-block');
+  var welcomeWho = document.getElementById('welcome-who');
+  var continueBtn = document.getElementById('welcome-continue-btn');
+
+  function showWelcome(entry) {
+    askBlock.style.display = 'none';
+    welcomeBlock.classList.add('show');
+    welcomeWho.textContent = '✅ Welcome back, ' + entry.name + '!';
+    continueBtn.href = entry.path;
+  }
+
+  function showAsk() {
+    welcomeBlock.classList.remove('show');
+    askBlock.style.display = 'block';
+  }
+
+  var current = null;
+  try { current = localStorage.getItem(KID_KEY); } catch (e) {}
+  if (current && ROSTER[current.toLowerCase()]) {
+    showWelcome(ROSTER[current.toLowerCase()]);
+  }
+
+  document.getElementById('hub-name-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var val = (document.getElementById('hub-name-input').value || '').trim().toLowerCase();
+    var msg = document.getElementById('hub-name-msg');
+    var entry = ROSTER[val];
+    if (entry) {
+      try { localStorage.setItem(KID_KEY, entry.name); } catch (err) {}
+      window.location.href = entry.path;
+    } else {
+      msg.textContent = "That name isn't part of this quest group — check the spelling, or ask your facilitator.";
+    }
+  });
+
+  document.getElementById('welcome-switch-btn').addEventListener('click', function () {
+    try { localStorage.removeItem(KID_KEY); } catch (e) {}
+    showAsk();
+  });
+</script>
 </body>
 </html>
