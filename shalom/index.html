@@ -12,7 +12,7 @@
     } catch (e) { document.documentElement.classList.add('gate-locked'); }
   })();
 </script>
-<style>html.gate-locked main { display: none !important; }</style>
+<style>html.gate-locked main, html.gate-locked .progress-summary { display: none !important; }</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -33,6 +33,25 @@
     </nav>
   </div>
 </header>
+
+<div class="progress-summary">
+  <div class="container">
+    <div class="progress-seg">
+      <span class="progress-seg-label">Day 1</span>
+      <div class="progress-seg-track"><div class="progress-seg-fill" id="progress-day1-fill"></div></div>
+      <span class="progress-seg-count" id="progress-day1-label">0/4</span>
+    </div>
+    <div class="progress-seg">
+      <span class="progress-seg-label">Day 2</span>
+      <div class="progress-seg-track"><div class="progress-seg-fill" id="progress-day2-fill"></div></div>
+      <span class="progress-seg-count" id="progress-day2-label">0/6</span>
+    </div>
+    <div class="progress-seg">
+      <span class="progress-seg-label">Day 3</span>
+      <div class="progress-seg-track"><div class="progress-seg-fill" id="progress-day3-fill"></div></div>
+    </div>
+  </div>
+</div>
 
 <div id="quest-gate-block">
   <div class="gate-block-wrap">
@@ -272,6 +291,12 @@
       <div class="glossary-item"><div class="word">Antibody</div><div class="def">A protein shaped to match one specific antigen.</div></div>
       <div class="glossary-item"><div class="word">Antibiotic resistance</div><div class="def">Bacteria evolving to survive antibiotics that used to work.</div></div>
     </div>
+
+    <div class="game-card">
+      <div class="game-title">🎮 Field Intel Match</div>
+      <div class="game-sub">Six key terms from today's whole briefing. Click a term, then its matching definition — no penalty for a wrong guess, just try again.</div>
+      <div id="game-day1"></div>
+    </div>
   </section>
 
   <!-- MATERIALS -->
@@ -430,6 +455,18 @@
   QuestUI.initKidGate('Shalom');
   QuestUI.initHighlighter('shalom');
   QuestUI.initNotesDrawer('shalom');
+  QuestUI.initMaterialsPool('shalom');
+  QuestUI.initBuildChecklist('shalom');
+  QuestUI.initFieldAutosave('shalom');
+  QuestUI.initProgressBar('shalom');
+  QuestUI.initMatchGame('game-day1', [
+    ['Pathogen', 'A microorganism that causes disease'],
+    ['Vector', 'Carries a pathogen between hosts without getting sick itself'],
+    ['Cilia', 'Sweep trapped pathogens out of the airways'],
+    ['Phagocytosis', 'A phagocyte engulfing and destroying a pathogen'],
+    ['Antibody', 'A protein shaped to match one specific antigen'],
+    ['Herd immunity', 'Population-wide protection when enough people are immune']
+  ], { pageKey: 'shalom' });
   QuestUI.initReflectionChecks('shalom', [
     { id: 'refl-1', groups: [['virus', 'viral'], ['antibiotic'], ["won't work", "won't help", "don't work", "doesn't work", "no effect", "not work", "useless", 'wrong']],
       reread: { anchor: 'sec-vaccines', label: '5. Vaccines, immunity & the numbers behind command decisions' } },

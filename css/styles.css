@@ -297,7 +297,7 @@ table.data-table td.num { font-family: var(--font-mono); }
 .name-gate-switch { background: none; border: none; color: var(--ink-soft); text-decoration: underline; font-size: .84rem; cursor: pointer; margin-top: 14px; font-family: var(--font-body); }
 
 /* ---- Per-kid access gate (blocks a page from anyone but its own kid) ---- */
-html.gate-locked main { display: none !important; }
+html.gate-locked main, html.gate-locked .progress-summary { display: none !important; }
 #quest-gate-block { display: none; }
 #quest-gate-block.show { display: block; }
 .gate-block-wrap { max-width: 460px; margin: 90px auto; text-align: center; padding: 0 24px; }
@@ -507,3 +507,44 @@ table.justify-table input, table.justify-table textarea {
   width: 100%; border: none; background: transparent; font-family: var(--font-body); font-size: .9rem; padding: 2px;
 }
 table.justify-table textarea { min-height: 44px; resize: vertical; }
+
+/* ============================================================
+   Progress summary — a 3-segment Day 1/2/3 bar shown right under the
+   header, so returning to the quest later shows real progress instead
+   of a page that looks blank.
+   ============================================================ */
+.progress-summary { background: #fff; border-bottom: 1.5px solid var(--border); padding: 10px 0; }
+.progress-summary .container { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.progress-seg { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 130px; }
+.progress-seg-label {
+  font-family: var(--font-head); font-size: .74rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; color: var(--ink-soft); white-space: nowrap;
+}
+.progress-seg-track { flex: 1; height: 8px; border-radius: 999px; background: var(--paper-soft); overflow: hidden; border: 1px solid var(--border); }
+.progress-seg-fill { height: 100%; width: 0%; background: var(--accent); transition: width .3s ease; border-radius: 999px; }
+.progress-seg-count { font-size: .74rem; font-weight: 700; color: var(--ink-soft); white-space: nowrap; min-width: 26px; text-align: right; }
+
+/* ============================================================
+   Day 1 game — a term-matching game wrapping up the full reading.
+   Framed as play (score = moves, not a grade), never labeled a quiz.
+   ============================================================ */
+.game-card {
+  background: linear-gradient(135deg, var(--accent-soft), #fff); border: 2px dashed var(--accent);
+  border-radius: 18px; padding: 26px 24px; margin: 32px 0;
+}
+.game-card .game-title { font-family: var(--font-head); font-weight: 600; font-size: 1.15rem; margin-bottom: 6px; text-align: center; }
+.game-card .game-sub { text-align: center; color: var(--ink-soft); font-size: .9rem; margin: 0 auto 18px; max-width: 480px; }
+.match-game-status { font-weight: 700; font-size: .92rem; color: var(--ink-soft); margin-bottom: 12px; text-align: center; }
+.match-game-status.done { color: #166534; }
+.match-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+@media (max-width: 640px) { .match-cols { grid-template-columns: 1fr; } }
+.match-col { display: grid; gap: 8px; align-content: start; }
+.match-item {
+  padding: 12px 16px; border-radius: 12px; border: 1.5px solid var(--border); background: #fff;
+  cursor: pointer; font-size: .89rem; font-weight: 600; transition: .12s; user-select: none;
+}
+.match-item:hover { border-color: var(--accent); }
+.match-item.selected { border-color: var(--accent); background: var(--accent-soft); }
+.match-item.matched { border-color: #16a34a; background: #ecfdf5; cursor: default; opacity: .85; }
+.match-item.shake { border-color: #dc2626; background: #fef2f2; animation: matchShake .35s; }
+@keyframes matchShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }

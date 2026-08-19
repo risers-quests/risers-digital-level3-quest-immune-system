@@ -20,6 +20,37 @@ repo — three folders, not three repositories:
 `index.html` at the repo root is a name-check gate, not a page of links —
 see "Individual displays" below.
 
+## The quest spans 3 days, and it shows: a game on Day 1, a progress bar, and nothing resets
+
+**Day 1 ends with a game, not just reading.** After the full briefing (all
+5 sections + History + Real-World Application), each kid plays a term-
+matching game (`#game-day1`, `QuestUI.initMatchGame`) covering one concept
+from every section — pathogen, vector, cilia, phagocytosis, antibody, herd
+immunity — so it reinforces the whole Day 1 breadth, not just the last
+thing they read. It's framed as play: the "score" is moves taken, a wrong
+guess just shakes and resets, and there's no pass/fail. Day 2 stays the
+hands-on build (see below).
+
+**A 3-segment progress bar** sits right under the header on every kid page
+(`.progress-summary`) — Day 1 (reflections answered, out of 4), Day 2
+(build steps checked + the Day 2 debrief, out of 6), and Day 3. It reads
+straight from each subsystem's own saved state, so it can't drift out of
+sync with what's actually been filled in, and it updates live as you type.
+
+**Nothing resets on reload**, because this is a 3-day quest worked on
+across multiple sessions — a kid coming back to Day 2 needs to see Day 1
+exactly as they left it, not a blank page:
+- Reflection answers (already had this) — text and pass/fail state.
+- The Day 1 game — which pairs are matched and the move count.
+- The Day 2 material-justification table and Results table — every text
+  field, via a generic autosave (`QuestUI.initFieldAutosave`) keyed by DOM
+  position, so no table cell needed its own id.
+- The Day 2 build-step checklist — checked state, and the checkbox now
+  actually turns the row green/struck-through when checked (this was
+  previously just CSS with nothing wiring it up).
+- The materials pool picks — so Day 2 shows the same kit chosen on Day 1,
+  not the HTML defaults again.
+
 ## Open-ended questions: keyword check + a pointer back to the reading after 3 tries
 
 The 5 open-ended callout questions per kid page (the 4 rotating-mechanism
@@ -83,12 +114,18 @@ saved per kid/page (`localStorage`, keys `imm-l3-hl::<kid>` and
 between kids:
 
 - **Highlighter** — select any text in the reading (or anywhere else in
-  `<main>`) and a small "🖍 Highlight" button appears next to the selection;
-  clicking it wraps the exact selected text in a `<mark>`, even across
-  nested `<strong>`/`<em>` tags. Click an existing highlight to remove it.
-  Highlights are stored as plain-text offsets within their paragraph/list
-  item (auto-tagged at load time), so they reapply correctly on reload
-  regardless of how the selection crossed inline formatting.
+  `<main>`, including diagram captions and animation labels) and a small
+  "🖍 Highlight" button appears next to the selection; clicking it wraps the
+  exact selected text in a `<mark>`, even across nested `<strong>`/`<em>`
+  tags **and across paragraph/heading/caption boundaries** — dragging a
+  selection from the end of one paragraph into the start of the next works
+  correctly, not just single-block selections. Click an existing highlight
+  to remove it (a multi-block highlight is removed as one unit). Under the
+  hood this uses `Range.intersectsNode()` to find every tagged block the
+  selection touches and records plain-text offsets per block, so a single
+  highlight can carry several spans under one id and all of them reapply
+  correctly on reload regardless of how the selection crossed formatting or
+  block boundaries.
 - **Side notes** — a "📝 My Notes" button in the header opens a slide-in
   drawer with two parts: a running list of every highlighted snippet (with
   its own remove button, synced with the on-page highlight), and a free
@@ -209,8 +246,31 @@ css/styles.css        Shared styling — one stylesheet, three lens palettes
                        (body.lens-shalom / .lens-michael / .lens-karis)
 js/quest.js           Materials-pool → printable-slip wiring, print trigger,
                        the per-kid access gate, the highlighter, the notes
-                       drawer, and the keyword-checked reflection engine.
+                       drawer, the keyword-checked reflection engine, the
+                       Day 1 matching game, the Day 2 build checklist and
+                       field autosave, and the cross-day progress bar.
 ```
+
+`js/quest.js` functions (all exposed on `window.QuestUI`):
+
+- `initKidGate(expectedName, hubPath)` — per-kid name-check access gate.
+- `initHighlighter(pageKey)` — the text highlighter (see above).
+- `initNotesDrawer(pageKey)` — the side notes drawer.
+- `initReflectionChecks(pageKey, configs)` — keyword-checked open-ended
+  reflections with the "reread this section" fallback after 3 attempts.
+- `initMaterialsPool(pageKey)` — the materials-pool checkboxes and their
+  live printable slip, now saved per kid so picks survive a reload.
+- `initBuildChecklist(pageKey)` — the Day 2 numbered build-step checklist;
+  saves checked state per kid and toggles the visual "done" styling.
+- `initFieldAutosave(pageKey)` — autosaves every plain text/textarea field
+  outside the reflection boxes (mainly the Day 2 justification and results
+  tables) so typed answers survive a reload.
+- `initProgressBar(pageKey)` — fills the 3-segment header progress bar by
+  reading straight from the other subsystems' own saved state (reflections,
+  build checklist, game), so it can never drift out of sync with them.
+- `initMatchGame(containerId, pairs, opts)` — the Day 1 term-matching game
+  engine; saves matched pairs and move count per kid.
+- `initPrintSlip()` — wires up the "Print materials slip" button.
 
 No build step — plain HTML/CSS/JS. Open `index.html` directly, serve the
 folder locally (`python3 -m http.server`), or enable GitHub Pages.

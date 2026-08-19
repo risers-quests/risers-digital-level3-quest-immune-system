@@ -37,20 +37,35 @@
   }
 
   /* ---- Materials pool: clicking a pool card toggles its checkbox and live-updates
-     both the on-screen "what I'm bringing" preview and the isolated printable slip. ---- */
-  function initMaterialsPool() {
+     both the on-screen "what I'm bringing" preview and the isolated printable slip.
+     Picks persist per kid/page, so returning to Day 2 later shows the same kit
+     instead of resetting to the HTML defaults. ---- */
+  function initMaterialsPool(pageKey) {
     var items = document.querySelectorAll('.pool-item');
+    if (!items.length) return;
     var previewList = document.getElementById('slip-list-preview');
     var printList = document.getElementById('slip-list-print');
     var slipEmpty = document.getElementById('slip-empty');
+    var storageKey = 'imm-l3-materials::' + pageKey;
+    var saved = loadJSON(storageKey, null);
+
+    if (saved) {
+      items.forEach(function (item, i) {
+        var cb = item.querySelector('input[type=checkbox]');
+        if (saved[i] !== undefined) cb.checked = !!saved[i];
+      });
+    }
 
     function refresh() {
       var picked = [];
+      var state = [];
       items.forEach(function (item) {
         var cb = item.querySelector('input[type=checkbox]');
         item.classList.toggle('picked', cb.checked);
+        state.push(cb.checked);
         if (cb.checked) picked.push(item.querySelector('.pool-name').textContent.trim());
       });
+      saveJSON(storageKey, state);
       var html = picked.map(function (p) { return '<li>' + p + '</li>'; }).join('');
       if (previewList) previewList.innerHTML = html;
       if (printList) printList.innerHTML = html;
@@ -70,6 +85,92 @@
   function initPrintSlip() {
     var btn = document.getElementById('print-slip-btn');
     if (btn) btn.addEventListener('click', function () { window.print(); });
+  }
+
+  /* ---- Build checklist: the Day 2 numbered steps. Checking one turns it
+     green/struck-through and persists per kid/page. ---- */
+  function initBuildChecklist(pageKey) {
+    var items = document.querySelectorAll('.build-check-item');
+    if (!items.length) return;
+    var storageKey = 'imm-l3-build::' + pageKey;
+    var state = loadJSON(storageKey, {});
+
+    items.forEach(function (item, i) {
+      var cb = item.querySelector('input[type=checkbox]');
+      if (!cb) return;
+      if (state[i]) { cb.checked = true; item.classList.add('checked'); }
+      cb.addEventListener('change', function () {
+        item.classList.toggle('checked', cb.checked);
+        state[i] = cb.checked;
+        saveJSON(storageKey, state);
+      });
+    });
+  }
+
+  /* ---- Generic field autosave: every other free-text input/textarea in
+     <main> (the material-justification table, the Results table) — anything
+     NOT already handled by a dedicated system (reflections, notes, gate).
+     Fields are keyed by DOM order, which is stable since this is a static
+     page, so a reload restores exactly what was typed without needing ids
+     on every table cell. ---- */
+  function initFieldAutosave(pageKey) {
+    var storageKey = 'imm-l3-fields::' + pageKey;
+    var skipIds = /^(refl-\d+|notes-textarea|gate-name-input|hub-name-input|sync-code-in)$/;
+    var fields = Array.prototype.filter.call(
+      document.querySelectorAll('main input[type=text], main input:not([type]), main textarea'),
+      function (f) { return !(f.id && skipIds.test(f.id)); }
+    );
+    if (!fields.length) return;
+
+    var saved = loadJSON(storageKey, {});
+    fields.forEach(function (f, i) {
+      f.dataset.fieldIdx = i;
+      if (saved[i] !== undefined) f.value = saved[i];
+    });
+
+    fields.forEach(function (f) {
+      f.addEventListener('input', function () {
+        var data = loadJSON(storageKey, {});
+        data[f.dataset.fieldIdx] = f.value;
+        saveJSON(storageKey, data);
+      });
+    });
+  }
+
+  /* ---- Progress summary: a 3-segment bar (Day 1 / Day 2 / Day 3) shown right
+     under the header, so coming back later shows real progress instead of a
+     page that looks blank. Reads straight from each subsystem's own saved
+     state rather than tracking anything separately, so it can never drift
+     out of sync with what's actually been filled in. ---- */
+  function initProgressBar(pageKey) {
+    var fill1 = document.getElementById('progress-day1-fill');
+    var fill2 = document.getElementById('progress-day2-fill');
+    var fill3 = document.getElementById('progress-day3-fill');
+    var label1 = document.getElementById('progress-day1-label');
+    var label2 = document.getElementById('progress-day2-label');
+    if (!fill1) return;
+
+    function reflectFilled(id) {
+      var s = loadJSON('imm-l3-reflect::' + pageKey + '::' + id, null);
+      return !!(s && s.text && s.text.trim());
+    }
+
+    function recompute() {
+      var day1Done = ['refl-1', 'refl-2', 'refl-3', 'refl-4'].filter(reflectFilled).length;
+      var buildState = loadJSON('imm-l3-build::' + pageKey, {});
+      var buildDone = Object.keys(buildState).filter(function (k) { return buildState[k]; }).length;
+      var day2Done = buildDone + (reflectFilled('refl-5') ? 1 : 0);
+
+      fill1.style.width = Math.round((day1Done / 4) * 100) + '%';
+      fill2.style.width = Math.round((day2Done / 6) * 100) + '%';
+      if (fill3) fill3.style.width = (day2Done >= 6 ? 100 : 0) + '%';
+      if (label1) label1.textContent = day1Done + '/4';
+      if (label2) label2.textContent = day2Done + '/6';
+    }
+
+    recompute();
+    document.addEventListener('input', recompute);
+    document.addEventListener('change', recompute);
   }
 
   /* ---- Per-kid access gate ----
@@ -172,7 +273,12 @@
   }
 
   function initHighlighter(pageKey) {
-    var blocks = document.querySelectorAll('main p, main li');
+    // Anything a kid might reasonably try to select: paragraphs and list items
+    // cover almost all reading prose, plus the specific caption/label elements
+    // used by the diagram and animation components (those are <div>s, not <p>).
+    var blocks = document.querySelectorAll(
+      'main p, main li, main .diagram-sub, main .diagram-title, main .ps-caption, main .ps-sub, main .diagram-legend-item'
+    );
     blocks.forEach(function (b, i) { if (!b.dataset.hlBlock) b.dataset.hlBlock = 'hl-' + i; });
 
     var storageKey = 'imm-l3-hl::' + pageKey;
@@ -180,16 +286,32 @@
 
     function persist() { saveJSON(storageKey, highlights); }
 
+    // Each highlight is one or more {block, start, end} spans sharing one id —
+    // a real selection often crosses a paragraph/heading boundary (e.g. from
+    // the end of one paragraph into the start of the next), so a highlight
+    // has to be able to span more than one tagged block.
     function applyAll() {
-      var byBlock = {};
-      highlights.forEach(function (h) { (byBlock[h.block] = byBlock[h.block] || []).push(h); });
-      Object.keys(byBlock).forEach(function (blockId) {
-        var root = document.querySelector('[data-hl-block="' + blockId + '"]');
-        if (!root) return;
-        byBlock[blockId]
-          .sort(function (a, b) { return a.start - b.start; })
-          .forEach(function (h) { wrapRange(root, h.start, h.end, 'user-hl', h.id); });
+      highlights.forEach(function (h) {
+        (h.spans || []).forEach(function (s) {
+          var root = document.querySelector('[data-hl-block="' + s.block + '"]');
+          if (root) wrapRange(root, s.start, s.end, 'user-hl', h.id);
+        });
       });
+    }
+
+    // Find every tagged block the current selection touches, and the local
+    // text-offset span within each one. Blocks the selection only partially
+    // covers (the first/last one) still resolve correctly since block.contains()
+    // tells us whether that block actually holds the range's start/end point.
+    function findSpans(range) {
+      var spans = [];
+      blocks.forEach(function (block) {
+        if (!range.intersectsNode(block)) return;
+        var start = block.contains(range.startContainer) ? getTextOffset(block, range.startContainer, range.startOffset) : 0;
+        var end = block.contains(range.endContainer) ? getTextOffset(block, range.endContainer, range.endOffset) : block.textContent.length;
+        if (end > start) spans.push({ block: block.dataset.hlBlock, start: start, end: end });
+      });
+      return spans;
     }
 
     function renderCollectedList() {
@@ -238,14 +360,9 @@
         var range = sel.getRangeAt(0);
         var text = range.toString().trim();
         if (!text) { popup.style.display = 'none'; return; }
-        var container = range.commonAncestorContainer;
-        var contEl = container.nodeType === 1 ? container : container.parentElement;
-        var block = contEl && contEl.closest && contEl.closest('[data-hl-block]');
-        if (!block) { popup.style.display = 'none'; return; }
-        var start = getTextOffset(block, range.startContainer, range.startOffset);
-        var end = getTextOffset(block, range.endContainer, range.endOffset);
-        if (end <= start) { popup.style.display = 'none'; return; }
-        pending = { block: block.dataset.hlBlock, start: start, end: end, text: text };
+        var spans = findSpans(range);
+        if (!spans.length) { popup.style.display = 'none'; return; }
+        pending = { spans: spans, text: text };
         var rect = range.getBoundingClientRect();
         popup.style.left = (rect.left + rect.width / 2 + window.scrollX) + 'px';
         popup.style.top = (rect.top + window.scrollY) + 'px';
@@ -256,9 +373,11 @@
     popup.querySelector('button').addEventListener('click', function () {
       if (!pending) return;
       var id = 'h' + Date.now() + Math.random().toString(36).slice(2, 6);
-      var root = document.querySelector('[data-hl-block="' + pending.block + '"]');
-      wrapRange(root, pending.start, pending.end, 'user-hl', id);
-      highlights.push({ id: id, block: pending.block, start: pending.start, end: pending.end, text: pending.text });
+      pending.spans.forEach(function (s) {
+        var root = document.querySelector('[data-hl-block="' + s.block + '"]');
+        wrapRange(root, s.start, s.end, 'user-hl', id);
+      });
+      highlights.push({ id: id, spans: pending.spans, text: pending.text });
       persist();
       renderCollectedList();
       window.getSelection().removeAllRanges();
@@ -385,16 +504,101 @@
     });
   }
 
+  /* ---- Day 1 game: a term-matching game wrapping up the whole reading.
+     Framed as play, not evaluation — the "score" is moves taken, there's no
+     pass/fail, and a wrong guess just shakes and resets the pick. Progress
+     (which pairs are already matched, and the move count) persists per
+     kid/page/game so coming back later shows where they left off. ---- */
+  function initMatchGame(containerId, pairs, opts) {
+    var container = document.getElementById(containerId);
+    if (!container) return;
+    opts = opts || {};
+    var storageKey = 'imm-l3-game::' + (opts.pageKey || '') + '::' + containerId;
+    var saved = loadJSON(storageKey, null);
+    var matched = (saved && saved.matched) || {};
+    var moves = (saved && saved.moves) || 0;
+    var selectedTerm = null;
+
+    function persist() { saveJSON(storageKey, { matched: matched, moves: moves }); }
+
+    var wrap = el('div', 'match-game');
+    var status = el('div', 'match-game-status');
+    var cols = el('div', 'match-cols');
+    var termsCol = el('div', 'match-col');
+    var defsCol = el('div', 'match-col');
+    var termEls = {};
+
+    function updateStatus() {
+      var count = Object.keys(matched).filter(function (k) { return matched[k]; }).length;
+      if (count === pairs.length) {
+        status.textContent = '🎉 All matched in ' + moves + ' move' + (moves === 1 ? '' : 's') + '!';
+        status.classList.add('done');
+      } else {
+        status.textContent = 'Matched ' + count + ' of ' + pairs.length + ' · ' + moves + ' move' + (moves === 1 ? '' : 's');
+        status.classList.remove('done');
+      }
+    }
+
+    shuffle(pairs.map(function (_, i) { return i; })).forEach(function (i) {
+      var t = el('div', 'match-item', pairs[i][0]);
+      if (matched[i]) t.classList.add('matched');
+      t.addEventListener('click', function () {
+        if (matched[i]) return;
+        Object.keys(termEls).forEach(function (k) { termEls[k].classList.remove('selected'); });
+        t.classList.add('selected');
+        selectedTerm = i;
+      });
+      termsCol.appendChild(t);
+      termEls[i] = t;
+    });
+
+    shuffle(pairs.map(function (_, i) { return i; })).forEach(function (i) {
+      var d = el('div', 'match-item', pairs[i][1]);
+      if (matched[i]) d.classList.add('matched');
+      d.addEventListener('click', function () {
+        if (matched[i] || selectedTerm === null) return;
+        moves++;
+        var chosen = selectedTerm;
+        if (chosen === i) {
+          matched[i] = true;
+          termEls[i].classList.remove('selected');
+          termEls[i].classList.add('matched');
+          d.classList.add('matched');
+          selectedTerm = null;
+          updateStatus();
+        } else {
+          d.classList.add('shake');
+          termEls[chosen].classList.add('shake');
+          setTimeout(function () {
+            d.classList.remove('shake');
+            if (termEls[chosen]) termEls[chosen].classList.remove('shake', 'selected');
+          }, 350);
+          selectedTerm = null;
+        }
+        persist();
+      });
+      defsCol.appendChild(d);
+    });
+
+    cols.appendChild(termsCol);
+    cols.appendChild(defsCol);
+    wrap.appendChild(status);
+    wrap.appendChild(cols);
+    container.appendChild(wrap);
+    updateStatus();
+  }
+
   window.QuestUI = {
     el: el, shuffle: shuffle, pickRandom: pickRandom,
     initMaterialsPool: initMaterialsPool, initPrintSlip: initPrintSlip,
     initKidGate: initKidGate, initHighlighter: initHighlighter, initNotesDrawer: initNotesDrawer,
-    initReflectionChecks: initReflectionChecks,
+    initReflectionChecks: initReflectionChecks, initBuildChecklist: initBuildChecklist,
+    initFieldAutosave: initFieldAutosave, initProgressBar: initProgressBar,
+    initMatchGame: initMatchGame,
     KID_KEY: KID_KEY
   };
 
   document.addEventListener('DOMContentLoaded', function () {
-    initMaterialsPool();
     initPrintSlip();
   });
 })();
