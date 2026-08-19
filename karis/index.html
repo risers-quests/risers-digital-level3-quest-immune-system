@@ -89,7 +89,7 @@
     <div class="callout">
       <span class="callout-label">📊 Chart Error — catch the mistake</span>
       <p style="margin:0;">A colleague's patient chart reads: <em>"Patient has a viral cold. Prescribed a full course of antibiotics to be safe."</em> Something on this chart is a real clinical error. Correct it exactly as you would if you were signing off on this chart yourself.</p>
-      <textarea placeholder="Type your correction here…"></textarea>
+      <textarea id="refl-1" placeholder="Type your correction here…"></textarea>
     </div>
 
     <h3>2. Line one: barriers (working before the patient even walks in)</h3>
@@ -99,7 +99,7 @@
       <span class="callout-label">🔍 Compare Two Cases</span>
       <p style="margin:0 0 8px;"><strong>Patient A:</strong> a deep cut on the hand, now hot, red, and swollen with pus, three days after the injury.<br><strong>Patient B:</strong> a sore throat and fever that started the same day as a cough, with two family members sick too.</p>
       <p style="margin:0;">Which barrier failed first in each case, and what does the timing/pattern tell you about which pathogen type you're more likely dealing with?</p>
-      <textarea placeholder="Explain the difference…"></textarea>
+      <textarea id="refl-2" placeholder="Explain the difference…"></textarea>
     </div>
 
     <h3>3. Line two: phagocytes (the body's own first responders)</h3>
@@ -108,7 +108,7 @@
     <div class="callout">
       <span class="callout-label">🧾 Evidence Log</span>
       <p style="margin:0;">A patient's wound is "healing on its own" according to the chart. What specific visible sign would confirm phagocytes are actually doing that work at the site? Name it, and explain what it tells a medic reading the chart.</p>
-      <textarea placeholder="Name the evidence and what it proves…"></textarea>
+      <textarea id="refl-3" placeholder="Name the evidence and what it proves…"></textarea>
     </div>
 
     <h3>4. Line three: lymphocytes and antibodies (why one infection rarely repeats)</h3>
@@ -117,7 +117,7 @@
     <div class="callout subtle">
       <span class="callout-label">🎓 Patient Explainer</span>
       <p style="margin:0;">A worried parent asks why their child "still got sick" even after recovering from a similar-sounding illness last year. Write the two or three sentences you'd actually say to them at the bedside — simple, accurate, and reassuring.</p>
-      <textarea placeholder="Explain it simply…"></textarea>
+      <textarea id="refl-4" placeholder="Explain it simply…"></textarea>
     </div>
 
     <h3>5. Why the antibiotic decision is the one that actually matters</h3>
@@ -238,7 +238,7 @@
     <div class="callout">
       <span class="callout-label">🪞 Shift Debrief — self-check</span>
       <p style="margin:0;">If you'd had one more antibiotic token, which patient would you give it to, and why? What would you actually tell a patient who didn't get one? Be honest about a call you're not fully sure about.</p>
-      <textarea placeholder="Write your honest debrief…"></textarea>
+      <textarea id="refl-5" placeholder="Write your honest debrief…"></textarea>
     </div>
   </section>
 
@@ -303,6 +303,18 @@
   QuestUI.initKidGate('Karis');
   QuestUI.initHighlighter('karis');
   QuestUI.initNotesDrawer('karis');
+  QuestUI.initReflectionChecks('karis', [
+    { id: 'refl-1', groups: [['virus', 'viral'], ['antibiotic'], ["won't work", "won't help", "don't work", "doesn't work", "no effect", "not work", "useless", 'wrong']],
+      directive: "Antibiotics only work against ONE kind of pathogen — which one, and is that what a cold actually is?" },
+    { id: 'refl-2', groups: [['skin', 'wound', 'cut'], ['viral', 'virus', 'droplet', 'airborne', 'respiratory', 'cough']],
+      directive: "One barrier here is broken skin — which patient has that? And which patient's illness spreads through the air?" },
+    { id: 'refl-3', groups: [['pus', 'inflammation', 'red', 'swoll'], ['phagocyte', 'white blood cell']],
+      directive: "What color and texture is the fluid you'd see around a healing wound — and what's actually inside it?" },
+    { id: 'refl-4', groups: [['memory cell'], ['fast', 'quick']],
+      directive: "After the body beats a pathogen once, what does it keep around in case that exact pathogen ever comes back?" },
+    { id: 'refl-5', groups: [['patient'], ['antibiotic', 'token', 'bacterial']],
+      directive: "Look at your decision log — which bacterial case didn't get a token, and what made the ones who did get one more urgent?" }
+  ]);
 
   var patients = [
     'Sofia, 10 — hot, red, swollen cut, pus, 3 days old.',

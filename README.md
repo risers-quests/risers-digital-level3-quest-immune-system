@@ -20,6 +20,34 @@ repo — three folders, not three repositories:
 `index.html` at the repo root is a name-check gate, not a page of links —
 see "Individual displays" below.
 
+## Open-ended questions: keyword check + guided hint after 3 tries
+
+The 5 open-ended callout questions per kid page (the 4 rotating-mechanism
+prompts in Day 1, plus the Day 2 self-check debrief) now have a "Check my
+thinking" button. It isn't real grading — it's a plain keyword search:
+each question has 2–3 required *concept groups* (e.g. for Shalom's "the
+outbreak is a virus, so we ordered antibiotics" error, one group is
+`virus`/`viral`, another is a phrase like `won't work`/`doesn't work`), and
+the answer needs at least one match from **every** group to count as
+having the key idea.
+
+- **Hit the key idea:** soft, non-numeric confirmation ("✅ Nice — you've
+  got the key idea.") — no score, no "correct," nothing that reads as a
+  grade.
+- **Miss it (tries 1–2):** a gentle nudge to revise and check again — no
+  hint yet.
+- **Still missing it on try 3:** a **directive question** appears below
+  the box — a leading question aimed at the specific missing concept
+  (e.g. "Antibiotics only work against ONE kind of pathogen — which one,
+  and is that what this settlement actually has?"), not the answer itself.
+  It stays visible on every later try until the key idea is found.
+
+State (attempts, whether it's been hit, and the typed text) persists per
+kid/page (`localStorage`, key `imm-l3-reflect::<kid>::<question-id>`), so a
+reload never resets progress or re-hides an already-earned hint. Engine:
+`QuestUI.initReflectionChecks(pageKey, configs)` in `js/quest.js`; each
+kid page passes its own 5 `{id, groups, directive}` entries.
+
 ## Individual displays (kids can't wander into a sibling's quest)
 
 Each instance is meant to be worked through on its own — no distractions

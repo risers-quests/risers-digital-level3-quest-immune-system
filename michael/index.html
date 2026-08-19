@@ -89,7 +89,7 @@
     <div class="callout">
       <span class="callout-label">📎 Memo Flag — check this claim</span>
       <p style="margin:0;">A budget memo on your desk claims: <em>"Program X targets a fungal skin infection, so a vaccine should clear it up completely within days, just like an antibiotic would."</em> Something in that memo is scientifically wrong. Correct it as if you're sending the memo back to whoever wrote it.</p>
-      <textarea placeholder="Type your correction here…"></textarea>
+      <textarea id="refl-1" placeholder="Type your correction here…"></textarea>
     </div>
 
     <h3>2. Line one: barriers (the defense you're not funding, because it's already free)</h3>
@@ -99,7 +99,7 @@
       <span class="callout-label">🔍 Compare Two Cases</span>
       <p style="margin:0 0 8px;"><strong>Program A:</strong> targets a disease that mainly spreads through contaminated drinking water.<br><strong>Program B:</strong> targets a disease that mainly spreads through coughs and sneezes indoors.</p>
       <p style="margin:0;">Which body barrier is most directly relevant to each — and would a non-vaccine investment (like clean water infrastructure, or better ventilation) meaningfully compete with either program for the same budget?</p>
-      <textarea placeholder="Explain the difference…"></textarea>
+      <textarea id="refl-2" placeholder="Explain the difference…"></textarea>
     </div>
 
     <h3>3. Line two: phagocytes (what your budget is backing up)</h3>
@@ -108,7 +108,7 @@
     <div class="callout">
       <span class="callout-label">🧾 Evidence Log</span>
       <p style="margin:0;">A field clinic reports that a funded program's target population is "recovering from minor infections without needing antibiotics." What visible sign at an infected site would tell you phagocytes — not the vaccine itself — are doing that work? Name it and explain what it proves.</p>
-      <textarea placeholder="Name the evidence and what it proves…"></textarea>
+      <textarea id="refl-3" placeholder="Name the evidence and what it proves…"></textarea>
     </div>
 
     <h3>4. Line three: lymphocytes and antibodies (what a vaccine actually trains)</h3>
@@ -117,7 +117,7 @@
     <div class="callout subtle">
       <span class="callout-label">🎓 Board Explainer</span>
       <p style="margin:0;">A funding board member keeps asking why you can't just fund "one universal vaccine" for every disease. Write the two or three sentences you'd use to explain antibody specificity to them — simply enough that a non-scientist on the board would actually understand your answer.</p>
-      <textarea placeholder="Explain it simply…"></textarea>
+      <textarea id="refl-4" placeholder="Explain it simply…"></textarea>
     </div>
 
     <h3>5. The real number every budget line depends on</h3>
@@ -241,7 +241,7 @@
     <div class="callout">
       <span class="callout-label">🪞 Budget Debrief — self-check</span>
       <p style="margin:0;">Which program did you under-fund, and what's the real-world risk of that decision — in your own words, not just "it fell short"? If a review board challenged you on it tomorrow, what would you say?</p>
-      <textarea placeholder="Write your honest debrief…"></textarea>
+      <textarea id="refl-5" placeholder="Write your honest debrief…"></textarea>
     </div>
   </section>
 
@@ -306,6 +306,18 @@
   QuestUI.initKidGate('Michael');
   QuestUI.initHighlighter('michael');
   QuestUI.initNotesDrawer('michael');
+  QuestUI.initReflectionChecks('michael', [
+    { id: 'refl-1', groups: [['fungal', 'fungus'], ['antifungal', 'prevent', 'before you get sick', 'future infection', "doesn't cure", 'not a cure']],
+      directive: "Does a vaccine cure an infection you already have, or does it prevent one you haven't caught yet?" },
+    { id: 'refl-2', groups: [['stomach acid', 'gut', 'digestive', 'water'], ['cilia', 'mucus', 'airway', 'respiratory', 'ventilation', 'air']],
+      directive: "Which barrier deals with contaminated water, and which one deals with what you breathe?" },
+    { id: 'refl-3', groups: [['pus', 'inflammation', 'red', 'swoll'], ['phagocyte', 'white blood cell']],
+      directive: "What color and texture is the fluid you'd see around a healing wound — and what's actually inside it?" },
+    { id: 'refl-4', groups: [['antigen'], ['specific', 'exact', 'match', 'lock and key', 'shape']],
+      directive: "Does one key open every lock, or just the one it was cut for?" },
+    { id: 'refl-5', groups: [['program'], ['threshold', 'budget', 'unit', 'risk']],
+      directive: "Which program's doses landed below its herd immunity threshold — and what happens in a real outbreak if that gap stays open?" }
+  ]);
 
   var events = [
     '❄️ Cold-chain failure — remove 10% of one program\'s funded units.',

@@ -279,6 +279,79 @@
     renderCollectedList();
   }
 
+  /* ---- Reflection checks ----
+     Each open-ended callout question gets a "Check my thinking" button.
+     The check is a plain keyword search, not real grading: cfg.groups is a
+     list of concept-groups, each an array of interchangeable words/phrases,
+     and the answer needs at least one hit from EVERY group to count as
+     having the key idea. No visible score, no "wrong" — just "not quite
+     yet" and a nudge to revise. Only after 3 checks without the key idea
+     does a directive (leading) question appear, to guide without just
+     handing over the answer. State (attempts/success/text) persists per
+     kid/page so a reload doesn't reset progress or re-hide an earned hint. */
+  function checkKeywordGroups(text, groups) {
+    var lower = text.toLowerCase();
+    return groups.every(function (group) {
+      return group.some(function (kw) { return lower.indexOf(kw.toLowerCase()) !== -1; });
+    });
+  }
+
+  function initReflectionChecks(pageKey, configs) {
+    configs.forEach(function (cfg) {
+      var textarea = document.getElementById(cfg.id);
+      if (!textarea) return;
+
+      var storageKey = 'imm-l3-reflect::' + pageKey + '::' + cfg.id;
+      var state = loadJSON(storageKey, { attempts: 0, success: false, text: '' });
+      if (state.text) textarea.value = state.text;
+
+      var controls = el('div', 'reflect-controls');
+      var btn = el('button', 'btn btn-primary reflect-check-btn', 'Check my thinking');
+      btn.type = 'button';
+      var feedback = el('div', 'reflect-feedback');
+      controls.appendChild(btn);
+      controls.appendChild(feedback);
+
+      var hint = el('div', 'reflect-hint');
+      hint.innerHTML = '💡 <strong>Guiding question:</strong> ' + cfg.directive;
+
+      textarea.insertAdjacentElement('afterend', hint);
+      textarea.insertAdjacentElement('afterend', controls);
+
+      function persist() { saveJSON(storageKey, state); }
+
+      function render() {
+        if (state.success) {
+          feedback.className = 'reflect-feedback hit';
+          feedback.textContent = "✅ Nice — you've got the key idea.";
+          hint.style.display = 'none';
+        } else if (state.attempts >= 3) {
+          feedback.className = 'reflect-feedback retry';
+          feedback.textContent = "🤔 Still missing something — here's a guiding question below to help.";
+          hint.style.display = 'block';
+        } else if (state.attempts > 0) {
+          feedback.className = 'reflect-feedback retry';
+          feedback.textContent = '🤔 Not quite the full picture yet — revise and check again.';
+        }
+      }
+      render();
+
+      btn.addEventListener('click', function () {
+        var text = textarea.value.trim();
+        if (!text) {
+          feedback.className = 'reflect-feedback retry';
+          feedback.textContent = '👉 Write your thinking first, then check it.';
+          return;
+        }
+        state.attempts++;
+        state.text = text;
+        state.success = checkKeywordGroups(text, cfg.groups);
+        persist();
+        render();
+      });
+    });
+  }
+
   /* ---- Side notes drawer: a free-text scratchpad, auto-saved per kid/page,
      plus the highlighter's collected-words list rendered at its top. ---- */
   function initNotesDrawer(pageKey) {
@@ -314,6 +387,7 @@
     el: el, shuffle: shuffle, pickRandom: pickRandom,
     initMaterialsPool: initMaterialsPool, initPrintSlip: initPrintSlip,
     initKidGate: initKidGate, initHighlighter: initHighlighter, initNotesDrawer: initNotesDrawer,
+    initReflectionChecks: initReflectionChecks,
     KID_KEY: KID_KEY
   };
 

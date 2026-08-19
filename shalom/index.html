@@ -89,7 +89,7 @@
     <div class="callout">
       <span class="callout-label">📋 Situation Report — something doesn't add up</span>
       <p style="margin:0;">A junior officer's briefing note says: <em>"The outbreak is a virus, so we've ordered antibiotics for every exposed settlement — that should clear it up fast."</em> Something in that plan is wrong. What is it, and what should the officer have ordered instead? Write your correction below as if you're sending it back to them.</p>
-      <textarea placeholder="Type your correction here…"></textarea>
+      <textarea id="refl-1" placeholder="Type your correction here…"></textarea>
     </div>
 
     <h3>2. Line one: barriers (the defense that's already deployed)</h3>
@@ -99,7 +99,7 @@
       <span class="callout-label">🔍 Compare Two Cases</span>
       <p style="margin:0 0 8px;"><strong>Case A:</strong> A settlement's water supply becomes contaminated after flooding damages the filtration system.<br><strong>Case B:</strong> A settlement reports a rise in chest infections after a wildfire fills the air with smoke for a week.</p>
       <p style="margin:0;">Which body barrier is most directly compromised in each case — and why would a health authority respond differently to the two?</p>
-      <textarea placeholder="Explain the difference…"></textarea>
+      <textarea id="refl-2" placeholder="Explain the difference…"></textarea>
     </div>
 
     <h3>3. Line two: phagocytes (the fast, general-purpose response)</h3>
@@ -108,7 +108,7 @@
     <div class="callout">
       <span class="callout-label">🧾 Evidence Log</span>
       <p style="margin:0;">A field report says a settlement's minor wound infections are "healing well on their own, no cause for concern." What specific physical sign, mentioned in this section, would you look for to confirm phagocytes are actually doing their job at the wound site? Name it and explain what it tells you.</p>
-      <textarea placeholder="Name the evidence and what it proves…"></textarea>
+      <textarea id="refl-3" placeholder="Name the evidence and what it proves…"></textarea>
     </div>
 
     <h3>4. Line three: lymphocytes and antibodies (the precision strike)</h3>
@@ -117,7 +117,7 @@
     <div class="callout subtle">
       <span class="callout-label">🎓 Field Training Note</span>
       <p style="margin:0;">A new recruit on your team doesn't understand why getting chickenpox once usually means you won't get it again. Write the two or three sentences you'd use to explain memory cells to them — simply enough that they could repeat it back correctly to someone else.</p>
-      <textarea placeholder="Explain it simply…"></textarea>
+      <textarea id="refl-4" placeholder="Explain it simply…"></textarea>
     </div>
 
     <h3>5. Vaccines, immunity, and the numbers behind command decisions</h3>
@@ -243,7 +243,7 @@
     <div class="callout">
       <span class="callout-label">🪞 Command Debrief — self-check</span>
       <p style="margin:0;">Which zone's outcome genuinely surprised you? Looking back at your plan table, what would you allocate differently next cycle, and why? Be honest about a decision that didn't work out — that's the part a real debrief actually cares about.</p>
-      <textarea placeholder="Write your honest debrief…"></textarea>
+      <textarea id="refl-5" placeholder="Write your honest debrief…"></textarea>
     </div>
   </section>
 
@@ -308,6 +308,18 @@
   QuestUI.initKidGate('Shalom');
   QuestUI.initHighlighter('shalom');
   QuestUI.initNotesDrawer('shalom');
+  QuestUI.initReflectionChecks('shalom', [
+    { id: 'refl-1', groups: [['virus', 'viral'], ['antibiotic'], ["won't work", "won't help", "don't work", "doesn't work", "no effect", "not work", "useless", 'wrong']],
+      directive: "Antibiotics only work against ONE kind of pathogen — which one, and is that what this settlement actually has?" },
+    { id: 'refl-2', groups: [['stomach acid', 'gut', 'digestive', 'water'], ['cilia', 'mucus', 'airway', 'lungs', 'respiratory', 'smoke', 'air']],
+      directive: "Which barrier deals with things you swallow, and which one deals with things you breathe in?" },
+    { id: 'refl-3', groups: [['pus', 'inflammation', 'red', 'swoll'], ['phagocyte', 'white blood cell']],
+      directive: "What color and texture is the fluid you'd see around a healing wound — and what's actually inside it?" },
+    { id: 'refl-4', groups: [['memory cell'], ['fast', 'quick']],
+      directive: "After the body beats a pathogen once, what does it keep around in case that exact pathogen ever comes back?" },
+    { id: 'refl-5', groups: [['zone'], ['token', 'resource', 'vaccin', 'quarantine', 'hygiene']],
+      directive: "Look back at your plan table — which zone got the least protection, and what would one extra token have let you do differently?" }
+  ]);
 
   document.getElementById('roll-die-btn').addEventListener('click', function () {
     var n = Math.floor(Math.random() * 6) + 1;
