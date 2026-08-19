@@ -286,9 +286,11 @@
      and the answer needs at least one hit from EVERY group to count as
      having the key idea. No visible score, no "wrong" — just "not quite
      yet" and a nudge to revise. Only after 3 checks without the key idea
-     does a directive (leading) question appear, to guide without just
-     handing over the answer. State (attempts/success/text) persists per
-     kid/page so a reload doesn't reset progress or re-hide an earned hint. */
+     does a pointer back to the reading appear (cfg.reread: {anchor, label}),
+     sending them to re-read the exact section that has the answer, rather
+     than handing over the answer itself. State (attempts/success/text)
+     persists per kid/page so a reload doesn't reset progress or re-hide an
+     earned pointer. */
   function checkKeywordGroups(text, groups) {
     var lower = text.toLowerCase();
     return groups.every(function (group) {
@@ -313,7 +315,7 @@
       controls.appendChild(feedback);
 
       var hint = el('div', 'reflect-hint');
-      hint.innerHTML = '💡 <strong>Guiding question:</strong> ' + cfg.directive;
+      hint.innerHTML = '📖 Take another look: <a href="#' + cfg.reread.anchor + '">' + cfg.reread.label + ' →</a>';
 
       textarea.insertAdjacentElement('afterend', hint);
       textarea.insertAdjacentElement('afterend', controls);
@@ -327,7 +329,7 @@
           hint.style.display = 'none';
         } else if (state.attempts >= 3) {
           feedback.className = 'reflect-feedback retry';
-          feedback.textContent = "🤔 Still missing something — here's a guiding question below to help.";
+          feedback.textContent = "🤔 Still missing something — here's where to look below.";
           hint.style.display = 'block';
         } else if (state.attempts > 0) {
           feedback.className = 'reflect-feedback retry';

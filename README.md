@@ -20,7 +20,7 @@ repo — three folders, not three repositories:
 `index.html` at the repo root is a name-check gate, not a page of links —
 see "Individual displays" below.
 
-## Open-ended questions: keyword check + guided hint after 3 tries
+## Open-ended questions: keyword check + a pointer back to the reading after 3 tries
 
 The 5 open-ended callout questions per kid page (the 4 rotating-mechanism
 prompts in Day 1, plus the Day 2 self-check debrief) now have a "Check my
@@ -36,17 +36,20 @@ having the key idea.
   grade.
 - **Miss it (tries 1–2):** a gentle nudge to revise and check again — no
   hint yet.
-- **Still missing it on try 3:** a **directive question** appears below
-  the box — a leading question aimed at the specific missing concept
-  (e.g. "Antibiotics only work against ONE kind of pathogen — which one,
-  and is that what this settlement actually has?"), not the answer itself.
-  It stays visible on every later try until the key idea is found.
+- **Still missing it on try 3:** a link appears below the box pointing
+  back to the exact section of the Day 1 reading (or, for the Day 2
+  debrief, back to their own plan table / decision log) that has the
+  answer — e.g. "📖 Take another look: **5. Vaccines, immunity & the
+  numbers behind command decisions →**" — not the answer itself, and not a
+  leading question. Clicking it scrolls straight to that heading. It stays
+  visible on every later try until the key idea is found.
 
 State (attempts, whether it's been hit, and the typed text) persists per
 kid/page (`localStorage`, key `imm-l3-reflect::<kid>::<question-id>`), so a
-reload never resets progress or re-hides an already-earned hint. Engine:
+reload never resets progress or re-hides an already-earned pointer. Engine:
 `QuestUI.initReflectionChecks(pageKey, configs)` in `js/quest.js`; each
-kid page passes its own 5 `{id, groups, directive}` entries.
+kid page passes its own 5 `{id, groups, reread: {anchor, label}}` entries,
+where `anchor` is an `id` added to the relevant `<h3>` in that page.
 
 ## Individual displays (kids can't wander into a sibling's quest)
 

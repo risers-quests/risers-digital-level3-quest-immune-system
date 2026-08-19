@@ -74,7 +74,7 @@
     <h3>Why funding decisions start in the body</h3>
     <p>Every vaccine program you'll ever fund is really just giving the immune system a head start. Long before any program exists, the human body is already fighting pathogens using layers of defense that build on each other. Understanding exactly what each layer does — and exactly what a vaccine adds to it — is the entire foundation of a defensible funding decision. A director who doesn't understand the biology is just guessing with other people's money.</p>
 
-    <h3>1. The threat: what a vaccine program is actually funded to stop</h3>
+    <h3 id="sec-pathogens">1. The threat: what a vaccine program is actually funded to stop</h3>
     <p>A <strong>pathogen</strong> is a microorganism that causes disease. Pathogens fall into four groups, and the group matters for funding — a vaccine works differently against each.</p>
 
     <div class="card-grid">
@@ -92,7 +92,7 @@
       <textarea id="refl-1" placeholder="Type your correction here…"></textarea>
     </div>
 
-    <h3>2. Line one: barriers (the defense you're not funding, because it's already free)</h3>
+    <h3 id="sec-barriers">2. Line one: barriers (the defense you're not funding, because it's already free)</h3>
     <p>Before a vaccine or a white blood cell ever gets involved, the body already has physical and chemical barriers doing constant work: <strong>skin</strong> as a physical wall, <strong>mucus and cilia</strong> trapping and sweeping pathogens out of the airways, <strong>stomach acid</strong> destroying most swallowed pathogens, <strong>lysozyme</strong> in tears and saliva breaking down bacterial cell walls, and <strong>blood clotting</strong> sealing a wound before pathogens can enter through it.</p>
 
     <div class="callout subtle">
@@ -102,7 +102,7 @@
       <textarea id="refl-2" placeholder="Explain the difference…"></textarea>
     </div>
 
-    <h3>3. Line two: phagocytes (what your budget is backing up)</h3>
+    <h3 id="sec-phagocytes">3. Line two: phagocytes (what your budget is backing up)</h3>
     <p><strong>White blood cells</strong> are the body's dedicated infection-fighters, and <strong>phagocytes</strong> respond first. Phagocytosis happens in three stages: <strong>detect</strong>, <strong>engulf</strong>, <strong>digest</strong>. Phagocytes are <strong>non-specific</strong> — fast, but generic, treating every pathogen the same way. A vaccine doesn't replace this system; it works alongside it.</p>
 
     <div class="callout">
@@ -111,7 +111,7 @@
       <textarea id="refl-3" placeholder="Name the evidence and what it proves…"></textarea>
     </div>
 
-    <h3>4. Line three: lymphocytes and antibodies (what a vaccine actually trains)</h3>
+    <h3 id="sec-antibodies">4. Line three: lymphocytes and antibodies (what a vaccine actually trains)</h3>
     <p>Every pathogen carries <strong>antigens</strong> — surface markers that identify it as foreign. <strong>Lymphocytes</strong> recognize one specific antigen and produce <strong>antibodies</strong>: Y-shaped proteins shaped to match that antigen exactly. This is exactly what a vaccine is designed to trigger — real antibody production, plus <strong>memory cells</strong> that make the next response much faster. This response is <strong>specific</strong>, unlike a phagocyte's general attack. Memory cells are the entire point of funding a vaccine program at all — without them, you'd only be buying temporary protection.</p>
 
     <div class="callout subtle">
@@ -120,7 +120,7 @@
       <textarea id="refl-4" placeholder="Explain it simply…"></textarea>
     </div>
 
-    <h3>5. The real number every budget line depends on</h3>
+    <h3 id="sec-vaccines">5. The real number every budget line depends on</h3>
     <p>There are two routes to immunity. <strong>Active immunity</strong> is the body producing its own antibodies and memory cells, either naturally or from a vaccine. <strong>Passive immunity</strong> is receiving ready-made antibodies from elsewhere — fast, but temporary, since no memory cells form. A vaccine works by triggering real active immunity safely.</p>
     <p>Every disease has a <strong>basic reproduction number (R0)</strong> — roughly how many new people one infected person infects in a population with no immunity. R0 sets the <strong>herd immunity threshold</strong>: the percentage of a population that must be immune before an outbreak can't sustain itself. This threshold is the number that turns your budget into doses, and doses into cost.</p>
 
@@ -206,7 +206,7 @@
     </table>
     <p style="font-size:.85rem;">Work out each "doses needed" using <strong>threshold ≈ 1 − (1 ÷ R0)</strong>, then <strong>doses needed = 10,000 × threshold</strong>. Multiply by cost per dose (in hundreds — so 1 unit per dose = 100 budget units per 1% of the population) to see the true cost of fully funding each program to threshold. You have <strong>100 budget units total</strong> — nowhere near enough to fully fund every program.</p>
 
-    <h3>Plan before you allocate</h3>
+    <h3 id="sec-plan">Plan before you allocate</h3>
     <table class="plan-table">
       <thead><tr><th>Program</th><th>Cost to reach threshold</th><th>Units you're assigning</th><th>Fully funded / partial / none</th><th>Why</th></tr></thead>
       <tbody>
@@ -308,15 +308,15 @@
   QuestUI.initNotesDrawer('michael');
   QuestUI.initReflectionChecks('michael', [
     { id: 'refl-1', groups: [['fungal', 'fungus'], ['antifungal', 'prevent', 'before you get sick', 'future infection', "doesn't cure", 'not a cure']],
-      directive: "Does a vaccine cure an infection you already have, or does it prevent one you haven't caught yet?" },
+      reread: { anchor: 'sec-vaccines', label: '5. The real number every budget line depends on' } },
     { id: 'refl-2', groups: [['stomach acid', 'gut', 'digestive', 'water'], ['cilia', 'mucus', 'airway', 'respiratory', 'ventilation', 'air']],
-      directive: "Which barrier deals with contaminated water, and which one deals with what you breathe?" },
+      reread: { anchor: 'sec-barriers', label: '2. Line one: barriers' } },
     { id: 'refl-3', groups: [['pus', 'inflammation', 'red', 'swoll'], ['phagocyte', 'white blood cell']],
-      directive: "What color and texture is the fluid you'd see around a healing wound — and what's actually inside it?" },
+      reread: { anchor: 'sec-phagocytes', label: '3. Line two: phagocytes' } },
     { id: 'refl-4', groups: [['antigen'], ['specific', 'exact', 'match', 'lock and key', 'shape']],
-      directive: "Does one key open every lock, or just the one it was cut for?" },
+      reread: { anchor: 'sec-antibodies', label: '4. Line three: lymphocytes and antibodies' } },
     { id: 'refl-5', groups: [['program'], ['threshold', 'budget', 'unit', 'risk']],
-      directive: "Which program's doses landed below its herd immunity threshold — and what happens in a real outbreak if that gap stays open?" }
+      reread: { anchor: 'sec-plan', label: 'Plan before you allocate' } }
   ]);
 
   var events = [

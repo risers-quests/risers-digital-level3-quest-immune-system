@@ -74,7 +74,7 @@
     <h3>Why triage decisions start in the body</h3>
     <p>Every decision you make on shift is really just supporting a system that's already running: the patient's own immune system. Long before any medicine is given, the body is already fighting using layers of defense that build on each other. A medic who understands exactly what those layers are doing — and exactly where a medicine like an antibiotic fits in — makes far better calls than one just guessing from symptoms alone.</p>
 
-    <h3>1. The four kinds of patient you'll see</h3>
+    <h3 id="sec-pathogens">1. The four kinds of patient you'll see</h3>
     <p>A <strong>pathogen</strong> is a microorganism that causes disease, and it always falls into one of four groups. Telling them apart correctly is the single most important skill on your shift, because your treatment options are completely different for each.</p>
 
     <div class="card-grid">
@@ -92,7 +92,7 @@
       <textarea id="refl-1" placeholder="Type your correction here…"></textarea>
     </div>
 
-    <h3>2. Line one: barriers (working before the patient even walks in)</h3>
+    <h3 id="sec-barriers">2. Line one: barriers (working before the patient even walks in)</h3>
     <p>Before any white blood cell or medicine gets involved, the body's own barriers are already at work: <strong>skin</strong> as a physical wall, <strong>mucus and cilia</strong> trapping and sweeping pathogens out of the airways, <strong>stomach acid</strong> destroying most swallowed pathogens, <strong>lysozyme</strong> in tears and saliva breaking down bacterial cell walls, and <strong>blood clotting</strong> sealing a wound before pathogens can enter through it. A broken barrier — a cut, a burn — is exactly why a wound infection needs different handling than an infection that started elsewhere.</p>
 
     <div class="callout subtle">
@@ -102,7 +102,7 @@
       <textarea id="refl-2" placeholder="Explain the difference…"></textarea>
     </div>
 
-    <h3>3. Line two: phagocytes (the body's own first responders)</h3>
+    <h3 id="sec-phagocytes">3. Line two: phagocytes (the body's own first responders)</h3>
     <p><strong>White blood cells</strong> are the body's infection-fighters, and <strong>phagocytes</strong> respond first. Phagocytosis happens in three stages: <strong>detect</strong>, <strong>engulf</strong>, <strong>digest</strong>. Phagocytes are <strong>non-specific</strong> — fast, but generic. That thick, yellowish pus you'll see on patient charts is mostly dead phagocytes and destroyed pathogens: visible proof the body is already fighting, with or without your help.</p>
 
     <div class="callout">
@@ -111,7 +111,7 @@
       <textarea id="refl-3" placeholder="Name the evidence and what it proves…"></textarea>
     </div>
 
-    <h3>4. Line three: lymphocytes and antibodies (why one infection rarely repeats)</h3>
+    <h3 id="sec-antibodies">4. Line three: lymphocytes and antibodies (why one infection rarely repeats)</h3>
     <p>Every pathogen carries <strong>antigens</strong> — surface markers that identify it as foreign. <strong>Lymphocytes</strong> recognize one specific antigen and produce <strong>antibodies</strong>: Y-shaped proteins shaped to match that antigen exactly. This response is <strong>specific</strong>, unlike a phagocyte's general attack. Afterward, some lymphocytes remain as <strong>memory cells</strong>, ready to react instantly if that exact pathogen returns — which is why a patient rarely catches the same viral illness (like chickenpox) twice.</p>
 
     <div class="callout subtle">
@@ -120,7 +120,7 @@
       <textarea id="refl-4" placeholder="Explain it simply…"></textarea>
     </div>
 
-    <h3>5. Why the antibiotic decision is the one that actually matters</h3>
+    <h3 id="sec-vaccines">5. Why the antibiotic decision is the one that actually matters</h3>
     <p>There are two routes to immunity. <strong>Active immunity</strong> is the body producing its own antibodies, naturally or from a vaccine. <strong>Passive immunity</strong> is receiving ready-made antibodies from elsewhere — fast, but temporary. Neither one is what you're deciding on shift; you're deciding whether to spend a scarce <strong>antibiotic</strong> dose.</p>
     <p><strong>Antibiotics kill or stop bacteria — and only bacteria.</strong> They do nothing to a virus, a fungus, or a protoctist, because antibiotics target structures that only bacterial cells have. Giving one to the wrong patient doesn't just fail to help them — it wastes a dose a genuinely bacterial patient down the line will need, and contributes to <strong>antibiotic resistance</strong>: bacteria evolving to survive antibiotics that used to work, one of the most serious problems in real medicine today.</p>
 
@@ -210,7 +210,7 @@
       <div class="event-result" id="card-result">Draw your first patient to begin.</div>
     </div>
 
-    <h3>Decision log</h3>
+    <h3 id="sec-log">Decision log</h3>
     <p>For each card, record your call before drawing the next one.</p>
     <table class="log-table">
       <thead><tr><th>Patient</th><th>Pathogen type</th><th>Board zone</th><th>Antibiotic spent? (Y/N)</th><th>One-line reasoning</th></tr></thead>
@@ -305,15 +305,15 @@
   QuestUI.initNotesDrawer('karis');
   QuestUI.initReflectionChecks('karis', [
     { id: 'refl-1', groups: [['virus', 'viral'], ['antibiotic'], ["won't work", "won't help", "don't work", "doesn't work", "no effect", "not work", "useless", 'wrong']],
-      directive: "Antibiotics only work against ONE kind of pathogen — which one, and is that what a cold actually is?" },
+      reread: { anchor: 'sec-vaccines', label: '5. Why the antibiotic decision is the one that actually matters' } },
     { id: 'refl-2', groups: [['skin', 'wound', 'cut'], ['viral', 'virus', 'droplet', 'airborne', 'respiratory', 'cough']],
-      directive: "One barrier here is broken skin — which patient has that? And which patient's illness spreads through the air?" },
+      reread: { anchor: 'sec-barriers', label: '2. Line one: barriers' } },
     { id: 'refl-3', groups: [['pus', 'inflammation', 'red', 'swoll'], ['phagocyte', 'white blood cell']],
-      directive: "What color and texture is the fluid you'd see around a healing wound — and what's actually inside it?" },
+      reread: { anchor: 'sec-phagocytes', label: '3. Line two: phagocytes' } },
     { id: 'refl-4', groups: [['memory cell'], ['fast', 'quick']],
-      directive: "After the body beats a pathogen once, what does it keep around in case that exact pathogen ever comes back?" },
+      reread: { anchor: 'sec-antibodies', label: '4. Line three: lymphocytes and antibodies' } },
     { id: 'refl-5', groups: [['patient'], ['antibiotic', 'token', 'bacterial']],
-      directive: "Look at your decision log — which bacterial case didn't get a token, and what made the ones who did get one more urgent?" }
+      reread: { anchor: 'sec-log', label: 'Decision log' } }
   ]);
 
   var patients = [

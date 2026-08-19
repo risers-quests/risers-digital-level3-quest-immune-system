@@ -74,7 +74,7 @@
     <h3>Why command decisions start in the body</h3>
     <p>Every containment decision you'll ever make is really just backing up a system that's already running: the human immune system. Long before any health authority steps in, every person's body is already fighting pathogens on its own, using layers of defense that build on each other. Understanding exactly how those layers work — where they're strong, and where they need backup — is the entire foundation of good outbreak command. A commander who doesn't understand the body's own defenses is making decisions blind.</p>
 
-    <h3>1. The threat: what you're actually defending against</h3>
+    <h3 id="sec-pathogens">1. The threat: what you're actually defending against</h3>
     <p>A <strong>pathogen</strong> is a microorganism that causes disease. Not all microorganisms are pathogens — but the ones that are fall into four groups, and each one behaves differently enough that your response has to account for the difference.</p>
 
     <div class="card-grid">
@@ -92,7 +92,7 @@
       <textarea id="refl-1" placeholder="Type your correction here…"></textarea>
     </div>
 
-    <h3>2. Line one: barriers (the defense that's already deployed)</h3>
+    <h3 id="sec-barriers">2. Line one: barriers (the defense that's already deployed)</h3>
     <p>Before a single white blood cell gets involved, the body has physical and chemical barriers doing constant, unpaid work: <strong>skin</strong> as a physical wall, <strong>mucus and cilia</strong> trapping and sweeping pathogens out of the airways, <strong>stomach acid</strong> destroying most swallowed pathogens, <strong>lysozyme</strong> in tears and saliva breaking down bacterial cell walls, and <strong>blood clotting</strong> sealing a wound before pathogens can use it as an entry point.</p>
 
     <div class="callout subtle">
@@ -102,7 +102,7 @@
       <textarea id="refl-2" placeholder="Explain the difference…"></textarea>
     </div>
 
-    <h3>3. Line two: phagocytes (the fast, general-purpose response)</h3>
+    <h3 id="sec-phagocytes">3. Line two: phagocytes (the fast, general-purpose response)</h3>
     <p><strong>White blood cells</strong> are the body's dedicated infection-fighters, and <strong>phagocytes</strong> are the first kind to respond. Phagocytosis happens in three stages: the phagocyte <strong>detects</strong> chemical signals from damaged tissue or pathogens, <strong>engulfs</strong> the pathogen completely, then <strong>digests</strong> it with enzymes. Phagocytes are <strong>non-specific</strong> — they attack any pathogen the same way, which makes them fast but generic. That thick, yellowish pus around an infected wound is mostly dead phagocytes and destroyed pathogens — visible evidence a battle already happened.</p>
 
     <div class="callout">
@@ -111,7 +111,7 @@
       <textarea id="refl-3" placeholder="Name the evidence and what it proves…"></textarea>
     </div>
 
-    <h3>4. Line three: lymphocytes and antibodies (the precision strike)</h3>
+    <h3 id="sec-antibodies">4. Line three: lymphocytes and antibodies (the precision strike)</h3>
     <p>Every pathogen carries <strong>antigens</strong> — marker molecules on its surface that identify it as foreign. <strong>Lymphocytes</strong> are white blood cells that recognize one specific antigen; once triggered, they multiply and produce <strong>antibodies</strong> — Y-shaped proteins shaped to match that one antigen exactly, like a key cut for one lock. Antibodies clump pathogens together and mark them for phagocytes to finish off. This response is <strong>specific</strong>, unlike a phagocyte's non-specific attack. After the infection clears, some lymphocytes remain as <strong>memory cells</strong>, ready to trigger a much faster response if that exact pathogen ever returns — the biological basis of immunity.</p>
 
     <div class="callout subtle">
@@ -120,7 +120,7 @@
       <textarea id="refl-4" placeholder="Explain it simply…"></textarea>
     </div>
 
-    <h3>5. Vaccines, immunity, and the numbers behind command decisions</h3>
+    <h3 id="sec-vaccines">5. Vaccines, immunity, and the numbers behind command decisions</h3>
     <p>There are two routes to immunity. <strong>Active immunity</strong> is your own body producing antibodies and memory cells — either by catching the disease ("natural") or through a vaccine ("artificial"). <strong>Passive immunity</strong> is receiving ready-made antibodies from elsewhere (a mother's antibodies crossing to a baby, or an antibody injection) — fast, but temporary, since no memory cells are made. A <strong>vaccine</strong> exposes the immune system to a safe version of a pathogen's antigens, triggering real antibody and memory-cell production without causing the disease itself.</p>
 
     <p>Here's the number that actually drives outbreak command: every disease has a <strong>basic reproduction number (R0)</strong> — roughly, how many new people one infected person is likely to infect in a population with no immunity. The more contagious a disease, the higher its R0, and the higher the percentage of a population that needs to be immune before the outbreak can't sustain itself — its <strong>herd immunity threshold</strong>. This is exactly the number you'll be using in Day 2.</p>
@@ -199,7 +199,7 @@
       <li>You have <strong>12 resource tokens</strong> total, in three kinds — decide the mix yourself: a <strong>Vaccination token</strong> (fully protects one zone — it can no longer catch or spread the outbreak), a <strong>Quarantine token</strong> (blocks spread from one zone for one round only), or a <strong>Hygiene token</strong> (lowers a zone's effective spread chance by one tier, but doesn't stop it completely).</li>
     </ol>
 
-    <h3>Plan before you deploy</h3>
+    <h3 id="sec-plan">Plan before you deploy</h3>
     <p>Fill this in before placing a single token. This is the real decision — everything after this is just finding out how it played out.</p>
     <table class="plan-table">
       <thead><tr><th>Zone</th><th>Disease rolled</th><th>Herd immunity threshold</th><th>Resource(s) assigned</th><th>Why this zone gets this much (or this little)</th></tr></thead>
@@ -310,15 +310,15 @@
   QuestUI.initNotesDrawer('shalom');
   QuestUI.initReflectionChecks('shalom', [
     { id: 'refl-1', groups: [['virus', 'viral'], ['antibiotic'], ["won't work", "won't help", "don't work", "doesn't work", "no effect", "not work", "useless", 'wrong']],
-      directive: "Antibiotics only work against ONE kind of pathogen — which one, and is that what this settlement actually has?" },
+      reread: { anchor: 'sec-vaccines', label: '5. Vaccines, immunity & the numbers behind command decisions' } },
     { id: 'refl-2', groups: [['stomach acid', 'gut', 'digestive', 'water'], ['cilia', 'mucus', 'airway', 'lungs', 'respiratory', 'smoke', 'air']],
-      directive: "Which barrier deals with things you swallow, and which one deals with things you breathe in?" },
+      reread: { anchor: 'sec-barriers', label: '2. Line one: barriers' } },
     { id: 'refl-3', groups: [['pus', 'inflammation', 'red', 'swoll'], ['phagocyte', 'white blood cell']],
-      directive: "What color and texture is the fluid you'd see around a healing wound — and what's actually inside it?" },
+      reread: { anchor: 'sec-phagocytes', label: '3. Line two: phagocytes' } },
     { id: 'refl-4', groups: [['memory cell'], ['fast', 'quick']],
-      directive: "After the body beats a pathogen once, what does it keep around in case that exact pathogen ever comes back?" },
+      reread: { anchor: 'sec-antibodies', label: '4. Line three: lymphocytes and antibodies' } },
     { id: 'refl-5', groups: [['zone'], ['token', 'resource', 'vaccin', 'quarantine', 'hygiene']],
-      directive: "Look back at your plan table — which zone got the least protection, and what would one extra token have let you do differently?" }
+      reread: { anchor: 'sec-plan', label: 'Plan before you deploy' } }
   ]);
 
   document.getElementById('roll-die-btn').addEventListener('click', function () {
