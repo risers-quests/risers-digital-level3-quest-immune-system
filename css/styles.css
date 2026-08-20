@@ -312,11 +312,47 @@ html.gate-locked main, html.gate-locked .progress-summary { display: none !impor
 .gate-block-wrap h2 { font-size: 1.4rem; margin-bottom: 8px; }
 .gate-block-wrap p { color: var(--ink-soft); font-size: .94rem; }
 .gate-block-wrap .name-gate-card { margin-top: 18px; }
-.switch-quest-btn {
+.switch-quest-btn, .sync-code-btn {
   font-size: .8rem; font-weight: 700; color: var(--ink-soft); background: #fff;
   border: 1.5px solid var(--border); padding: 6px 13px; border-radius: 999px; cursor: pointer; font-family: var(--font-body);
 }
-.switch-quest-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
+.switch-quest-btn:hover, .sync-code-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+/* ---- Device-to-device progress code (no backend — a copy-paste code carries
+   one kid's saved state between browsers) ---- */
+.gate-restore { margin-top: 22px; text-align: center; }
+.gate-restore-toggle {
+  background: none; border: none; color: var(--accent-dark); text-decoration: underline;
+  font-size: .84rem; cursor: pointer; font-family: var(--font-body);
+}
+.gate-restore-box { display: none; margin-top: 12px; text-align: left; }
+.gate-restore-box textarea {
+  width: 100%; min-height: 70px; border: 1.5px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; font-family: var(--font-mono); font-size: .78rem; resize: vertical; box-sizing: border-box;
+}
+.gate-restore-box .btn { margin-top: 8px; }
+.gate-restore-msg { min-height: 1.3em; font-size: .84rem; font-weight: 600; color: var(--accent-dark); margin-top: 8px; }
+
+.code-modal-backdrop {
+  position: fixed; inset: 0; background: rgba(28,25,23,.55); z-index: 300;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.code-modal {
+  position: relative; background: #fff; border-radius: var(--radius); max-width: 480px; width: 100%;
+  padding: 26px; box-shadow: var(--shadow);
+}
+.code-modal h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.code-modal p { color: var(--ink-soft); font-size: .88rem; margin: 0 0 14px; }
+.code-modal-textarea {
+  width: 100%; min-height: 100px; border: 1.5px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; font-family: var(--font-mono); font-size: .76rem; resize: vertical; box-sizing: border-box; margin-bottom: 12px;
+}
+.code-modal-status { font-size: .84rem; font-weight: 600; color: var(--accent-dark); margin-top: 8px; min-height: 1.3em; }
+.code-modal-close {
+  position: absolute; top: 14px; right: 14px; background: none; border: none; cursor: pointer;
+  font-size: 1rem; color: var(--ink-soft); line-height: 1; padding: 4px;
+}
+.code-modal-close:hover { color: var(--ink); }
 
 /* ---- Highlighter ---- */
 mark.user-hl {

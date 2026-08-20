@@ -36,6 +36,14 @@
           </div>
         </form>
         <div class="name-gate-msg" id="hub-name-msg"></div>
+        <div class="gate-restore">
+          <button type="button" class="gate-restore-toggle" id="gate-restore-toggle">Already started on another device? Paste your progress code →</button>
+          <div class="gate-restore-box" id="gate-restore-box">
+            <textarea id="gate-restore-input" placeholder="Paste your progress code here…"></textarea>
+            <button type="button" class="btn btn-primary" id="gate-restore-btn">Restore my progress</button>
+            <div class="gate-restore-msg" id="gate-restore-msg"></div>
+          </div>
+        </div>
       </div>
       <div class="name-gate-welcome" id="welcome-block">
         <div class="who" id="welcome-who"></div>
@@ -109,6 +117,24 @@
     try { localStorage.removeItem(KID_KEY); } catch (e) {}
     showAsk();
   });
+
+  QuestUI.wireRestore(
+    document.getElementById('gate-restore-toggle'),
+    document.getElementById('gate-restore-box'),
+    document.getElementById('gate-restore-input'),
+    document.getElementById('gate-restore-btn'),
+    document.getElementById('gate-restore-msg'),
+    function (result, msg) {
+      var entry = ROSTER[result.kid];
+      if (!entry) {
+        msg.textContent = "⚠ I don't recognize '" + result.kid + "' — ask your facilitator.";
+        return;
+      }
+      QuestUI.applyProgress(result.data);
+      msg.textContent = '✓ Restored — taking you to your quest…';
+      setTimeout(function () { window.location.href = entry.path; }, 500);
+    }
+  );
 </script>
 </body>
 </html>

@@ -29,6 +29,7 @@
       <a href="#day3">Day 3</a>
       <button class="notes-toggle-btn" id="notes-toggle-btn" type="button">📝 My Notes</button>
       <button class="print-btn" id="print-slip-btn" type="button">🖨️ Print my bringing slip</button>
+      <button class="sync-code-btn" id="copy-progress-btn" type="button">📋 My progress code</button>
       <button class="switch-quest-btn" id="switch-quest-btn" type="button">🔁 Switch quest</button>
     </nav>
   </div>
@@ -66,6 +67,14 @@
         </div>
         <div class="name-gate-msg" id="gate-name-msg"></div>
       </form>
+    </div>
+    <div class="gate-restore">
+      <button type="button" class="gate-restore-toggle" id="gate-restore-toggle">Already started on another device? Paste your progress code →</button>
+      <div class="gate-restore-box" id="gate-restore-box">
+        <textarea id="gate-restore-input" placeholder="Paste your progress code here…"></textarea>
+        <button type="button" class="btn btn-primary" id="gate-restore-btn">Restore my progress</button>
+        <div class="gate-restore-msg" id="gate-restore-msg"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -423,6 +432,7 @@
 <script src="../js/quest.js"></script>
 <script>
   QuestUI.initKidGate('Michael');
+  QuestUI.initProgressSync('michael');
   QuestUI.initHighlighter('michael');
   QuestUI.initNotesDrawer('michael');
   QuestUI.initMaterialsPool('michael');

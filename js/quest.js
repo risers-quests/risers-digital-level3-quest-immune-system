@@ -232,6 +232,143 @@
     }
   }
 
+  /* ---- Device-to-device progress code ----
+     There's no backend, so there's no way for two browsers to know about
+     each other automatically — the honest fix for "different device each
+     day" is a code the kid copies off one device and pastes into the next,
+     carrying every imm-l3-* key for their name in one shot. Everything is
+     already namespaced by pageKey (either "imm-l3-x::<kid>" or
+     "imm-l3-x::<kid>::<sub-id>"), so collecting it is just: every key whose
+     second "::"-segment is this kid's pageKey, plus the un-namespaced
+     imm-l3-kid gate value itself. */
+  function progressKeys(pageKey) {
+    var keys = [KID_KEY];
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (!k || k === KID_KEY || k.indexOf('imm-l3-') !== 0) continue;
+      if (k.split('::')[1] === pageKey) keys.push(k);
+    }
+    return keys;
+  }
+
+  function exportProgress(pageKey) {
+    var data = {};
+    progressKeys(pageKey).forEach(function (k) {
+      var v = localStorage.getItem(k);
+      if (v !== null) data[k] = v;
+    });
+    var json = JSON.stringify({ v: 1, kid: pageKey, data: data });
+    try { return btoa(unescape(encodeURIComponent(json))); } catch (e) { return btoa(json); }
+  }
+
+  // Decodes and validates a pasted code but does NOT write anything —
+  // callers decide whether the kid it belongs to matches where it's being
+  // applied before calling applyProgress, so a code pasted on the wrong
+  // kid's page can't silently overwrite that page's own gate/progress.
+  function decodeProgress(code) {
+    var json;
+    try { json = decodeURIComponent(escape(atob((code || '').trim()))); }
+    catch (e) { return { ok: false, error: "That code looks broken — check you copied the whole thing." }; }
+    var bundle;
+    try { bundle = JSON.parse(json); } catch (e) { bundle = null; }
+    if (!bundle || !bundle.data || !bundle.kid) return { ok: false, error: "That doesn't look like a progress code." };
+    return { ok: true, kid: bundle.kid, data: bundle.data };
+  }
+
+  function applyProgress(data) {
+    Object.keys(data).forEach(function (k) {
+      try { localStorage.setItem(k, data[k]); } catch (e) {}
+    });
+  }
+
+  function showCodeModal(code) {
+    var backdrop = el('div', 'code-modal-backdrop');
+    var box = el('div', 'code-modal');
+    var closeBtn = el('button', 'code-modal-close', '✕');
+    closeBtn.type = 'button';
+    var heading = el('h3', null, '📋 Your progress code');
+    var lead = el('p', null,
+      "Copy this somewhere you can get to on your next device — a notes app, or message it to yourself. " +
+      "Paste it back in there to pick up exactly where you left off.");
+    var ta = document.createElement('textarea');
+    ta.className = 'code-modal-textarea';
+    ta.readOnly = true;
+    ta.value = code;
+    var copyBtn = el('button', 'btn btn-primary', '📋 Copy to clipboard');
+    copyBtn.type = 'button';
+    var status = el('div', 'code-modal-status');
+    copyBtn.addEventListener('click', function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function () {
+          status.textContent = '✓ Copied!';
+        }).catch(function () {
+          ta.focus(); ta.select();
+          status.textContent = 'Selected it for you — press Ctrl/Cmd+C.';
+        });
+      } else {
+        ta.focus(); ta.select();
+        status.textContent = 'Selected it for you — press Ctrl/Cmd+C.';
+      }
+    });
+    closeBtn.addEventListener('click', function () { backdrop.remove(); });
+    backdrop.addEventListener('click', function (e) { if (e.target === backdrop) backdrop.remove(); });
+    box.appendChild(closeBtn);
+    box.appendChild(heading);
+    box.appendChild(lead);
+    box.appendChild(ta);
+    box.appendChild(copyBtn);
+    box.appendChild(status);
+    backdrop.appendChild(box);
+    document.body.appendChild(backdrop);
+    ta.focus();
+    ta.select();
+  }
+
+  // Wires a "paste a code" box shared by both the hub and each kid's own
+  // gate screen. onSuccess(result, msg) decides what a valid decode actually
+  // does — a kid page checks result.kid against its own pageKey before
+  // applying anything; the hub doesn't know a pageKey yet, so it applies
+  // and routes off whatever kid the code says it belongs to.
+  function wireRestore(toggle, panel, input, btn, msg, onSuccess) {
+    if (!toggle || !panel || !input || !btn) return;
+    toggle.addEventListener('click', function () {
+      panel.style.display = panel.style.display === 'none' || !panel.style.display ? 'block' : 'none';
+    });
+    btn.addEventListener('click', function () {
+      var result = decodeProgress(input.value);
+      if (!result.ok) { msg.textContent = '⚠ ' + result.error; return; }
+      onSuccess(result, msg);
+    });
+  }
+
+  // Wires the "copy my code" button (in the unlocked header) and the
+  // "paste a code" restore box (in the locked gate screen) on one kid page.
+  function initProgressSync(pageKey) {
+    var copyBtn = document.getElementById('copy-progress-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        showCodeModal(exportProgress(pageKey));
+      });
+    }
+
+    wireRestore(
+      document.getElementById('gate-restore-toggle'),
+      document.getElementById('gate-restore-box'),
+      document.getElementById('gate-restore-input'),
+      document.getElementById('gate-restore-btn'),
+      document.getElementById('gate-restore-msg'),
+      function (result, msg) {
+        if (result.kid !== pageKey) {
+          msg.textContent = "⚠ That code is from a different quest (" + result.kid + "'s) — nothing was changed here.";
+          return;
+        }
+        applyProgress(result.data);
+        msg.textContent = '✓ Restored — reloading…';
+        setTimeout(function () { window.location.reload(); }, 500);
+      }
+    );
+  }
+
   /* ---- Highlighter ----
      Select any text inside <main> (p/li), a small "Highlight" button appears
      near the selection. Highlights are stored as {block, start, end} plain-
@@ -698,7 +835,9 @@
     initKidGate: initKidGate, initHighlighter: initHighlighter, initNotesDrawer: initNotesDrawer,
     initReflectionChecks: initReflectionChecks, initBuildChecklist: initBuildChecklist,
     initFieldAutosave: initFieldAutosave, initProgressBar: initProgressBar,
-    initMatchGame: initMatchGame,
+    initMatchGame: initMatchGame, initProgressSync: initProgressSync,
+    exportProgress: exportProgress, decodeProgress: decodeProgress,
+    applyProgress: applyProgress, wireRestore: wireRestore,
     KID_KEY: KID_KEY
   };
 

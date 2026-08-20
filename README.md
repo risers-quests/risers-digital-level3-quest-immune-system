@@ -168,24 +168,53 @@ Implementation: `QuestUI.initHighlighter(pageKey)` and
 page with that page's own key (`'shalom'` / `'michael'` / `'karis'` /
 `'nichu'`).
 
-## Persistence is per-browser, not per-account — no cross-device sync
+## Moving between devices: a progress code, not a backend
 
 Everything that "saves" (highlights, notes, reflections, the Day 1 game,
 Day 2 fields/build checklist/materials pool, the progress bar, even the
 gate itself) is `localStorage` — there's no backend, no account, no server.
-That means:
-- **Same device, same browser, any number of sessions** → everything is
-  there exactly as left, indefinitely (until that browser's storage is
-  cleared). This is the normal case a 3-day quest is built around.
-- **Different device, or a different browser on the same device** → a
-  blank slate. Progress made on a school tablet won't show up if the same
-  kid opens the link on a home laptop.
+On its own that means **same device, same browser** → everything is there
+exactly as left, indefinitely; **a different device or browser** → a blank
+slate, since there is fundamentally no way for two independent browsers to
+know about each other without something in between them.
 
-If cross-device sync is actually needed, that's a real backend (even a
-small one — e.g. a shared key-value store keyed by kid name) and is out of
-scope for what's built here; worth a separate discussion before building it
-since it changes the "no accounts, everything local" model the rest of the
-site relies on.
+Since kids here use a different device on different days, that gap needed
+closing — without standing up real infrastructure (hosting, a database, and
+a harder question about what "auth" even means for a page whose only gate
+today is typing a name). The fix is a **progress code**: one button bundles
+everything saved under a kid's name into a compact copy-pasteable string;
+one paste box on the next device restores all of it in one shot and
+reloads. No server in the middle — the code *is* the data, round-tripped
+through whatever the kid already uses to carry text between devices (a
+notes app, a message to themselves).
+
+- **"📋 My progress code"** (next to "🔁 Switch quest" in the header, once
+  unlocked) opens a modal with the code in a copy-ready box.
+- **"Already started on another device? Paste your progress code →"**
+  appears both on the hub's name screen and on each kid's own locked gate
+  screen — pasting a valid code restores that kid's data immediately (the
+  hub then routes to the right instance; a kid page reloads itself once
+  restored) and also sets the name gate, so there's no separate "type your
+  name" step needed on the new device.
+- **A code only applies to the kid it belongs to.** Pasting Karis's code on
+  Shalom's page is rejected with a clear message and changes nothing —
+  it's still just `localStorage` under the hood, so this is a mistake
+  guard, not real security, but it stops the obvious accident.
+
+Implementation: `QuestUI.exportProgress(pageKey)` / `decodeProgress(code)` /
+`applyProgress(data)` / `wireRestore(...)` / `initProgressSync(pageKey)` in
+`js/quest.js`. The bundle is whatever's actually saved for that kid — every
+`imm-l3-*` key whose own namespace segment matches their `pageKey`, base64
+of a UTF-8-safe JSON blob — so it stays correct automatically as new
+systems (build checklist, game, etc.) get added, with nothing to update
+per-feature.
+
+**What this is not:** automatic, silent, real-time sync. A kid still has to
+notice they're switching devices and tap "copy my code" first, and carry
+that code somewhere themselves — if they forget, or lose the code, that
+session's progress doesn't travel. That's the honest tradeoff for staying
+fully static with no backend; true automatic sync would need a real shared
+store in between, which is a bigger, separate decision.
 
 ## Day 2 is a build day (not a simulation)
 
