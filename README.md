@@ -42,7 +42,11 @@ hands-on build (see below).
 (`.progress-summary`) — Day 1 (reflections answered, out of 4), Day 2
 (build steps checked + the Day 2 debrief, out of 6), and Day 3. It reads
 straight from each subsystem's own saved state, so it can't drift out of
-sync with what's actually been filled in, and it updates live as you type.
+sync with what's actually been filled in, and it recomputes on typing *and*
+on any click — reflections and the build checklist only actually save when
+their button/checkbox is clicked, not on every keystroke, so it needed the
+click hook too or it would visibly lag a step behind what was just saved
+until something else on the page happened to fire an `input`/`change`.
 
 **Nothing resets on reload**, because this is a 3-day quest worked on
 across multiple sessions — a kid coming back to Day 2 needs to see Day 1
@@ -88,6 +92,20 @@ reload never resets progress or re-hides an already-earned pointer. Engine:
 `QuestUI.initReflectionChecks(pageKey, configs)` in `js/quest.js`; each
 kid page passes its own 5 `{id, groups, reread: {anchor, label}}` entries,
 where `anchor` is an `id` added to the relevant `<h3>` in that page.
+
+**Each question now sits right after the content it actually tests.** The
+first question on every kid page (the antibiotics-vs-virus scenario, or
+Michael's vaccine-prevents/doesn't-cure one) originally appeared right after
+section 1, but the fact it checks is only taught in section 5 — so its own
+`reread` link pointed a kid *forward* to content they hadn't reached yet,
+and a kid answering honestly in the moment had no way to know the answer.
+Fixed by moving the question itself down to sit right after that content in
+section 5, matching how the other 4 questions were already built (each one
+lives inside the section that teaches its answer). Michael's page was also
+missing the underlying fact in the text at all (nothing said a vaccine
+prevents future infection rather than curing an existing one) — added one
+sentence to section 5 so the fact the question checks for is actually
+present to read.
 
 ## Individual displays (kids can't wander into a sibling's quest)
 

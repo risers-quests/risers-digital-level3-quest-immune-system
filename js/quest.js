@@ -171,6 +171,11 @@
     recompute();
     document.addEventListener('input', recompute);
     document.addEventListener('change', recompute);
+    // Reflection state and the build checklist only actually save on a button
+    // click (not on every keystroke/change), so the bar also needs to recompute
+    // on click — otherwise it visibly lags a full step behind what's saved
+    // until the kid happens to type or toggle something else afterward.
+    document.addEventListener('click', recompute);
   }
 
   /* ---- Per-kid access gate ----
