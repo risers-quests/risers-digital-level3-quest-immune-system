@@ -36,6 +36,13 @@ body.lens-karis {
   --accent-dark: #115e59;
   --accent-soft: #f0fdfa;
 }
+/* Facilitator test profile — deliberately a fourth, distinct color so it never
+   reads as a fourth real kid slot. */
+body.lens-nichu {
+  --accent: #7e22ce;
+  --accent-dark: #581c87;
+  --accent-soft: #faf5ff;
+}
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -316,16 +323,26 @@ mark.user-hl {
   background: #fde68a; color: inherit; border-radius: 3px; padding: 0 1px; cursor: pointer;
   box-decoration-break: clone; -webkit-box-decoration-break: clone;
 }
-mark.user-hl:hover { background: #fcd34d; }
+mark.user-hl:hover { filter: brightness(.92); }
 .hl-popup {
-  position: absolute; z-index: 200; display: flex; gap: 4px; background: var(--ink); border-radius: 10px;
-  padding: 6px; box-shadow: 0 8px 20px rgba(0,0,0,.25); transform: translate(-50%, -110%);
+  position: absolute; z-index: 200; display: flex; align-items: center; gap: 6px; background: var(--ink);
+  border-radius: 10px; padding: 7px; box-shadow: 0 8px 20px rgba(0,0,0,.25); transform: translate(-50%, -110%);
 }
-.hl-popup button {
-  border: none; background: #fde68a; color: #1c1917; font-weight: 700; font-size: .82rem;
-  padding: 7px 12px; border-radius: 6px; cursor: pointer; font-family: var(--font-body); white-space: nowrap;
+.hl-swatch {
+  width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(255,255,255,.85); padding: 0;
+  cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: transform .1s;
 }
-.hl-popup button:hover { background: #fcd34d; }
+.hl-swatch:hover, .hl-swatch:focus-visible { transform: scale(1.15); }
+.hl-remove-btn {
+  display: none; border: none; background: #fff; color: #9f1239; font-weight: 700; font-size: .78rem;
+  padding: 7px 10px; border-radius: 6px; cursor: pointer; font-family: var(--font-body); white-space: nowrap;
+}
+.hl-remove-btn:hover { background: #fecdd3; }
+.hl-popup-editing .hl-remove-btn { display: inline-block; }
+.hlc-dot {
+  display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: none;
+  margin-right: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+}
 
 /* ---- Side notes drawer ---- */
 .notes-toggle-btn {

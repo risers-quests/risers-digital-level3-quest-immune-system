@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immune System — Outbreak Response Command</title>
+<script>
+  (function () {
+    try {
+      var kid = localStorage.getItem('imm-l3-kid');
+      if (!kid || kid.toLowerCase() !== 'nichu') document.documentElement.classList.add('gate-locked');
+    } catch (e) { document.documentElement.classList.add('gate-locked'); }
+  })();
+</script>
+<style>html.gate-locked main, html.gate-locked .progress-summary { display: none !important; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="lens-nichu">
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">🧬 Immune System Quest<small>Outbreak Response Command</small></a>
+    <nav class="day-nav">
+      <a href="#day1">Day 1</a>
+      <a href="#day2">Day 2</a>
+      <a href="#day3">Day 3</a>
+      <button class="notes-toggle-btn" id="notes-toggle-btn" type="button">📝 My Notes</button>
+      <button class="print-btn" id="print-slip-btn" type="button">🖨️ Print my bringing slip</button>
+      <button class="switch-quest-btn" id="switch-quest-btn" type="button">🔁 Switch quest</button>
+    </nav>
+  </div>
+</header>
+
+<div class="progress-summary">
+  <div class="container">
+    <div class="progress-seg">
+      <span class="progress-seg-label">Day 1</span>
+      <div class="progress-seg-track"><div class="progress-seg-fill" id="progress-day1-fill"></div></div>
+      <span class="progress-seg-count" id="progress-day1-label">0/4</span>
+    </div>
+    <div class="progress-seg">
+      <span class="progress-seg-label">Day 2</span>
+      <div class="progress-seg-track"><div class="progress-seg-fill" id="progress-day2-fill"></div></div>
+      <span class="progress-seg-count" id="progress-day2-label">0/6</span>
+    </div>
+    <div class="progress-seg">
+      <span class="progress-seg-label">Day 3</span>
+      <div class="progress-seg-track"><div class="progress-seg-fill" id="progress-day3-fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="quest-gate-block">
+  <div class="gate-block-wrap">
+    <div class="gate-icon">🔒</div>
+    <h2>This is Nichu's quest</h2>
+    <p>If that's you, confirm your name below to continue. If not, ask your facilitator to point you to your own quest.</p>
+    <div class="name-gate-card">
+      <form id="gate-name-form">
+        <div class="name-gate-row">
+          <input type="text" id="gate-name-input" placeholder="Type your name…" maxlength="40">
+          <button class="btn btn-primary" type="submit">Continue</button>
+        </div>
+        <div class="name-gate-msg" id="gate-name-msg"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover-watermark" aria-hidden="true">🚨</div>
+    <div class="format-pill">Quest</div><br>
+    <span class="lens-pill">🚨 Outbreak Response Commander</span>
+    <h1>Immune System: Know Your Enemy</h1>
+    <p class="subtitle">A new outbreak has reached your region. Before you can command a response, you need to know exactly what you're facing — well enough to build it.</p>
+    <div class="kid-name">Prepared for: Nichu</div>
+    <div class="framing">
+      <p style="margin:0;">You are the <strong>Outbreak Response Commander</strong> for a regional health authority. A new outbreak has reached your region, and every decision you make depends on correctly identifying what's actually spreading — a virus needs a completely different response than a vector-borne protoctist. Day 1 briefs you on the full threat. Day 2, you build a real, labeled model of the exact pathogen you've decided is most likely — choosing your own materials and justifying every part — so you can brief the room with more than a guess. Real commanders study the pathogen before they ever deploy a resource. This week, so do you.</p>
+    </div>
+  </section>
+
+  <!-- DAY 1 -->
+  <section class="day-block" id="day1">
+    <span class="day-kicker">Day 1 · Briefing</span>
+    <h2>Know Your Enemy Before You Deploy</h2>
+    <p class="day-sub">You can't allocate resources well if you don't understand what you're actually defending against. This briefing covers the full picture: what you're up against, how the body already fights it, and how real health authorities make the same kind of call you're about to make.</p>
+
+    <h3>Why command decisions start in the body</h3>
+    <p>Every containment decision you'll ever make is really just backing up a system that's already running: the human immune system. Long before any health authority steps in, every person's body is already fighting pathogens on its own, using layers of defense that build on each other. Understanding exactly how those layers work — where they're strong, and where they need backup — is the entire foundation of good outbreak command. A commander who doesn't understand the body's own defenses is making decisions blind.</p>
+
+    <h3 id="sec-pathogens"><span class="sec-num">1</span>The threat: what you're actually defending against</h3>
+    <p>A <strong>pathogen</strong> is a microorganism that causes disease. Not all microorganisms are pathogens — but the ones that are fall into four groups, and each one behaves differently enough that your response has to account for the difference.</p>
+
+    <div class="card-grid">
+      <div class="info-card"><h4>🦠 Bacteria</h4><p>Single-celled living organisms. Some cause illness by releasing toxins. Example: <em>Salmonella</em> (food poisoning), <em>Mycobacterium tuberculosis</em> (TB).</p></div>
+      <div class="info-card"><h4>🧬 Viruses</h4><p>Not even cells — tiny particles that hijack a host cell to reproduce. Example: influenza, measles.</p></div>
+      <div class="info-card"><h4>🍄 Fungi</h4><p>Simple organisms that grow on or in the body. Example: <em>Tinea</em> (ringworm, athlete's foot).</p></div>
+      <div class="info-card"><h4>🦟 Protoctists</h4><p>Single-celled organisms, often vector-spread. Example: <em>Plasmodium</em> (malaria), carried by mosquitoes.</p></div>
+    </div>
+
+    <div class="diagram-card">
+      <div class="diagram-title">🧬 Anatomy of a virus</div>
+      <div class="diagram-sub">The pathogen type you'll likely build in Day 2 — worth knowing cold.</div>
+      <div class="diagram-svg-wrap">
+        <svg viewBox="0 0 240 200" width="230" height="190" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="105" r="52" fill="#fee2e2" stroke="#b91c1c" stroke-width="3"/>
+          <path d="M92 105 q8 -18 28 0 q8 18 28 0" stroke="#7f1d1d" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <g stroke="#b91c1c" stroke-width="4" stroke-linecap="round">
+            <line x1="120" y1="53" x2="120" y2="35"/>
+            <line x1="160" y1="70" x2="173" y2="57"/>
+            <line x1="172" y1="105" x2="190" y2="105"/>
+            <line x1="160" y1="140" x2="173" y2="153"/>
+            <line x1="80" y1="140" x2="67" y2="153"/>
+            <line x1="68" y1="105" x2="50" y2="105"/>
+            <line x1="80" y1="70" x2="67" y2="57"/>
+          </g>
+          <g fill="#b91c1c">
+            <circle cx="120" cy="35" r="5"/><circle cx="173" cy="57" r="5"/><circle cx="190" cy="105" r="5"/>
+            <circle cx="173" cy="153" r="5"/><circle cx="67" cy="153" r="5"/><circle cx="50" cy="105" r="5"/><circle cx="67" cy="57" r="5"/>
+          </g>
+          <circle cx="120" cy="60" r="11" fill="#7f1d1d"/><text x="120" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">1</text>
+          <circle cx="120" cy="105" r="11" fill="#991b1b"/><text x="120" y="110" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">2</text>
+          <circle cx="190" cy="105" r="11" fill="#7f1d1d"/><text x="190" y="110" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">3</text>
+        </svg>
+      </div>
+      <div class="diagram-legend">
+        <div class="diagram-legend-item"><span class="dl-num">1</span><span class="dl-text"><strong>Capsid</strong> — the protein coat wrapping the whole virus</span></div>
+        <div class="diagram-legend-item"><span class="dl-num">2</span><span class="dl-text"><strong>Genetic material</strong> — DNA or RNA, the instructions</span></div>
+        <div class="diagram-legend-item"><span class="dl-num">3</span><span class="dl-text"><strong>Spike protein</strong> — latches onto a host cell</span></div>
+      </div>
+    </div>
+
+    <p>Transmission matters just as much as pathogen type. A pathogen can spread by <strong>direct contact</strong> (touching skin or body fluids), <strong>droplet infection</strong> (a cough or sneeze), <strong>contaminated food or water</strong>, or a <strong>vector</strong> — an organism, often an insect, that carries the pathogen between hosts without getting sick itself. Your containment plan for a droplet-spread disease looks nothing like your plan for a vector-spread one.</p>
+
+    <div class="callout">
+      <span class="callout-label">📋 Situation Report — something doesn't add up</span>
+      <p style="margin:0;">A junior officer's briefing note says: <em>"The outbreak is a virus, so we've ordered antibiotics for every exposed settlement — that should clear it up fast."</em> Something in that plan is wrong. What is it, and what should the officer have ordered instead? Write your correction below as if you're sending it back to them.</p>
+      <textarea id="refl-1" placeholder="Type your correction here…"></textarea>
+    </div>
+
+    <h3 id="sec-barriers"><span class="sec-num">2</span>Line one: barriers (the defense that's already deployed)</h3>
+    <p>Before a single white blood cell gets involved, the body has physical and chemical barriers doing constant, unpaid work: <strong>skin</strong> as a physical wall, <strong>mucus and cilia</strong> trapping and sweeping pathogens out of the airways, <strong>stomach acid</strong> destroying most swallowed pathogens, <strong>lysozyme</strong> in tears and saliva breaking down bacterial cell walls, and <strong>blood clotting</strong> sealing a wound before pathogens can use it as an entry point.</p>
+
+    <div class="process-scene" style="background:linear-gradient(135deg, #0ea5e9, #0369a1);">
+      <div class="ps-stage">
+        <svg viewBox="0 0 150 130" style="position:absolute; inset:0;">
+          <rect x="0" y="95" width="150" height="35" fill="rgba(255,255,255,.18)"/>
+          <path class="ps-cilium" d="M25 95 q4 -22 -2 -42" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="ps-cilium" d="M55 95 q4 -22 -2 -42" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="ps-cilium" d="M85 95 q4 -22 -2 -42" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="ps-cilium" d="M115 95 q4 -22 -2 -42" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="30" cy="45" r="6" fill="#fca5a5"/>
+        </svg>
+      </div>
+      <div class="ps-caption">🌬️ Cilia sweep it out</div>
+      <div class="ps-sub">A trapped pathogen rides the mucus escalator up and out — long before it ever reaches the lungs.</div>
+    </div>
+
+    <div class="callout subtle">
+      <span class="callout-label">🔍 Compare Two Cases</span>
+      <p style="margin:0 0 8px;"><strong>Case A:</strong> A settlement's water supply becomes contaminated after flooding damages the filtration system.<br><strong>Case B:</strong> A settlement reports a rise in chest infections after a wildfire fills the air with smoke for a week.</p>
+      <p style="margin:0;">Which body barrier is most directly compromised in each case — and why would a health authority respond differently to the two?</p>
+      <textarea id="refl-2" placeholder="Explain the difference…"></textarea>
+    </div>
+
+    <h3 id="sec-phagocytes"><span class="sec-num">3</span>Line two: phagocytes (the fast, general-purpose response)</h3>
+    <p><strong>White blood cells</strong> are the body's dedicated infection-fighters, and <strong>phagocytes</strong> are the first kind to respond. Phagocytosis happens in three stages: the phagocyte <strong>detects</strong> chemical signals from damaged tissue or pathogens, <strong>engulfs</strong> the pathogen completely, then <strong>digests</strong> it with enzymes. Phagocytes are <strong>non-specific</strong> — they attack any pathogen the same way, which makes them fast but generic. That thick, yellowish pus around an infected wound is mostly dead phagocytes and destroyed pathogens — visible evidence a battle already happened.</p>
+
+    <div class="process-scene" style="background:linear-gradient(135deg, var(--accent), var(--accent-dark));">
+      <div class="ps-stage">
+        <svg viewBox="0 0 150 130" style="position:absolute; inset:0;">
+          <path class="ps-blob" d="M75 15 C100 10 130 30 130 65 C130 100 100 120 75 118 C45 120 15 100 18 65 C15 30 45 12 75 15 Z" fill="rgba(255,255,255,.22)" stroke="#fff" stroke-width="3"/>
+          <circle class="ps-target" cx="95" cy="55" r="10" fill="#fde047" stroke="#ca8a04" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="ps-caption">🧫 Phagocytosis, on loop</div>
+      <div class="ps-sub">Detect → engulf → digest. It doesn't check what the pathogen is first — it just responds.</div>
+    </div>
+
+    <div class="diagram-card">
+      <div class="diagram-title">🔬 A phagocyte, mid-engulfment</div>
+      <div class="diagram-sub">Freeze the animation above and this is what you'd see.</div>
+      <div class="diagram-svg-wrap">
+        <svg viewBox="0 0 240 200" width="230" height="190" xmlns="http://www.w3.org/2000/svg">
+          <path d="M120 25 C165 20 205 55 205 100 C205 145 165 178 120 175 C70 178 30 145 35 100 C30 55 70 22 120 25 Z" fill="#fee2e2" stroke="var(--accent)" stroke-width="3"/>
+          <circle cx="140" cy="95" r="16" fill="#fde047" stroke="#ca8a04" stroke-width="2"/>
+          <circle cx="90" cy="130" r="5" fill="#fca5a5" opacity=".7"/>
+          <circle cx="80" cy="80" r="4" fill="#fca5a5" opacity=".6"/>
+          <circle cx="120" cy="60" r="11" fill="var(--accent-dark)"/><text x="120" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">1</text>
+          <circle cx="140" cy="95" r="11" fill="#ca8a04"/><text x="140" y="100" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">2</text>
+          <circle cx="90" cy="150" r="11" fill="var(--accent)"/><text x="90" y="155" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">3</text>
+        </svg>
+      </div>
+      <div class="diagram-legend">
+        <div class="diagram-legend-item"><span class="dl-num">1</span><span class="dl-text"><strong>Cell membrane</strong> — flows around the target</span></div>
+        <div class="diagram-legend-item"><span class="dl-num">2</span><span class="dl-text"><strong>Engulfed pathogen</strong> — trapped and about to be digested</span></div>
+        <div class="diagram-legend-item"><span class="dl-num">3</span><span class="dl-text"><strong>Enzymes</strong> — break the pathogen down for good</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">🧾 Evidence Log</span>
+      <p style="margin:0;">A field report says a settlement's minor wound infections are "healing well on their own, no cause for concern." What specific physical sign, mentioned in this section, would you look for to confirm phagocytes are actually doing their job at the wound site? Name it and explain what it tells you.</p>
+      <textarea id="refl-3" placeholder="Name the evidence and what it proves…"></textarea>
+    </div>
+
+    <h3 id="sec-antibodies"><span class="sec-num">4</span>Line three: lymphocytes and antibodies (the precision strike)</h3>
+    <p>Every pathogen carries <strong>antigens</strong> — marker molecules on its surface that identify it as foreign. <strong>Lymphocytes</strong> are white blood cells that recognize one specific antigen; once triggered, they multiply and produce <strong>antibodies</strong> — Y-shaped proteins shaped to match that one antigen exactly, like a key cut for one lock. Antibodies clump pathogens together and mark them for phagocytes to finish off. This response is <strong>specific</strong>, unlike a phagocyte's non-specific attack. After the infection clears, some lymphocytes remain as <strong>memory cells</strong>, ready to trigger a much faster response if that exact pathogen ever returns — the biological basis of immunity.</p>
+
+    <div class="process-scene" style="background:linear-gradient(135deg, #a855f7, #6d28d9);">
+      <div class="ps-stage">
+        <svg viewBox="0 0 150 130" class="ps-key" style="position:absolute; inset:0;">
+          <path d="M75 18 V55 M75 55 L52 28 M75 55 L98 28" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg viewBox="0 0 150 130" style="position:absolute; inset:0;">
+          <circle cx="75" cy="90" r="17" fill="#fde047" stroke="#ca8a04" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="ps-caption">🔑 A perfect match, every time</div>
+      <div class="ps-sub">This antibody's tips fit ONE antigen exactly. No other pathogen's antigen fits at all.</div>
+    </div>
+
+    <div class="diagram-card">
+      <div class="diagram-title">🔑 Antibody meets antigen</div>
+      <div class="diagram-sub">The exact model Michael's group is building this week.</div>
+      <div class="diagram-svg-wrap">
+        <svg viewBox="0 0 240 200" width="230" height="190" xmlns="http://www.w3.org/2000/svg">
+          <path d="M120 20 V90 M120 90 L75 40 M120 90 L165 40" stroke="#7e22ce" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="120" cy="150" r="24" fill="#fde047" stroke="#ca8a04" stroke-width="3"/>
+          <circle cx="75" cy="40" r="11" fill="#a855f7"/><text x="75" y="45" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">1</text>
+          <circle cx="120" cy="90" r="11" fill="#7e22ce"/><text x="120" y="95" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">2</text>
+          <circle cx="120" cy="150" r="11" fill="#ca8a04"/><text x="120" y="155" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">3</text>
+        </svg>
+      </div>
+      <div class="diagram-legend">
+        <div class="diagram-legend-item"><span class="dl-num">1</span><span class="dl-text"><strong>Antigen-binding site</strong> — the exact-fit tip</span></div>
+        <div class="diagram-legend-item"><span class="dl-num">2</span><span class="dl-text"><strong>Antibody</strong> — the whole Y-shaped protein</span></div>
+        <div class="diagram-legend-item"><span class="dl-num">3</span><span class="dl-text"><strong>Antigen</strong> — the pathogen's one matching ID tag</span></div>
+      </div>
+    </div>
+
+    <div class="callout subtle">
+      <span class="callout-label">🎓 Field Training Note</span>
+      <p style="margin:0;">A new recruit on your team doesn't understand why getting chickenpox once usually means you won't get it again. Write the two or three sentences you'd use to explain memory cells to them — simply enough that they could repeat it back correctly to someone else.</p>
+      <textarea id="refl-4" placeholder="Explain it simply…"></textarea>
+    </div>
+
+    <h3 id="sec-vaccines"><span class="sec-num">5</span>Vaccines, immunity, and the numbers behind command decisions</h3>
+    <p>There are two routes to immunity. <strong>Active immunity</strong> is your own body producing antibodies and memory cells — either by catching the disease ("natural") or through a vaccine ("artificial"). <strong>Passive immunity</strong> is receiving ready-made antibodies from elsewhere (a mother's antibodies crossing to a baby, or an antibody injection) — fast, but temporary, since no memory cells are made. A <strong>vaccine</strong> exposes the immune system to a safe version of a pathogen's antigens, triggering real antibody and memory-cell production without causing the disease itself.</p>
+
+    <p>Here's the number that actually drives outbreak command: every disease has a <strong>basic reproduction number (R0)</strong> — roughly, how many new people one infected person is likely to infect in a population with no immunity. The more contagious a disease, the higher its R0, and the higher the percentage of a population that needs to be immune before the outbreak can't sustain itself — its <strong>herd immunity threshold</strong>. This is exactly the number you'll be using in Day 2.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Disease type</th><th>R0 (typical range)</th><th>Herd immunity threshold</th></tr></thead>
+      <tbody>
+        <tr><td>Seasonal flu-like</td><td class="num">0.9 – 2.1</td><td class="num">~45 – 52%</td></tr>
+        <tr><td>COVID-19-like (original strain)</td><td class="num">2 – 3</td><td class="num">~50 – 67%</td></tr>
+        <tr><td>Polio-like</td><td class="num">3 – 4</td><td class="num">~75 – 80%</td></tr>
+        <tr><td>Measles-like</td><td class="num">12 – 18</td><td class="num">~93 – 95%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.85rem; color:var(--ink-soft);">Real-world figures, cited from published epidemiological reviews. The higher a pathogen's R0, the more of a population needs to be immune before its spread naturally stalls out — which is exactly why a "cheap" intervention that works for a low-R0 disease can completely fail against a high-R0 one.</p>
+
+    <p><strong>Antibiotics</strong> kill or stop bacteria — they do nothing to viruses, since antibiotics target structures bacterial cells have that viruses simply don't. Using antibiotics when they're not needed, or stopping a course early, lets the toughest bacteria survive and multiply — <strong>antibiotic resistance</strong>, one of the biggest constraints real health authorities plan around today.</p>
+
+    <h3>History: how we got the tools you're about to use</h3>
+    <div class="timeline">
+      <div class="timeline-item"><div class="t-year">1796</div><div class="t-body"><strong>Edward Jenner</strong> notices milkmaids who'd had cowpox rarely caught smallpox, and creates the world's first vaccine.</div></div>
+      <div class="timeline-item"><div class="t-year">1879–1885</div><div class="t-body"><strong>Louis Pasteur</strong> establishes germ theory and develops the first lab-made weakened-pathogen vaccines, including one for rabies.</div></div>
+      <div class="timeline-item"><div class="t-year">1882</div><div class="t-body"><strong>Élie Metchnikoff</strong> discovers phagocytosis, later sharing the 1908 Nobel Prize in Physiology or Medicine for the work.</div></div>
+      <div class="timeline-item"><div class="t-year">1890–1901</div><div class="t-body"><strong>Emil von Behring</strong> develops diphtheria antitoxin — the first practical use of passive immunity — and receives the first-ever Nobel Prize in Physiology or Medicine in 1901.</div></div>
+      <div class="timeline-item"><div class="t-year">1928</div><div class="t-body"><strong>Alexander Fleming</strong> discovers penicillin, the first antibiotic, from an accidentally contaminated petri dish.</div></div>
+      <div class="timeline-item"><div class="t-year">1980</div><div class="t-body">The <strong>World Health Organization</strong> officially declares smallpox eradicated — still the only human disease ever eliminated worldwide through vaccination.</div></div>
+      <div class="timeline-item"><div class="t-year">2020</div><div class="t-body"><strong>mRNA vaccine technology</strong> is deployed at unprecedented speed during the COVID-19 pandemic, reshaping how fast a new vaccine program can be launched.</div></div>
+    </div>
+
+    <h3>Real-world application: this is a real job</h3>
+    <p>Outbreak command isn't hypothetical. The <strong>World Health Organization</strong> and national health authorities use R0 and herd immunity thresholds exactly like the table above to decide where to deploy limited vaccine supply first during a real outbreak. National <strong>immunization programs</strong> (like India's Universal Immunization Programme) run on fixed annual budgets and coverage targets, not unlimited resources. Hospitals follow <strong>antibiotic stewardship</strong> guidelines (like the WHO's AWaRe classification) specifically to avoid the resistance problem you read about above. International travelers are sometimes required to show a <strong>yellow fever vaccination certificate</strong> before entering certain countries — a real, everyday example of herd-immunity thinking applied at a border.</p>
+
+    <div class="glossary">
+      <div class="glossary-item"><div class="word">Pathogen</div><div class="def">A microorganism that causes disease.</div></div>
+      <div class="glossary-item"><div class="word">Herd immunity threshold</div><div class="def">The % of a population that must be immune to stall an outbreak.</div></div>
+      <div class="glossary-item"><div class="word">R0 (basic reproduction number)</div><div class="def">The average number of new infections one case causes in a population with no immunity.</div></div>
+      <div class="glossary-item"><div class="word">Phagocytosis</div><div class="def">A phagocyte engulfing and destroying a pathogen.</div></div>
+      <div class="glossary-item"><div class="word">Antibody</div><div class="def">A protein shaped to match one specific antigen.</div></div>
+      <div class="glossary-item"><div class="word">Antibiotic resistance</div><div class="def">Bacteria evolving to survive antibiotics that used to work.</div></div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-title">🎮 Field Intel Match</div>
+      <div class="game-sub">Six key terms from today's whole briefing. Click a term, then its matching definition — no penalty for a wrong guess, just try again.</div>
+      <div id="game-day1"></div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="day-block">
+    <span class="day-kicker">Before Day 2 · Build Kit</span>
+    <h2>Choose What You're Bringing</h2>
+    <p class="day-sub">This is a pool to pick from, not a checklist — decide what you'll actually use once you've chosen which pathogen you're building.</p>
+
+    <div class="pool-grid">
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">A round or oval base</span><span class="pool-sub">A polystyrene ball, a scrunched-up foil or paper ball, or any small ball you already have.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">Colored paper, felt, or paint</span><span class="pool-sub">For covering the base — your pathogen's outer surface.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">Pipe cleaners, toothpicks, or twist ties</span><span class="pool-sub">For spikes, flagella, or hyphae threads, depending on what you build.</span></span></label>
+      <label class="pool-item"><input type="checkbox"><span><span class="pool-name">String, wool, or ribbon</span><span class="pool-sub">For coiled genetic material — useful if you're building a virus.</span></span></label>
+      <label class="pool-item"><input type="checkbox"><span><span class="pool-name">Small beads, pom-poms, or dried lentils</span><span class="pool-sub">For spores or a nucleus — useful for a fungus or protoctist.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">Cardboard or a paper plate</span><span class="pool-sub">A mounting base to present your finished model on.</span></span></label>
+      <label class="pool-item"><input type="checkbox" checked><span><span class="pool-name">Glue, tape, scissors, marker pen</span><span class="pool-sub">The basics for assembling and labeling.</span></span></label>
+      <label class="pool-item"><input type="checkbox"><span><span class="pool-name">Small labels or flags on toothpicks</span><span class="pool-sub">For labeling each part clearly — sticky notes cut into strips work too.</span></span></label>
+    </div>
+
+    <div class="slip-preview">
+      <h4>📋 What you're bringing to Day 2:</h4>
+      <ul id="slip-list-preview"></ul>
+      <div class="slip-empty" id="slip-empty">Nothing selected yet.</div>
+    </div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section class="day-block" id="day2">
+    <span class="day-kicker">Day 2 · Build Day</span>
+    <h2>Build the Pathogen You're Defending Against</h2>
+    <p class="day-sub">A commander who can't picture the enemy is guessing. Today you build a real, labeled model of ONE pathogen type — your choice — realistic enough to brief a room on tomorrow.</p>
+
+    <div class="model3d-wrap">
+      <div class="model3d">
+        <div class="model3d-stage" id="model-stage">
+          <div class="model3d-face f1" style="background:linear-gradient(135deg,#f87171,#b91c1c);"><span><span class="f-icon">🦠</span>Bacteria<br>cell wall, cytoplasm</span></div>
+          <div class="model3d-face f2" style="background:linear-gradient(135deg,#fb923c,#c2410c);"><span><span class="f-icon">🧬</span>Virus<br>capsid, genetic material, spikes</span></div>
+          <div class="model3d-face f3" style="background:linear-gradient(135deg,#f87171,#991b1b);"><span><span class="f-icon">🍄</span>Fungus<br>hyphae threads, spores</span></div>
+          <div class="model3d-face f4" style="background:linear-gradient(135deg,#fb923c,#9a3412);"><span><span class="f-icon">🦟</span>Protoctist<br>single cell, moves to find a host</span></div>
+          <div class="model3d-face f5" style="background:linear-gradient(135deg,#f87171,#7f1d1d);"><span><span class="f-icon">🔬</span>Pick ONE<br>type to build</span></div>
+          <div class="model3d-face f6" style="background:linear-gradient(135deg,#fb923c,#7c2d12);"><span><span class="f-icon">🏷️</span>Label every<br>part you include</span></div>
+        </div>
+      </div>
+      <div class="model3d-hint">🖱️ Hover to pause and read each face.</div>
+      <button class="btn btn-ghost model3d-pause" type="button" id="pause-btn">⏸ Pause rotation</button>
+    </div>
+
+    <h3>Choose your pathogen</h3>
+    <p>Pick whichever type your region is most realistically facing (tie it back to Day 1 — a vector-spread outbreak points toward a protoctist, a droplet-spread one toward a virus). Whatever you choose, it needs every part below.</p>
+    <table class="data-table">
+      <thead><tr><th>Type</th><th>Parts your model must include</th></tr></thead>
+      <tbody>
+        <tr><td>🦠 Bacteria</td><td>Cell wall, cytoplasm, and (optionally) flagella or a toxin marker</td></tr>
+        <tr><td>🧬 Virus</td><td>Capsid, genetic material, spike proteins</td></tr>
+        <tr><td>🍄 Fungus</td><td>Hyphae threads, spores</td></tr>
+        <tr><td>🦟 Protoctist</td><td>A single cell body, a nucleus, and a tail or flagellum for movement</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec-plan">Plan before you build</h3>
+    <p>Fill this in before you glue anything down. This material-justification table <em>is</em> the real decision — the build itself is just carrying it out.</p>
+    <table class="justify-table">
+      <thead><tr><th>Part</th><th>What it represents</th><th>Material I'm using</th><th>Why this material fits</th></tr></thead>
+      <tbody>
+        <tr><td><input placeholder="e.g. Capsid"></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><textarea></textarea></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Build it</h3>
+    <div class="build-checklist">
+      <label class="build-check-item"><input type="checkbox"><span><span class="step-num">1.</span><span class="step-text">Cover your base completely — this becomes the outer surface of your pathogen.</span></span></label>
+      <label class="build-check-item"><input type="checkbox"><span><span class="step-num">2.</span><span class="step-text">Add every part from your plan table, one at a time, checking it off the table as you go.</span></span></label>
+      <label class="build-check-item"><input type="checkbox"><span><span class="step-num">3.</span><span class="step-text">Label every part with a small flag or sticky note — nothing unlabeled counts as finished.</span></span></label>
+      <label class="build-check-item"><input type="checkbox"><span><span class="step-num">4.</span><span class="step-text">Mount it on your cardboard base and write your pathogen's name and type next to it.</span></span></label>
+      <label class="build-check-item"><input type="checkbox"><span><span class="step-num">5.</span><span class="step-text">Write one sentence on why this pathogen — and how it spreads — is realistic for the outbreak you're commanding.</span></span></label>
+    </div>
+
+    <h3>Results</h3>
+    <p>Describe your finished model — this doubles as notes for tomorrow's briefing.</p>
+    <table class="plan-table">
+      <tbody>
+        <tr><td style="width:140px;"><strong>Pathogen type built</strong></td><td><input placeholder="e.g. Virus"></td></tr>
+        <tr><td><strong>Parts labeled</strong></td><td><input placeholder="e.g. 3 of 3"></td></tr>
+        <tr><td><strong>Short description</strong></td><td><textarea placeholder="Describe your model in 2–3 sentences…"></textarea></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <span class="callout-label">🪞 Command Debrief — self-check</span>
+      <p style="margin:0;">What might someone misunderstand about your model just by looking at it, without your explanation? Which labeled part are you least confident explaining — and why did you still include it?</p>
+      <textarea id="refl-5" placeholder="Write your honest debrief…"></textarea>
+    </div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section class="day-block" id="day3">
+    <span class="day-kicker">Day 3 · Briefing the Room</span>
+    <h2>Present Your Pathogen</h2>
+
+    <div class="hook-box">
+      <div class="hook-label">Your opening move</div>
+      <p style="margin:0;">Hold up your model without naming it yet, and ask the room: <em>"What kind of pathogen do you think this is — and how do you think it spreads?"</em> Let a few guesses land before you confirm it.</p>
+    </div>
+
+    <h3>What to include</h3>
+    <ul class="checklist-plain">
+      <li>Every labeled part, and what it actually does</li>
+      <li>Why you chose this pathogen type for this outbreak, tied back to how it spreads</li>
+      <li>The material-justification decision you're least sure about — and why you still made that call</li>
+      <li>One thing you'd build differently with more time or materials</li>
+    </ul>
+
+    <div class="facilitator-tip">
+      <span class="fac-label">Facilitator only</span>
+      <p>If a part of the model looks rough or a material choice feels like a stretch, steer the room's attention there first, not away from it. The interesting, defensible part of this briefing is explaining WHY that material was the best available option, not pretending every choice was perfect. A kid who can defend an imperfect build is demonstrating more of the target skill (decision-making under real constraints) than one who happened to have ideal materials on hand.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  Immune System Quest · Outbreak Response Command — Nichu's instance (facilitator test profile). <a href="../index.html">All three instances →</a>
+</footer>
+
+<!-- Isolated printable materials slip -->
+<div id="print-slip-page">
+  <div class="print-slip-sheet">
+    <h3>📋 Materials I'm Bringing — Day 2</h3>
+    <div class="slip-kid">Outbreak Response Command · Nichu</div>
+    <ul id="slip-list-print"></ul>
+  </div>
+</div>
+
+<!-- Side notes drawer -->
+<div class="notes-backdrop" id="notes-backdrop"></div>
+<div class="notes-drawer" id="notes-drawer">
+  <div class="notes-drawer-head">
+    <h4>📝 My Notes</h4>
+    <button class="notes-drawer-close" id="notes-drawer-close" type="button" aria-label="Close notes">&times;</button>
+  </div>
+  <div class="notes-drawer-body">
+    <div class="notes-section-label">Words &amp; phrases I highlighted</div>
+    <ul class="hl-collected-list" id="hl-collected-list"></ul>
+    <div class="hl-collected-empty" id="hl-collected-empty">Select any text on the page and click "🖍 Highlight" — it'll show up here.</div>
+    <div class="notes-section-label">My notes</div>
+    <textarea class="notes-textarea" id="notes-textarea" placeholder="Jot down anything — new words, questions, ideas for your briefing…"></textarea>
+    <div class="notes-saved-msg" id="notes-saved-msg"></div>
+  </div>
+</div>
+
+<script src="../js/quest.js"></script>
+<script>
+  QuestUI.initKidGate('Nichu');
+  QuestUI.initHighlighter('nichu');
+  QuestUI.initNotesDrawer('nichu');
+  QuestUI.initMaterialsPool('nichu');
+  QuestUI.initBuildChecklist('nichu');
+  QuestUI.initFieldAutosave('nichu');
+  QuestUI.initProgressBar('nichu');
+  QuestUI.initMatchGame('game-day1', [
+    ['Pathogen', 'A microorganism that causes disease'],
+    ['Vector', 'Carries a pathogen between hosts without getting sick itself'],
+    ['Cilia', 'Sweep trapped pathogens out of the airways'],
+    ['Phagocytosis', 'A phagocyte engulfing and destroying a pathogen'],
+    ['Antibody', 'A protein shaped to match one specific antigen'],
+    ['Herd immunity', 'Population-wide protection when enough people are immune']
+  ], { pageKey: 'nichu' });
+  QuestUI.initReflectionChecks('nichu', [
+    { id: 'refl-1', groups: [['virus', 'viral'], ['antibiotic'], ["won't work", "won't help", "don't work", "doesn't work", "no effect", "not work", "useless", 'wrong']],
+      reread: { anchor: 'sec-vaccines', label: '5. Vaccines, immunity & the numbers behind command decisions' } },
+    { id: 'refl-2', groups: [['stomach acid', 'gut', 'digestive', 'water'], ['cilia', 'mucus', 'airway', 'lungs', 'respiratory', 'smoke', 'air']],
+      reread: { anchor: 'sec-barriers', label: '2. Line one: barriers' } },
+    { id: 'refl-3', groups: [['pus', 'inflammation', 'red', 'swoll'], ['phagocyte', 'white blood cell']],
+      reread: { anchor: 'sec-phagocytes', label: '3. Line two: phagocytes' } },
+    { id: 'refl-4', groups: [['memory cell'], ['fast', 'quick']],
+      reread: { anchor: 'sec-antibodies', label: '4. Line three: lymphocytes and antibodies' } },
+    { id: 'refl-5', groups: [['part', 'label'], ['material']],
+      reread: { anchor: 'sec-plan', label: 'Plan before you build' } }
+  ]);
+
+  var modelPaused = false;
+  document.getElementById('pause-btn').addEventListener('click', function () {
+    modelPaused = !modelPaused;
+    document.getElementById('model-stage').classList.toggle('paused', modelPaused);
+    this.textContent = modelPaused ? '▶ Resume rotation' : '⏸ Pause rotation';
+  });
+
+  window.addEventListener('beforeprint', function () { document.body.classList.add('printing-slip'); });
+  window.addEventListener('afterprint', function () { document.body.classList.remove('printing-slip'); });
+</script>
+</body>
+</html>

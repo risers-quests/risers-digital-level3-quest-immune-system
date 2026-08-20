@@ -16,9 +16,16 @@ repo — three folders, not three repositories:
 | Shalom | `/shalom/` | 🚨 Outbreak Response Commander | Builds a labeled model of ONE real pathogen type (his choice — bacteria/virus/fungus/protoctist), justified by the outbreak he's commanding | Containment Briefing |
 | Michael | `/michael/` | 💰 Vaccine Program Director | Builds a labeled antibody-antigen "lock and key" model, proving specificity with a second, non-matching antigen | Funding Pitch |
 | Karis | `/karis/` | 🩺 Field Triage Medic | Builds a labeled phagocyte model caught mid-engulfment (detect/engulf/digest), not before or after | Shift Handover Report |
+| Nichu *(facilitator test profile)* | `/nichu/` | Same as Shalom's — a 1:1 clone with the name swapped and a distinct purple lens so it's never mistaken for a fourth real kid | — | — |
 
 `index.html` at the repo root is a name-check gate, not a page of links —
-see "Individual displays" below.
+see "Individual displays" below. Typing "Nichu" at the gate routes to the
+`/nichu/` instance, an exact clone of Shalom's page (content, build target,
+functionality) with the name swapped and its own purple lens color, kept
+fully isolated from Shalom/Michael/Karis's saved data by its own
+`nichu`-keyed `localStorage` entries. It exists purely so a facilitator can
+run through the whole 3-day flow — reading, highlighter, game, build,
+progress bar — without touching any real kid's saved progress.
 
 ## The quest spans 3 days, and it shows: a game on Day 1, a progress bar, and nothing resets
 
@@ -115,17 +122,24 @@ between kids:
 
 - **Highlighter** — select any text in the reading (or anywhere else in
   `<main>`, including diagram captions and animation labels) and a small
-  "🖍 Highlight" button appears next to the selection; clicking it wraps the
-  exact selected text in a `<mark>`, even across nested `<strong>`/`<em>`
-  tags **and across paragraph/heading/caption boundaries** — dragging a
-  selection from the end of one paragraph into the start of the next works
-  correctly, not just single-block selections. Click an existing highlight
-  to remove it (a multi-block highlight is removed as one unit). Under the
-  hood this uses `Range.intersectsNode()` to find every tagged block the
-  selection touches and records plain-text offsets per block, so a single
-  highlight can carry several spans under one id and all of them reapply
-  correctly on reload regardless of how the selection crossed formatting or
-  block boundaries.
+  popup appears next to the selection with **five color swatches** (yellow,
+  green, blue, pink, orange); tapping one wraps the exact selected text in a
+  `<mark>` in that color, even across nested `<strong>`/`<em>` tags and
+  across paragraph/heading/caption boundaries — dragging a selection from
+  the end of one paragraph into the start of the next works correctly, not
+  just single-block selections. Tapping an *existing* highlight reopens the
+  same popup with the color swatches (to recolor it) plus a **"✕ Remove"**
+  button, so an accidental highlight is one deliberate tap away from being
+  undone — nothing is removed by a stray tap. Works identically with mouse,
+  touch, and stylus/pen input via the unified Pointer Events API
+  (`pointerdown`/`pointerup`), backed by a debounced `selectionchange`
+  listener as a fallback for native mobile selection-handle drags and
+  keyboard selection. Under the hood this uses `Range.intersectsNode()` to
+  find every tagged block the selection touches and a Range-based offset
+  calculation (robust to a selection boundary landing on a block's edge,
+  not just mid-text) to record plain-text offsets per block, so a single
+  highlight can carry several spans and a color under one id, and all of it
+  reapplies correctly on reload.
 - **Side notes** — a "📝 My Notes" button in the header opens a slide-in
   drawer with two parts: a running list of every highlighted snippet (with
   its own remove button, synced with the on-page highlight), and a free
@@ -133,7 +147,27 @@ between kids:
 
 Implementation: `QuestUI.initHighlighter(pageKey)` and
 `QuestUI.initNotesDrawer(pageKey)` in `js/quest.js`, called once per kid
-page with that page's own key (`'shalom'` / `'michael'` / `'karis'`).
+page with that page's own key (`'shalom'` / `'michael'` / `'karis'` /
+`'nichu'`).
+
+## Persistence is per-browser, not per-account — no cross-device sync
+
+Everything that "saves" (highlights, notes, reflections, the Day 1 game,
+Day 2 fields/build checklist/materials pool, the progress bar, even the
+gate itself) is `localStorage` — there's no backend, no account, no server.
+That means:
+- **Same device, same browser, any number of sessions** → everything is
+  there exactly as left, indefinitely (until that browser's storage is
+  cleared). This is the normal case a 3-day quest is built around.
+- **Different device, or a different browser on the same device** → a
+  blank slate. Progress made on a school tablet won't show up if the same
+  kid opens the link on a home laptop.
+
+If cross-device sync is actually needed, that's a real backend (even a
+small one — e.g. a shared key-value store keyed by kid name) and is out of
+scope for what's built here; worth a separate discussion before building it
+since it changes the "no accounts, everything local" model the rest of the
+site relies on.
 
 ## Day 2 is a build day (not a simulation)
 
@@ -242,8 +276,10 @@ index.html          Name-check gate — routes each kid to their own instance
 shalom/index.html    Outbreak Response Commander instance
 michael/index.html   Vaccine Program Director instance
 karis/index.html     Field Triage Medic instance
-css/styles.css        Shared styling — one stylesheet, three lens palettes
-                       (body.lens-shalom / .lens-michael / .lens-karis)
+nichu/index.html      Facilitator test profile — clone of Shalom's instance
+css/styles.css        Shared styling — one stylesheet, four lens palettes
+                       (body.lens-shalom / .lens-michael / .lens-karis /
+                       .lens-nichu)
 js/quest.js           Materials-pool → printable-slip wiring, print trigger,
                        the per-kid access gate, the highlighter, the notes
                        drawer, the keyword-checked reflection engine, the

@@ -249,7 +249,7 @@
     }
   }
 
-  function wrapRange(root, start, end, markClass, hlId) {
+  function wrapRange(root, start, end, markClass, hlId, bg) {
     if (end <= start || !root) return;
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
     var pos = 0, node, targets = [];
@@ -270,6 +270,7 @@
       if (!mid) return;
       var mark = el('mark', markClass, null);
       mark.dataset.hlId = hlId;
+      if (bg) mark.style.backgroundColor = bg;
       mark.textContent = mid;
       var frag = document.createDocumentFragment();
       if (before) frag.appendChild(document.createTextNode(before));
@@ -277,6 +278,21 @@
       if (after) frag.appendChild(document.createTextNode(after));
       t.node.parentNode.replaceChild(frag, t.node);
     });
+  }
+
+  // Fixed highlighter palette — a real highlighter pen has a handful of colors,
+  // not an unlimited picker. `name` is what gets persisted; `bg` is the actual
+  // CSS color, applied as an inline style so it survives independent of theme.
+  var HL_COLORS = [
+    { name: 'yellow', bg: '#fde68a' },
+    { name: 'green', bg: '#bbf7d0' },
+    { name: 'blue', bg: '#bfdbfe' },
+    { name: 'pink', bg: '#fbcfe8' },
+    { name: 'orange', bg: '#fed7aa' }
+  ];
+  function hlColorBg(name) {
+    var match = HL_COLORS.filter(function (c) { return c.name === name; })[0];
+    return match ? match.bg : HL_COLORS[0].bg;
   }
 
   function initHighlighter(pageKey) {
@@ -301,7 +317,7 @@
       highlights.forEach(function (h) {
         (h.spans || []).forEach(function (s) {
           var root = document.querySelector('[data-hl-block="' + s.block + '"]');
-          if (root) wrapRange(root, s.start, s.end, 'user-hl', h.id);
+          if (root) wrapRange(root, s.start, s.end, 'user-hl', h.id, hlColorBg(h.color));
         });
       });
     }
@@ -330,12 +346,15 @@
       if (emptyEl) emptyEl.style.display = 'none';
       highlights.forEach(function (h) {
         var li = el('li');
+        var dot = el('span', 'hlc-dot', null);
+        dot.style.background = hlColorBg(h.color);
         var span = el('span', 'hlc-text', null);
         span.textContent = h.text;
         var btn = el('button', 'hlc-remove', '&times;');
         btn.type = 'button';
         btn.title = 'Remove highlight';
         btn.addEventListener('click', function () { removeHighlight(h.id); });
+        li.appendChild(dot);
         li.appendChild(span);
         li.appendChild(btn);
         listEl.appendChild(li);
@@ -354,27 +373,29 @@
       renderCollectedList();
     }
 
-    var popup = el('div', 'hl-popup', '<button type="button">🖍 Highlight</button>');
+    // One popup, two modes: picking a color for a fresh selection ("new" mode),
+    // or picking a new color / removing for a highlight the kid just tapped
+    // ("edit" mode, .hl-popup-editing shows the extra Remove button).
+    var popup = el('div', 'hl-popup', null);
+    HL_COLORS.forEach(function (c) {
+      var swatch = el('button', 'hl-swatch', null);
+      swatch.type = 'button';
+      swatch.dataset.color = c.name;
+      swatch.style.background = c.bg;
+      swatch.title = 'Highlight in ' + c.name;
+      popup.appendChild(swatch);
+    });
+    var removeBtn = el('button', 'hl-remove-btn', '✕ Remove');
+    removeBtn.type = 'button';
+    removeBtn.title = 'Remove this highlight';
+    popup.appendChild(removeBtn);
     popup.style.display = 'none';
     document.body.appendChild(popup);
-    var pending = null;
 
-    // The one thing that actually decides "does the selection right now deserve
-    // a highlight popup". Called from mouseup/touchend for instant desktop/touch
-    // response, and from a debounced selectionchange listener as a fallback that
-    // catches everything else (native mobile selection-handle drags, which don't
-    // reliably fire mouseup/touchend at the right moment, and keyboard selection).
-    function trySelection() {
-      var sel = window.getSelection();
-      if (!sel || sel.isCollapsed || sel.rangeCount === 0) { hidePopup(); return; }
-      var range = sel.getRangeAt(0);
-      var text = range.toString().trim();
-      if (!text) { hidePopup(); return; }
-      var spans = findSpans(range);
-      if (!spans.length) { hidePopup(); return; }
-      pending = { spans: spans, text: text };
-      var rect = range.getBoundingClientRect();
-      if (!rect || (rect.width === 0 && rect.height === 0)) { hidePopup(); return; }
+    var pending = null;   // {spans, text} — a fresh, not-yet-colored selection
+    var editingId = null; // hlId of an existing highlight the kid just tapped
+
+    function positionPopupAt(rect) {
       popup.style.left = (rect.left + rect.width / 2 + window.scrollX) + 'px';
       popup.style.top = (rect.top + window.scrollY) + 'px';
       popup.style.display = 'flex';
@@ -382,17 +403,73 @@
 
     function hidePopup() {
       popup.style.display = 'none';
+      popup.classList.remove('hl-popup-editing');
       pending = null;
+      editingId = null;
     }
 
-    document.addEventListener('mouseup', function (e) {
+    function openEditPopup(mark) {
+      pending = null;
+      editingId = mark.dataset.hlId;
+      popup.classList.add('hl-popup-editing');
+      positionPopupAt(mark.getBoundingClientRect());
+    }
+
+    // The one thing that actually decides "does the selection right now deserve
+    // a highlight popup". Called from pointerup for instant response (works for
+    // mouse, touch, and pen alike — Pointer Events unify all three), and from a
+    // debounced selectionchange listener as a fallback that catches everything
+    // else (native mobile selection-handle drags, which don't reliably fire
+    // pointerup at the right moment, and keyboard selection).
+    function trySelection() {
+      if (editingId) return; // an edit popup is open — a stray selection shouldn't steal it
+      var sel = window.getSelection();
+      if (!sel || sel.isCollapsed || sel.rangeCount === 0) { hidePopup(); return; }
+      var range = sel.getRangeAt(0);
+      var text = range.toString().trim();
+      if (!text) { hidePopup(); return; }
+      var spans = findSpans(range);
+      if (!spans.length) { hidePopup(); return; }
+      var rect = range.getBoundingClientRect();
+      if (!rect || (rect.width === 0 && rect.height === 0)) { hidePopup(); return; }
+      pending = { spans: spans, text: text };
+      popup.classList.remove('hl-popup-editing');
+      positionPopupAt(rect);
+    }
+
+    function applyPending(color) {
+      if (!pending) return;
+      var id = 'h' + Date.now() + Math.random().toString(36).slice(2, 6);
+      pending.spans.forEach(function (s) {
+        var root = document.querySelector('[data-hl-block="' + s.block + '"]');
+        wrapRange(root, s.start, s.end, 'user-hl', id, hlColorBg(color));
+      });
+      highlights.push({ id: id, spans: pending.spans, text: pending.text, color: color });
+      persist();
+      renderCollectedList();
+      window.getSelection().removeAllRanges();
+    }
+
+    function recolorHighlight(id, color) {
+      document.querySelectorAll('mark.user-hl[data-hl-id="' + id + '"]').forEach(function (m) {
+        m.style.backgroundColor = hlColorBg(color);
+      });
+      highlights.forEach(function (h) { if (h.id === id) h.color = color; });
+      persist();
+    }
+
+    // Pointer Events fire for mouse, touch, and pen/stylus alike, so this one
+    // pair of listeners is all three input types at once — no separate
+    // mouse/touch branches to keep in sync.
+    document.addEventListener('pointerup', function (e) {
       if (popup.contains(e.target)) return;
+      var mark = e.target.closest && e.target.closest('mark.user-hl');
+      if (mark) { openEditPopup(mark); return; }
       setTimeout(trySelection, 0);
     });
 
-    document.addEventListener('touchend', function (e) {
-      if (popup.contains(e.target)) return;
-      setTimeout(trySelection, 0);
+    document.addEventListener('pointerdown', function (e) {
+      if (!popup.contains(e.target)) hidePopup();
     });
 
     var selChangeTimer = null;
@@ -401,31 +478,19 @@
       selChangeTimer = setTimeout(trySelection, 220);
     });
 
-    popup.querySelector('button').addEventListener('click', function () {
-      if (!pending) return;
-      var id = 'h' + Date.now() + Math.random().toString(36).slice(2, 6);
-      pending.spans.forEach(function (s) {
-        var root = document.querySelector('[data-hl-block="' + s.block + '"]');
-        wrapRange(root, s.start, s.end, 'user-hl', id);
-      });
-      highlights.push({ id: id, spans: pending.spans, text: pending.text });
-      persist();
-      renderCollectedList();
-      window.getSelection().removeAllRanges();
-      hidePopup();
-    });
-
-    document.addEventListener('mousedown', function (e) {
-      if (!popup.contains(e.target)) hidePopup();
-    });
-
-    document.addEventListener('touchstart', function (e) {
-      if (!popup.contains(e.target)) hidePopup();
-    });
-
-    document.addEventListener('click', function (e) {
-      var mark = e.target.closest && e.target.closest('mark.user-hl');
-      if (mark) removeHighlight(mark.dataset.hlId);
+    popup.addEventListener('click', function (e) {
+      var swatch = e.target.closest && e.target.closest('.hl-swatch');
+      if (swatch) {
+        var color = swatch.dataset.color;
+        if (editingId) recolorHighlight(editingId, color);
+        else applyPending(color);
+        hidePopup();
+        return;
+      }
+      if (e.target.closest && e.target.closest('.hl-remove-btn') && editingId) {
+        removeHighlight(editingId);
+        hidePopup();
+      }
     });
 
     applyAll();
